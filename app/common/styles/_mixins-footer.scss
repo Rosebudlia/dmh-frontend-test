@@ -1,0 +1,17 @@
+@import "mixins/footer/footer-default";
+@import "mixins/footer/footer-additional";
+
+
+@mixin footerBuild($map:null) {
+    @if $map != null {
+        $default: map-get($map, default);
+        @if $default != null {
+            @include footerBuildDefault($default);
+        }
+
+        $additional: map-get($map, additional);
+        @if $additional != null {
+            @include footerBuildAdditional($additional);
+        }
+    }
+}

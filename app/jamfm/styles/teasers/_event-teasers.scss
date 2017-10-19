@@ -1,0 +1,109 @@
+@keyframes openTools {
+    from {transform: rotate(90deg);}
+    to {transform: rotate(0deg);}
+}
+
+.teaser.event-teaser {
+    height: initial;
+    min-height: 320px;
+    .content {
+        div {
+            .teaser-text {
+                .teaser-header {
+                    width: 80%;
+                    margin-bottom: 35px;
+                    display: block;
+                    padding: 15px 0 10px 10px;
+                }
+
+                .event-tools-open {
+                    position: absolute;
+                    width: 30px;
+                    height: 30px;
+                    border: solid 2px #d2d2db;
+                    border-right: none;
+                    right: 15px;
+                    top: 18px;
+                    font-size: 26px;
+                    font-weight: 300;
+                    padding: 5px 6px;
+                    color: #d2d2db;
+                    display: block;
+                }
+
+                .event-tools {
+                    position: absolute;
+                    width: 60px;
+                    height: 60px;
+                    right: 15px;
+                    top: 11px;
+                    color: #515172;
+                    font-size: 18px;
+                    animation-name: openTools;
+                    animation-duration: 1s;
+                    display: none;
+
+
+                    .event-teaser-ics, .event-social-share, .event-tools-close {
+                        background-color: #e8e8ec;
+                        position: absolute;
+
+                    }
+
+                    .event-teaser-ics, .event-social-share {
+                        width: 68px;
+                        height: 68px;
+                        right: 20px;
+                        font-size: 24px;
+                    }
+
+                    .event-teaser-ics {
+                        top: -38px;
+                        border-radius: 5px 5px 0 0;
+                        padding: 19px 22px;
+                    }
+
+                    .event-social-share {
+                        top: 8px;
+                        border-radius: 0 0 5px 5px;
+                        padding: 26px 22px 20px 22px;
+                    }
+
+                    .event-tools-close {
+                        right: 0;
+                        top: 0;
+                        padding: 12px;
+                        border-radius: 50%;
+                        z-index: 10;
+
+                        &:hover {
+                            background-color: $color-mid-gray;
+                            color: $color-white;
+                        }
+                    }
+
+                }
+
+                .teaser-body {
+                    @include fontFamily(roboto, bold);
+                    color: #7b7b92;
+                    @include fontSize(16);
+
+                    div:first-child {
+                        margin-bottom: 16px;
+                    }
+
+                    .icon {
+                        font-size: 21px;
+                        vertical-align: text-bottom;
+                        margin-right: 5px;
+                    }
+                }
+
+
+            }
+        }
+    }
+
+}
+

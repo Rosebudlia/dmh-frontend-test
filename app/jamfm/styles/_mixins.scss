@@ -1,0 +1,74 @@
+@import "../../common/styles/mixins";
+
+
+@-webkit-keyframes nav-slide-in {
+    0% {
+        -webkit-transform: translate3d(-10px,0,0);
+        transform: translate3d(-10px,0,0)
+    }
+
+    100% {
+        -webkit-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0)
+    }
+}
+
+
+@keyframes nav-slide-in {
+    0% {
+        -webkit-transform: translate3d(-10px,0,0);
+        transform: translate3d(-10px,0,0)
+    }
+
+    100% {
+        -webkit-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0)
+    }
+}
+
+
+@mixin fontSize($size:13) {
+    font-size: #{getFontSize($size)}rem;
+    @include getLineHeight($font-sizes, $size);
+}
+
+
+@mixin fontFamily($family:open-sans, $style:normal, $size:null) {
+    @if $family == icon {
+        font-family: 'ic-font', sans-serif
+    }
+
+    @else if $family == player {
+        font-family: 'rb_jw7-font', sans-serif
+    }
+
+    @else {
+        font-family: 'Open Sans', sans-serif;
+
+        @if $style == bold {
+            font-weight: 800;
+        }
+
+        @else if $style == extra-bold {
+            font-weight: 900;
+        }
+
+        @else if $style == bold-italic {
+            font-weight: 700;
+            font-style: italic;
+        }
+
+        @else if $style == italic {
+            font-style: italic;
+        }
+
+        @else {
+            font-weight: normal;
+        }
+    }
+
+    @if $size != null {
+        @include fontSize($size);
+    }
+}
+

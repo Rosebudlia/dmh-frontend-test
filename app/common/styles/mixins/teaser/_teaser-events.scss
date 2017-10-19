@@ -1,0 +1,45 @@
+@mixin teaserBuildEvents($map:null) {
+    @if $map != null {
+        .teaser.event-teaser {
+            .event-teaser-meta {
+                overflow: hidden;
+                justify-content: flex-start;
+                flex-wrap: nowrap;
+
+                @include fontFamily(map-get($map, metaFontFamily), map-get($map, metaFontStyle), map-get($map, metaFontSize));
+                width: map-get($map, metaWidth);
+                color: map-get($map, metaFontColor);
+                margin: map-get($map, metaMargin);
+
+                .icon {
+                    float: left;
+
+                    vertical-align: map-get($map, metaIconVertAlign);
+                    color: map-get($map, metaIconColor);
+                    font-size: map-get($map, metaIconSize);
+                    margin: map-get($map, metaIconMargin);
+                }
+
+                .event-time {
+                    flex-basis: map-get($map, metaTimeWidth);
+
+                    span:last-of-type {
+                        display: inline-block;
+
+                        line-height: map-get($map, metaTextLineHeight);
+                    }
+                }
+
+                .event-place {
+                    flex-basis: map-get($map, metaPlaceWidth);
+
+                    span:last-of-type {
+                        display: inline-block;
+
+                        line-height: map-get($map, metaTextLineHeight);
+                    }
+                }
+            }
+        }
+    }
+}

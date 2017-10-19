@@ -1,0 +1,128 @@
+
+/**
+ * Styles for the select input
+ *
+ * All inputs should be wrapped in a container with the class .select, like:
+ *
+ * <div class="select">
+ *     <select class="form-control">
+ *         ...
+ *
+ * NOTE: Selects without the wrapper need to be styled separately.
+ */
+@mixin _formsBuildSelect($options:null) {
+    @if $options != null {
+        .select, .time-select {
+            position: relative;
+            cursor: default;
+
+            background: map-get($options, background);
+            color: map-get($options, color);
+            font-weight: map-get($options, fontWeight);
+            border: map-get($options, border);
+            border-radius: map-get($options, borderRadius);
+
+            $input: map-get($options, input);
+            @if $input != null {
+                input {
+                    color: map-get($input, color);
+                    cursor: default;
+
+                    &::-webkit-input-placeholder {
+                        font-weight: map-get($input, fontWeight);
+                        color: map-get($input, color);
+                    }
+                    &::-moz-placeholder {
+                        font-weight: map-get($input, fontWeight);
+                        color: map-get($input, color);
+                    }
+                    &:-ms-input-placeholder {
+                        font-weight: map-get($input, fontWeight);
+                        color: map-get($input, color);
+                    }
+                    &:-moz-placeholder {
+                        font-weight: map-get($input, fontWeight);
+                        color: map-get($input, color);
+                    }
+                }
+            }
+
+            select {
+                line-height: normal;
+                -moz-appearance: none;
+                -webkit-appearance: none;
+                appearance: none;
+                width: 100%;
+                margin: 0;
+                padding: 0;
+
+                $size: map-get($options, fontSize);
+                @if $size != null {
+                    @include fontSize($size);
+                }
+
+                color: map-get($options, color);
+                font-style: map-get($options, fontStyle);
+
+                option {
+                    margin: 0;
+                    padding: 0;
+                    color: map-get($options, optionColor);
+                }
+
+                &, &:active, &:focus {
+                    background: none;
+                    border: 0 none;
+                    box-shadow: none;
+                }
+
+                &:disabled {
+                    color: map-get($options, disabledColor);
+                    background: map-get($options, disabledBackground);
+                }
+
+                $readonly: map-get($options, readonly);
+                @if $readonly != null {
+                    &[readonly] {
+                        color: map-get($readonly, color);
+                        background: map-get($readonly, background);
+                    }
+                }
+
+                &.form-control {
+                    padding: map-get($options, padding);
+                    height: auto;
+                }
+            }
+
+            $icon: map-get($options, icon);
+            @if $icon != null {
+                &:after {
+                    position: absolute;
+                    pointer-events: none;
+
+                    right: map-get($icon, right);
+                    top: map-get($icon, top);
+                    height: map-get($icon, height);
+                    color: map-get($icon, color);
+                    font-size: map-get($icon, fontSize);
+
+                    $content: map-get($icon, content);
+                    @if $content != null {
+                        @include icon($content);
+                    }
+                }
+            }
+
+            &.disabled:after {
+                color: map-get($options, disabledColor);
+            }
+        }
+
+
+        // IE11 fix
+        select::-ms-expand {
+            display: none;
+        }
+    }
+}

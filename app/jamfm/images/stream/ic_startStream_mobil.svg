@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="15px" height="26px" viewBox="0 0 15 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43 (38999) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_startStream_mobil</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#9E54BC" offset="0%"></stop>
+            <stop stop-color="#642A86" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-139.000000, -434.000000)" id="--mobil" fill="url(#linearGradient-1)">
+            <g transform="translate(127.000000, 433.000000)">
+                <path d="M19.8741576,5.0743298 C21.0450193,3.90335602 22.1319981,4.28636475 22.3023336,5.93309898 L23.8367505,20.7672158 C24.0069334,22.4124747 22.8127509,23.6083995 21.1661743,23.4380477 L6.33347756,21.9034839 C4.68837616,21.7332847 4.30471574,20.6452623 5.47479059,19.4750754 L19.8741576,5.0743298 Z" id="icon---play" transform="translate(14.325165, 13.925179) rotate(-45.000000) translate(-14.325165, -13.925179) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

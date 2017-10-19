@@ -1,0 +1,20 @@
+@keyframes spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.no-animation {
+    animation-name: none !important;
+}
+
+[disabled],
+[readonly] {
+    &:not(.datepicker):not(.datetimepicker) {
+        cursor: not-allowed;
+    }
+}

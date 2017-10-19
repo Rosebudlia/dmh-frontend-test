@@ -1,0 +1,202 @@
+//
+// Build playlist player scrollbar styles
+//
+@mixin _playerBuildPlaylistScrollbars($options:null) {
+    @if $options != null {
+        &::-webkit-scrollbar {
+            width: map-get($options, width);
+        }
+
+        &::-webkit-scrollbar-track {
+            -webkit-box-shadow: map-get($options, boxShadow);
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: map-get($options, background);
+        }
+    }
+}
+
+
+
+//
+// Build playlist player entry styles
+//
+@mixin _playerBuildPlaylistEntry($options:null) {
+    @if $options != null {
+        .dmh-player-playlist-entry {
+            display: flex;
+            cursor: pointer;
+            width: 100%;
+            opacity: 0;
+            margin-bottom: 3px;
+            color: map-get($options, color);
+            font-style: map-get($options, fontStyle);
+            box-shadow: map-get($options, boxShadow);
+            padding: map-get($options, padding);
+            transition: box-shadow .2s linear .1s, transform .2s linear;
+            background: map-get($options, background);
+
+            &:hover,
+            &.active {
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+                transform: scale(1.025);
+                z-index: 9;
+            }
+
+            &.active {
+                color: map-get($options, activeColor);
+                background: map-get($options, activeBackground);
+            }
+
+            .entry-index {
+                font-style: normal;
+                font-weight: bold;
+                margin-right: 21px;
+            }
+
+            .entry-title {
+                flex-grow: 1;
+            }
+
+            .entry-loading {
+                margin-right: 13px;
+                @include spin(2s);
+            }
+        }
+    }
+}
+
+
+
+//
+// Build playlist player styles
+//
+@mixin _playerBuildPlaylist($options:null) {
+    .dmh-player-wrapper {
+        .dmh-player-playlist-toggle {
+            display: flex;
+            font-weight: bold;
+            justify-content: flex-start;
+            flex-wrap: nowrap;
+            text-align: center;
+            cursor: pointer;
+            @include fontSize(map-get($options, fontSize));
+            background: map-get($options, background);
+            color: map-get($options, color);
+            padding: map-get($options, padding);
+
+            .icon {
+                float: left;
+
+                $size: map-get($options, iconFontSize);
+                @if $size != null {
+                    @include fontSize($size);
+                }
+            }
+
+            .toggle-caption {
+                flex-basis: 100%;
+            }
+        }
+
+        &.audio {
+            .dmh-player-playlist-icon {
+                color: map-get($options, iconIconColor);
+            }
+        }
+
+        .dmh-player-playlist {
+            background: map-get($options, containerBackground);
+            overflow: auto;
+            overflow-x: hidden;
+            width: 100%;
+
+            $size: map-get($options, containerFontSize);
+            @if $size != null {
+                @include fontSize($size);
+            }
+            transition: max-height .4s ease-in-out, padding .4s ease-in-out;
+
+            z-index: 99998;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            max-height: 0;
+            padding: 0;
+
+            .dmh-player-playlist-header {
+                padding: map-get($options, headerPadding);
+                background: map-get($options, headerBackground);
+                box-shadow: map-get($options, headerBoxShadow);
+                color: map-get($options, headerColor);
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                font-weight: bold;
+                display: none;
+                z-index: 99999;
+
+                .dmh-player-playlist-header-close {
+                    cursor: pointer;
+                    @include fontSize(19);
+                    font-weight: bold;
+                }
+            }
+
+            &.open {
+                max-height: 100%;
+                padding: 10px;
+                padding-top: 60px;
+
+                .dmh-player-playlist-header {
+                    display: block;
+                }
+
+                .dmh-player-playlist-entry {
+                    transition: opacity .8s ease-in-out .2s;
+                    opacity: 1;
+                }
+            }
+
+            $scrollbar: map-get($options, scrollbar);
+            @if $scrollbar != null {
+                @include _playerBuildPlaylistScrollbars($scrollbar);
+            }
+
+            $entry: map-get($options, entry);
+            @if $options != null {
+                @include _playerBuildPlaylistEntry($entry);
+            }
+        }
+    }
+
+    //
+    // Desktop
+    //
+    @media (min-width: $screen-sm-min) {
+        .dmh-player-wrapper {
+            .dmh-player-playlist-toggle {
+                display: none;
+            }
+
+            .dmh-player-playlist {
+                position: relative;
+                padding: 10px;
+                max-height: 325px;
+                z-index: 0;
+
+                &.open {
+                    max-height: 0;
+                    padding: 0;
+                }
+
+                .dmh-player-playlist-entry {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}

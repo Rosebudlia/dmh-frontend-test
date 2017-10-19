@@ -1,0 +1,115 @@
+.dmh-form-select {
+    overflow: auto;
+    overflow-x: hidden;
+    width: 100%;
+    transition: max-height .4s ease-in-out, padding .4s ease-in-out;
+    z-index: 99998;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    max-height: 0;
+    padding: 0;
+
+    .dmh-form-select-header {
+        padding: 17px 26px;
+        background: $gradient-yellow;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        font-weight: bold;
+        display: none;
+        z-index: 99999;
+
+        .dmh-form-select-header-close {
+            cursor: pointer;
+            @include fontSize(19);
+            font-weight: bold;
+        }
+    }
+
+    &.open {
+        max-height: 100%;
+        padding: 10px;
+        padding-top: 60px;
+
+        .dmh-form-select-header {
+            display: block;
+        }
+
+        .dmh-form-select-entry {
+            transition: opacity .8s ease-in-out .2s;
+            opacity: 1;
+        }
+    }
+
+    &::-webkit-scrollbar {
+        width: .6em;
+    }
+
+    &::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.2);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: $color-black;
+    }
+
+    .dmh-form-select-entry {
+        font-style: italic;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16);
+        padding: 17px;
+        margin-bottom: 3px;
+        transition: box-shadow .2s linear .1s, transform .2s linear;
+        cursor: pointer;
+        display: flex;
+        width: 100%;
+        opacity: 0;
+
+
+        &:hover,
+        &.active {
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            transform: scale(1.025);
+            z-index: 9;
+        }
+
+        &.active {
+            background: $gradient-yellow;
+        }
+
+        .entry-index {
+            font-style: normal;
+            font-weight: bold;
+            margin-right: 21px;
+        }
+
+        .entry-title {
+            flex-grow: 1;
+        }
+    }
+}
+
+
+//
+// Desktop
+//
+@media (min-width: $screen-sm-min) {
+    .dmh-form-select {
+        position: relative;
+        padding: 10px;
+        max-height: 325px;
+        z-index: 0;
+
+        &.open {
+            max-height: 0;
+            padding: 0;
+        }
+
+        .dmh-form-select-entry {
+            opacity: 1;
+        }
+    }
+}

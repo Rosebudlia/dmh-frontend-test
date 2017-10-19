@@ -1,0 +1,23 @@
+@import "../../../common/styles/mixins-ticker";
+
+$ticker: (
+        topNavMargin: 150px,
+        background: #ff034a,
+        fontFamily: open-sans,
+        fontStyle: normal,
+        fontSize: 16,
+        boxShadow: 0 2px 8px rgba(0, 0, 0, 0.2),
+        tickerBodyPadding: 20px 0,
+        tickerLinkColor: $color-white,
+        tickerTextDecoration: none,
+        mobileTitlePadding: 0 16px 10px,
+        mobileTitleBorder: 1px solid rgba(255, 255, 255, 0.4),
+        iconFontSize: 21,
+        breakingTextTransform: uppercase,
+        headlineFontWeight: 700,
+        sideFadeWidth: 30px,
+        tickerBodyDesktopPadding: 20px 26px
+
+);
+
+@include tickerBuild($ticker);

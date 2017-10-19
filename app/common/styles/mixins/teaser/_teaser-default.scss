@@ -1,0 +1,225 @@
+
+
+@mixin _teaserBuildFooterDefault($list:null) {
+    @if $list != null {
+        .teaser-footer {
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
+
+            @include fontFamily(map-get($list, fontFamily), bold, map-get($list, fontSize));
+            height: map-get($list, height);
+            background-color: map-get($list, background);
+            padding: map-get($list, padding);
+            position: map-get($list, position);
+            bottom: map-get($list, bottom);
+            border-top: map-get($list, borderTop);
+            border-bottom: map-get($list, borderBottom);
+            border-right: map-get($list, borderRight);
+            border-left: map-get($list, borderLeft);
+
+            $featured: map-get($list, featured);
+            @if $featured != null {
+                &.featured {
+                    background: map-get($featured, background);
+                    color: map-get($featured, color);
+                    border-top: map-get($featured, borderTop);
+                    border-bottom: map-get($featured, borderBottom);
+                    border-right: map-get($featured, borderRight);
+                    border-left: map-get($featured, borderLeft);
+                    
+                    border-bottom-right-radius: inherit;
+                    border-bottom-left-radius: inherit;
+                    
+                }
+            }
+
+            $sponsored: map-get($list, sponsored);
+            @if $sponsored != null {
+                &.sponsored {
+                    background: map-get($sponsored, background);
+                    color: map-get($sponsored, color);
+                    border-top: map-get($sponsored, borderTop);
+                    border-bottom: map-get($sponsored, borderBottom);
+                    border-right: map-get($sponsored, borderRight);
+                    border-left: map-get($sponsored, borderLeft);
+                    border-bottom-right-radius: inherit;
+                    border-bottom-left-radius: inherit;
+
+                    .footer-image {
+                        max-width: 50px;
+
+                        img {
+                            float: right;
+                            height: auto;
+                            max-height: 100%;
+                            width: auto;
+                            max-width: 100%;
+                        }
+                    }
+                }
+            }
+
+            .footer-text {
+                flex-basis: 75%;
+                flex-grow: 1;
+                align-self: center;
+                font-style: normal;
+
+                @include fontSize(map-get($list, bottomFontSize));
+            }
+        }
+    }
+}
+
+
+
+@mixin _teaserBuildContentDefault($list:null) {
+    @if $list != null {
+        .content {
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: map-get($list, margin-bottom);
+
+            .teaser-image {
+                width: 100%;
+                height: auto;
+
+                img {
+                    width: 100%;
+                    height: auto;
+                }
+
+                $icon: map-get($list, postTypeIcon);
+                @if $icon != null {
+                    .post-type-icon {
+                        position: absolute;
+                        bottom: 0;
+
+                        span {
+                            display: block;
+                            background-clip: padding-box;
+
+                            font-size: map-get($icon, font-size);
+                            color: map-get($icon, color);
+                            padding: map-get($icon, padding);
+                            height: map-get($icon, height);
+                            border-top-right-radius: map-get($icon, border-radius);
+                            border-top: map-get($icon, border-top);
+                            border-right: map-get($icon, border-right);
+                            background-color: map-get($icon, background);
+
+                        }
+                    }
+                } @else {
+                    @debug "WARNING: NO TEASER ICON SET!";
+                }
+            }
+
+            $text: map-get($list, teaserText);
+            @if $text != null {
+                .teaser-text {
+                    background-color: map-get($text, background);
+                    height: 100%;
+                    overflow: hidden;
+
+                    $borderColor: map-get($text, borderColor);
+                    @if $borderColor != null {
+                        border-top: solid 1px $borderColor;
+                    }
+
+                    .teaser-header, .teaser-body, .teaser-kicker {
+                        display: block;
+                        width: 100%;
+                        padding: map-get($text, paddingHeader);
+                        color: map-get($text, color);
+                    }
+
+                    .teaser-header {
+                        @include fontFamily(map-get($text, fontFamilyHeader), bold, map-get($text, fontSizeHeader));
+                        text-transform: map-get($text, textTransform);
+                        color: map-get($text, colorHeadline);
+                    }
+
+                    .teaser-body {
+                        @include fontFamily(map-get($text, fontFamilyBody), regular, map-get($text, fontSizeBody));
+                        padding-bottom: map-get($text, paddingBody);
+                        margin-bottom: map-get($text, marginBottomBody);
+                    }
+
+                    .teaser-kicker {
+                        height: map-get($text, kickerHeight);
+                        color: map-get($text, kickerColor);
+                        @include fontFamily(roboto, regular, map-get($text, kickerFontSize));
+                    }
+                }
+            }
+            @else {
+                @debug "WARNING: NO TEASER TEXT SET!";
+            }
+        }
+    }
+}
+
+
+
+@mixin teaserBuildDefault($map:null, $parent:null) {
+    @if $map != null {
+        .with-sidebar > a, a {
+            #{$parent}.teaser {
+                position: relative;
+                text-decoration: none;
+                overflow: hidden;
+
+                box-shadow: map-get($map, box-shadow);
+                background: map-get($map, background);
+                transition: map-get($map, transition);
+                height: map-get($map, height);
+                width: map-get($map, width);
+                min-height: map-get($map, min-height);
+                border-radius: map-get($map, borderRadius);
+
+                &:hover, &:active, &:focus, &:visited {
+                    text-decoration: none;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+                    transition: 0.3s linear;
+                }
+
+                $content: map-get($map, teaserContent);
+                @if $content != null {
+                    @include _teaserBuildContentDefault($content);
+                }
+
+                $footer: map-get($map, teaserFooter);
+                @if $footer != null {
+                    @include _teaserBuildFooterDefault($footer);
+                }
+            }
+
+            $tablet: map-get($map, tablet);
+            @if $tablet != null {
+                //TABLET
+                @media (min-width: 530px) and (max-width: $screen-sm-max) {
+                    a {
+                        &.teaser {
+                            .content {
+                                div {
+                                    .teaser-image {
+                                        max-height: map-get($tablet, imageMaxHeight);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    > div:last-child {
+        .content {
+            margin-bottom: 0;
+        }
+    }
+}

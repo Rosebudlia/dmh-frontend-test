@@ -1,0 +1,135 @@
+
+@mixin teaserBuildFull($map:null, $parent:null) {
+    @if $map != null {
+        .with-sidebar > a, a {
+            #{$parent}.teaser.teaser-full {
+
+                $content: map-get($map, teaserContent);
+                @if $content != null {
+                    .content {
+                        margin-bottom: map-get($content, marginBottom);
+                        background: map-get($content, background);
+                    }
+                }
+
+                $textBox: map-get($map, textBox);
+                @if $textBox != null {
+                    .teaser-text-box {
+                        background: map-get($textBox, background);
+                    }
+                }
+
+                .teaser-footer {
+                    position: relative;
+                    left: initial;
+                    bottom: initial;
+                }
+            }
+        }
+
+        // DESKTOP
+        @media (min-width: $screen-md-min) {
+            .sidebar {
+                a {
+                    &.teaser.teaser-full {
+                        .content {
+                            display: block;
+                        }
+                    }
+                }
+            }
+
+            $borderColor: map-get($map, desktopBorderColor);
+            a {
+                &.teaser {
+                    &.teaser-full {
+                        min-height: map-get($map, desktopMinHeight);
+
+                        .content {
+                            display: flex;
+
+                            .teaser-image {
+                                padding-right: 0;
+                                width: 75%;
+                                height: 100%;
+                                float: left;
+                                z-index: 10;
+
+                                .teaser-image-box {
+                                    height: 100%;
+
+                                }
+                            }
+
+                            .teaser-text-box {
+                                width: 25%;
+                                padding-left: 0;
+                                display: block;
+                                height: auto;
+                                float: right;
+                                margin-bottom: 26px;
+                                border-left: solid 1px $borderColor;
+
+                                .teaser-text {
+                                    display: block;
+                                    height: auto;
+                                    border-top: none;
+                                }
+                            }
+
+                            .teaser-footer {
+                                width: 25%;
+                                display: block;
+                                padding-left: 14px;
+                                left: 75%;
+                                position: absolute;
+                                bottom: 0;
+                                border-left: solid 1px $borderColor;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .with-sidebar {
+                a {
+                    &.teaser {
+                        &.teaser-full {
+                            .content {
+                                height: 100%;
+                                display: block;
+
+                                .teaser-image {
+                                    width: 100%;
+                                    height: auto;
+                                    float: none;
+
+                                }
+
+                                .teaser-text-box {
+                                    width: 100%;
+                                    height: auto;
+                                    float: none;
+                                    margin-bottom: 0;
+                                    border-left: none;
+                                    border-top: solid 1px $borderColor;
+
+
+                                }
+
+                                .teaser-footer {
+                                    width: 100%;
+                                    left: initial;
+                                    position: relative;
+                                    bottom: initial;
+                                    border-left: none;
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

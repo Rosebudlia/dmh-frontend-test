@@ -1,0 +1,155 @@
+
+@mixin _teaserBuildSliderControls($options:null) {
+    @if $options != null {
+        .control-panel {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin-right: auto;
+            margin-left: auto;
+            min-height: 50px;
+            align-items: center;
+            margin-top: map-get($options, marginTop);
+            width: map-get($options, width);
+            background: map-get($options, background);
+            padding-top: map-get($options, paddingTop);
+            padding-bottom: map-get($options, paddingBottom);
+
+            .slick-dots {
+                display: flex;
+                justify-content: center;
+                margin: 0;
+                order: 2;
+
+                width: map-get($options, dotsWidth);
+                max-width: map-get($options, dotsMaxWidth);
+                padding: map-get($options, dotsPadding);
+                background: map-get($options, dotsBackground);
+
+                $size: map-get($options, dotsFontSize);
+                @if $size != null {
+                    @include fontSize($size);
+                }
+
+                li {
+                    list-style: none;
+                    color: map-get($options, dotsColor);
+                    font-weight: map-get($options, dotsFontWeight);
+
+                    @if $size != null {
+                        @include fontSize($size);
+                    }
+                }
+            }
+
+            .slick-next,
+            .slick-prev {
+                color: map-get($options, arrowColor);
+
+                &,
+                &:hover,
+                &:active,
+                &:focus {
+                    box-shadow: none;
+                }
+            }
+        }
+    }
+}
+
+
+
+@mixin teaserBuildSlider($options:null) {
+    @if $options != null {
+        .teaser-carousel-box {
+            margin-bottom: map-get($options, marginBottom);
+
+            h1 {
+                text-align: center;
+                text-transform: map-get($options, headlineTransform);
+                color: map-get($options, headlineColor);
+
+                $font: map-get($options, headlineFont);
+                @if $font != null {
+                    @include fontFamily($font, bold);
+                }
+
+                $size: map-get($options, headlineFontSize);
+                @if $size != null {
+                    @include fontSize($size);
+                }
+            }
+
+            .teaser-carousel-slider {
+                max-width: 100%;
+                margin-left: 0;
+                height: map-get($options, height);
+                background: map-get($options, background);
+                padding: map-get($options, padding);
+
+                & > div {
+                    padding-left: 0;
+                    padding-right: 0;
+                }
+
+                .teaser-carousel {
+                    .teaser-slider-tile {
+                        margin: map-get($options, tileMargin);
+
+                        a.teaser {
+                            margin: map-get($options, teaserMargin);
+                            min-height: 100%;
+                            height: auto;
+                            display: block;
+
+                            .content {
+                                height: auto;
+                                min-height: 100%;
+
+                                .teaser-image {
+                                    height: auto;
+                                    width: 100%;
+                                    overflow: hidden;
+
+                                    img {
+                                        min-height: map-get($options, imageMinHeight);
+                                    }
+                                }
+
+                                .teaser-text {
+                                    min-height: map-get($options, minHeight);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            $controls: map-get($options, controls);
+            @if $controls != null {
+                @include _teaserBuildSliderControls($controls);
+            } @else {
+                @error("Teaser slider error: Cannot find required key controls");
+            }
+        }
+
+
+        // DESKTOP
+        @media (min-width: $screen-md-min) {
+            .teaser-carousel-box {
+                .teaser-carousel-slider {
+                    & > div {
+                        padding-left: initial;
+                        padding-right: initial;
+                    }
+
+                    .teaser-carousel {
+                        .teaser-slider-tile {
+                            margin: 0 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

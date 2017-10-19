@@ -1,0 +1,48 @@
+@mixin playerBuildVideoBox($options:null) {
+    @if $options != null {
+        .video-box {
+            width: 100%;
+            background: map-get($options, background);
+            padding: map-get($options, padding);
+            margin-bottom: map-get($options, marginBottom);
+
+            .dmh-player-wrapper {
+                display: block;
+                overflow: hidden;
+                width: 100%;
+
+                .jwplayer {
+                    max-width: 100%;
+                }
+            }
+        }
+
+
+        //
+        // Desktop
+        //
+        @media (min-width: $screen-xs-max) {
+            .video-box {
+                width: 100%;
+                background: map-get($options, background);
+                padding: map-get($options, padding);
+
+                .dmh-player-wrapper {
+                    width: map-get($options, desktopWidth);
+                    margin-right: auto;
+                    margin-left: auto;
+                }
+            }
+
+            .with-sidebar, article {
+                .video-box {
+                    .dmh-player-wrapper {
+                        width: 86%;
+                        margin-right: auto;
+                        margin-left: auto;
+                    }
+                }
+            }
+        }
+    }
+}

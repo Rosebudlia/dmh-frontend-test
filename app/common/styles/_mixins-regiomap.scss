@@ -1,0 +1,604 @@
+//
+// Regiomap desktop styles
+//
+@mixin _regiomapBuildDeskop($options) {
+    //
+    // Tablet & Desktop
+    //
+    @media (min-width: $screen-md-min) {
+        .regiomap-full {
+            margin-top: 0;
+
+            .regiomap-full-header {
+                padding: map-get($options, headerPadding);
+
+                .regiomap-filter-form {
+                    padding: map-get($options, headerFormPadding);
+
+                    .form-group {
+                        margin-bottom: 0;
+                    }
+
+                    input.btn {
+                        width: map-get($options, headerButtonWidth);
+                    }
+                }
+            }
+
+            .regiomap-content {
+                .regiomap-full-map {
+                    min-height: map-get($options, minHeight);
+                }
+
+                .regiomap-full-favorites {
+                    position: absolute;
+                    z-index: 3;
+                    top: 20px;
+                    right: 20px;
+                    padding: 0;
+                    background: transparent;
+
+                    .select {
+                        box-shadow: map-get($options, favoriteBoxShadow);
+                        border-radius: map-get($options, favoriteBorderRadius);
+                        width: map-get($options, favoriteWidth);
+
+                        .form-control {
+                            padding: map-get($options, favoritePadding);
+                        }
+
+                        &:after {
+                            top: 10%;
+                            right: 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//
+// Regiomap loading container
+//
+@mixin _regiomapBuildLoading($options:null) {
+    @if $options != null {
+        .regiomap-full-loading {
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: map-get($options, background);
+            z-index: map-get($options, zIndex);
+
+            & > div {
+                @include fontFamily(map-get($options, containerFontFamily));
+                align-self: center;
+                font-size: map-get($options, containerFontSize);
+                color: map-get($options, containerColor);
+            }
+        }
+    }
+}
+
+
+//
+// Regiomap header
+//
+@mixin _regiomapBuildHeader($options:null) {
+    @if $options != null {
+        .regiomap-full-header {
+            padding: map-get($options, padding);
+            background: map-get($options, background);
+            border-bottom: map-get($options, borderBottom);
+
+            h1 {
+                margin-bottom: map-get($options, marginBottom);
+            }
+
+            .regiomap-filter-form {
+                $hidden: map-get($options, formHidden);
+                @if $hidden != false {
+                    display: none;
+                }
+
+                .form-group {
+                    margin-bottom: map-get($options, marginBottom);
+                }
+
+                &.open {
+                    display: block !important;
+                }
+
+                input.btn {
+                    height: 100%;
+                    padding: 10px;
+                    width: 100%;
+                    opacity: 1;
+                }
+            }
+
+            .form-group {
+                &.visible-xs {
+                    .btn {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//
+// Regiomap content
+//
+@mixin _regiomapBuildContent($options:null) {
+    @if $options != null {
+        .regiomap-content {
+            position: relative;
+
+            .regiomap-full-favorites {
+                padding: map-get($options, padding);
+                background: map-get($options, background);
+
+                .visible-xs {
+                    .select{
+                        border-radius: 18px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        overflow: hidden;
+                        padding: map-get($options, selectPadding);
+                        height: auto;
+                        background: map-get($options, selectBackground);
+                        width: 100%;
+
+                        @include fontFamily(map-get($options, selectFontFamily), normal, map-get($options, selectFontSize));
+                        font-weight: 300;
+                        color: map-get($options, selectColor);
+                        box-shadow: map-get($options, selectBoxShadow);
+
+                        .favourites-innertext {
+                            margin-left: 8px;
+
+                            .regiomap-full-favorites-list-count {
+                                color: map-get($options, listColor);
+                                font-weight: map-get($options, listFontWeight);
+                            }
+                        }
+
+                        > .icon {
+                            $size: map-get($options, iconFontSize);
+                            @if $size != null {
+                                @include fontSize($size);
+                            }
+                            padding: map-get($options, iconPadding);
+                            border: map-get($options, iconBorder);
+                            border-radius: map-get($options, iconBorderRadius);
+                        }
+
+                        &:after {
+                            position: relative;
+                            right: 0;
+                            font-size: map-get($options, afterFontSize);
+                            border: map-get($options, afterBorder);
+                            border-radius: map-get($options, afterBorderRadius);
+                            height: map-get($options, afterHeight);
+                            padding: map-get($options, afterPadding);
+                        }
+                    }
+                }
+            }
+
+            .regiomap-full-map {
+                min-height: map-get($options, mapMinHeight);
+            }
+        }
+    }
+}
+
+
+//
+// Regiomap info window
+//
+@mixin _regiomapBuildInfoWindow($options:null) {
+    @if $options != null {
+        .regiomap-full-infowindow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            display: none;
+            overflow: hidden;
+            box-shadow: map-get($options, boxShadow);
+            border-radius: map-get($options, borderRadius);
+            max-width: map-get($options, maxWidth);
+
+            &, &:hover, &:visited, &:active, &:focus {
+                text-decoration: none;
+            }
+
+            .regiomap-full-infowindow-badge {
+                position: absolute;
+                top: 16px;
+                z-index: 9;
+                color: map-get($options, color);
+                padding: map-get($options, padding);
+                @include fontFamily(map-get($options, badgeFontFamily), bold, map-get($options, badgeFontSize));
+            }
+
+            .regiomap-full-infowindow-details {
+                position: relative;
+                @include fontFamily(map-get($options, detailsFontFamily), bold, map-get($options, detailsFontSize));
+
+                padding: map-get($options, detailsPadding);
+                background: map-get($options, detailsBackground);
+                color: map-get($options, detailsColor);
+                border-radius: map-get($options, detailsBorderRadius);
+                padding-bottom: map-get($options, detailsPaddingBottom);
+
+                &:first-child {
+                    border-radius: map-get($options, detailsFirstBorderRadius);
+                }
+
+                .regiomap-full-infowindow-ribbon {
+                    position: absolute;
+                    cursor: pointer;
+                    top: 20px;
+                    right: 10px;
+                    z-index: 1;
+                    float: right;
+                    background-size: contain;
+                    display: block;
+                    width: map-get($options, detailsRibbonWidth);
+                    height: map-get($options, detailsRibbonWidth);
+                    border: map-get($options, detailsRibbonBorder);
+
+                    .ic-infowindow-flag {
+                        color: map-get($options, detailsRibbonFlagColor);
+                        font-size: map-get($options, detailsRibbonFlagFontSize);
+
+                        &:before {
+                            content: map-get($options, detailsRibbonFlagContent);
+                        }
+                    }
+                }
+
+                .event-kicker {
+                    display: block;
+                    width: 100%;
+
+                    color: map-get($options, detailsKickerColor);
+                    padding: map-get($options, detailsKickerPadding);
+                    @include fontFamily(map-get($options, detailsKickerFontFamily), normal, map-get($options, detailsKickerFontSize));
+                }
+
+                .event-title {
+                    display: block;
+                    width: 80%;
+
+                    float: left;
+                    @include fontFamily(map-get($options, detailsEventFontFamily), bold);
+                    color: map-get($options, detailsEventColor);
+                    margin-bottom: 10px;
+
+                    &, & + .event-text {
+                        display: block;
+                        width: 80%;
+                        float: left;
+
+                        $size: map-get($options, detailsEventTextSize);
+                        @if $size != null {
+                            @include fontSize($size);
+                        }
+                    }
+                }
+
+                .event-text {
+                    $font: map-get($options, detailsEventTextFontFamily);
+                    @if $font != null {
+                        @include fontFamily($font);
+                    }
+
+                    color: map-get($options, detailsEventTextFontFamily);
+                }
+
+                .regiomap-infowindow-tipp {
+                    position: absolute;
+                    border-top: none;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    font-size: 13px;
+                    line-height: 20px;
+
+                    background: map-get($options, detailsEventTippBackground);
+                    color: map-get($options, detailsEventTippColor);
+                    height: map-get($options, detailsEventTippHeight);
+                    padding: map-get($options, detailsEventTippPadding);
+                    border-radius: map-get($options, detailsEventTippBorderRadius);
+                }
+            }
+
+            .regiomap-full-infowindow-details,
+            img {
+                overflow: hidden;
+            }
+
+            .regiomap-full-infowindow-image {
+                position: relative;
+                overflow: hidden;
+                min-height: 10px;
+                min-width: map-get($options, imageMinWidth);
+                border-radius: map-get($options, imageBorderRadius);
+                background: map-get($options, imageBackground);
+            }
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+
+            .regiomap-full-infowindow-details-link {
+                position: absolute;
+                display: inline-block;
+                font-style: map-get($options, linkFontStyle);
+                font-weight: map-get($options, linkFontWeight);
+                float: right;
+                right: 20px;
+
+                text-decoration: map-get($options, linkDecoration);
+
+                $color: map-get($options, linkColor);
+                @if $color != null {
+                    color: $color;
+                } @else {
+                    color: inherit;
+                }
+
+                $size: map-get($options, linkFontSize);
+                @if $size != null {
+                    @include fontSize($size);
+                }
+                top: map-get($options, linkTop);
+            }
+
+            &.favorite {
+                .regiomap-full-infowindow-details {
+                    .regiomap-full-infowindow-ribbon {
+                        .ic-infowindow-flag {
+                            color: map-get($options, ribbonColor);
+                            &:before {
+                                content: map-get($options, ribbonContent);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//
+// Regiomap list toggle
+//
+@mixin _regiomapBuildListToggle($options:null) {
+    @if $options != null {
+        .regiomap-full-favorites-list-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            overflow: hidden;
+            position: relative;
+            height: auto;
+
+            border-radius: map-get($options, borderRadius);
+            padding: map-get($options, padding);
+            background: map-get($options, background);
+            width: map-get($options, width);
+            margin-bottom: map-get($options, marginBottom);
+            color: map-get($options, color);
+            box-shadow: map-get($options, boxShadow);
+            @include fontFamily(map-get($options, fontFamily), map-get($options, fontWeight), map-get($options, fontSize));
+
+            .favourites-innertext {
+                margin-left: map-get($options, textMarginLeft);
+
+                .regiomap-full-favorites-list-count {
+                    color: map-get($options, textColor);
+                    font-weight: map-get($options, textFontWeight);
+                }
+            }
+
+            > .icon {
+                color: map-get($options, iconColor);
+                padding: map-get($options, iconPadding);
+                border: map-get($options, iconBorder);
+                border-radius: map-get($options, iconBorderRadius);
+
+                $size: map-get($options, iconFontSize);
+                @if $size != null {
+                    @include fontSize($size);
+                }
+            }
+        }
+    }
+}
+
+
+//
+// Regiomap favorites list
+//
+@mixin _regiomapBuildFavorites($options:null) {
+    @if $options != null {
+        .regiomap-full-favorites-list {
+            overflow: hidden;
+            overflow-y: auto;
+
+            max-height: map-get($options, maxHeight);
+            box-shadow: map-get($options, boxShadow);
+            border-radius: map-get($options, borderRadius);
+
+            $font: map-get($options, fontFamily);
+            @if $font!= null {
+                @include fontFamily($font);
+            }
+
+            .panel {
+                margin: 0;
+            }
+
+            .regiomap-full-favorites-list-item {
+                cursor: pointer;
+
+                background: map-get($options, itemBackground);
+                color: map-get($options, itemColor);
+                width: map-get($options, itemWidth);
+                border-radius: map-get($options, itemBorderRadius);
+                margin: map-get($options, itemMargin);
+                box-shadow: map-get($options, itemBoxShadow);
+
+                & > div {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    vertical-align: middle;
+                    padding: map-get($options, itemPadding);
+
+                    & > span {
+                        flex-basis: 75%;
+                        flex-shrink: 0;
+                    }
+
+                    $ellipsis: map-get($options, itemEllipsis);
+                    @if $ellipsis != null and $ellipsis == true {
+                        @include ellipsis();
+                    }
+                }
+
+                &.active {
+                    color: map-get($options, itemActiveColor);
+                }
+
+                .regiomap-infowindow-tipp {
+                    order: 2;
+                    justify-content: flex-start;
+                    flex-basis: 100%;
+                    background: map-get($options, tippBackground);
+                    color: map-get($options, tippColor);
+                    height: map-get($options, tippHeight);
+                    padding: map-get($options, tippPadding);
+                    border-radius: map-get($options, tippBorderRadius);
+                }
+
+                a {
+                    display: inline-block;
+                    float: right;
+
+                    & > i.icon {
+                        vertical-align: middle;
+
+                        $size: map-get($options, linkIconFontSize);
+                        @if $size != null {
+                            @include fontSize($size);
+                        }
+
+                        padding: map-get($options, linkIconPadding);
+                        border: map-get($options, linkIconBorder);
+                        border-radius: map-get($options, linkIconBorderRadius);
+                    }
+
+                    &, &:hover, &:focus, &:active, &:visited {
+                        text-decoration: none;
+                        color: map-get($options, linkColor);
+                    }
+                }
+
+
+                &.active {
+                    a {
+                        &, &:hover, &:focus, &:active, &:visited {
+                            color: map-get($options, linkActiveColor);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//
+// Build regiomap widget styles
+//
+@mixin regiomapBuild($map:null) {
+    @if $map != null {
+        .regiomap-full {
+            position: relative;
+            overflow: hidden;
+            padding-bottom: 16px;
+            margin-bottom: 16px;
+            background: map-get($map, background);
+            @include fontFamily(map-get($map, fontFamily), regular, map-get($map, fontSize));
+
+            h1 {
+                @include fontFamily(map-get($map, headlineFontFamily), bold, map-get($map, headlineFontSize));
+                color: map-get($map, headlineColor);
+            }
+
+            $loading: map-get($map, loading);
+            @if $loading != null {
+                @include _regiomapBuildLoading($loading);
+            } @else {
+                @warn("Regiomap warning: No loading container styles set or key loading not found.");
+            }
+
+            $header: map-get($map, header);
+            @if $header != null {
+                @include _regiomapBuildHeader($header);
+            } @else {
+                @error("Regiomap error: Cannot find required key header!");
+            }
+
+            $content: map-get($map, content);
+            @if $content != null {
+                @include _regiomapBuildContent($content);
+            } @else {
+                @error("Regiomap error: Cannot find required key content!");
+            }
+
+            $infoWindow: map-get($map, infoWindow);
+            @if $infoWindow != null {
+                @include _regiomapBuildInfoWindow($infoWindow);
+            } @else {
+                @error("Regiomap error: Cannot find required key infoWindow!");
+            }
+
+            $listToggle: map-get($map, listToggle);
+            @if $listToggle != null {
+                @include _regiomapBuildListToggle($listToggle);
+            } @else {
+                @error("Regiomap error: Cannot find required key listToggle!");
+            }
+
+            $favorites: map-get($map, favorites);
+            @if $favorites != null {
+                @include _regiomapBuildFavorites($favorites);
+            } @else {
+                @error("Regiomap error: Cannot find required key favorites!");
+            }
+        }
+
+        $desktop: map-get($map, desktop);
+        @if $desktop != null {
+            @include _regiomapBuildDeskop($desktop);
+        } @else {
+            @warn("Regiomap warning: No desktop styles set or key desktop not found in map!");
+        }
+    }
+}

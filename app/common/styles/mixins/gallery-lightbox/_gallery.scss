@@ -1,0 +1,411 @@
+@mixin galleryBuildDefault($map:null) {
+    .slider-gallery-wrapper {
+        overflow: hidden;
+
+        margin: map-get($map, galleryWrapperMargin);
+
+        .slider-gallery {
+            opacity: 1;
+            transition: opacity 1s linear;
+
+            width: map-get($map, galleryWidth);
+            max-width: map-get($map, galleryMaxWidth);
+            margin: map-get($map, galleryMargin);
+
+            &:not(.slick-initialized) {
+                background: map-get($map, galleryNoInitBackground);
+                max-height: map-get($map, galleryNoInitMaxHeight);
+
+                opacity: 0.2;
+                pointer-events: none;
+                overflow: hidden;
+            }
+
+            .slick-track {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .image-lightbox-container {
+                margin: map-get($map, gallerySlideMargin);
+
+                figure {
+                    position: relative;
+                    align-self: center;
+                    display: flex;
+                    justify-content: flex-start;
+                    flex-wrap: wrap;
+                    overflow: hidden;
+
+                    margin: map-get($map, galleryFigureMargin);
+                    background: map-get($map, galleryFigureBackground);
+                    box-shadow: map-get($map, galleryFigureBoxShadow);
+                    border-radius: map-get($map, galleryFigureBorderRadius);
+
+                    figcaption {
+                        min-height: map-get($map, galleryCaptionMinHeight);
+                        width: map-get($map, galleryCaptionWidth);
+                        padding: map-get($map, galleryCaptionPadding);
+                        order: map-get($map, galleryCaptionOrder);
+                        background: map-get($map, galleryCaptionBackground);
+                        box-shadow: map-get($map, galleryCaptionBoxShadow);
+
+                        @include fontFamily(map-get($map, galleryCaptionFontFamily), map-get($map, galleryCaptionFontStyle), map-get($map, galleryCaptionFontSize));
+
+                        $borderPos: map-get($map, galleryCaptionBorderPosition);
+                        $galleryCaptionBorder: map-get($map, galleryCaptionBorder);
+                        @if $galleryCaptionBorder != null {
+                            @if $borderPos == 'top' {
+                                border-top: $galleryCaptionBorder;
+                            }
+
+                            @else if $borderPos == 'bottom' {
+                                border-bottom: $galleryCaptionBorder;
+                            }
+
+                            @else if $borderPos == 'all' {
+                                border: $galleryCaptionBorder;
+                            }
+
+                            @else {
+                                border: $galleryCaptionBorder;
+                            }
+                        }
+
+                        @else {
+                            border: none;
+                        }
+
+                        span {
+                            display: map-get($map, gallerySpanDisplay);
+                            width: map-get($map, galleryCaptionSpanWidth);
+                            color: map-get($map, gallerySpanFontColor);
+
+                            &.copyright {
+                                display: map-get($map, galleryCopyrightDisplay);
+                                color: map-get($map, galleryCopyrightFontColor);
+                                @include fontFamily(map-get($map, galleryCopyrightFontFamily), map-get($map, galleryCopyrightFontStyle), map-get($map, galleryCopyrightFontSize));
+                                margin-top: map-get($map, galleryCopyrightMarginTop);
+                            }
+
+                            &.slide-number {
+                                display: map-get($map, gallerySlideNoDisplay);
+                            }
+                        }
+                    }
+
+                    picture {
+                        position: relative;
+                        display: flex;
+                        
+                        order: map-get($map, galleryPictureOrder);
+                        height: map-get($map, galleryPictureHeight);
+                        width: map-get($map, galleryPictureWidth);
+                        max-height: map-get($map, galleryPictureMaxHeight);
+                        max-width: map-get($map, galleryPictureMaxWidth);
+
+                        img {
+                            margin: map-get($map, galleryImageMargin);
+                            height: map-get($map, galleryImageHeight);
+                            width: map-get($map, galleryImageWidth);
+                            max-height: map-get($map, galleryImageMaxHeight);
+                            max-width: map-get($map, galleryImageMaxWidth);
+                        }
+                    }
+
+                    .toggle-lightbox {
+                        z-index: map-get($map, lightboxToggleZIndex);
+                        left: map-get($map, lightboxToggleLeftPos);
+                        right: map-get($map, lightboxToggleRightPos);
+                        top: map-get($map, lightboxToggleTopPos);
+                        bottom: map-get($map, lightboxToggleBottomPos);
+                        font-size: map-get($map, lightboxToggleIconSize);
+                        padding: map-get($map, lightboxTogglePadding);
+                    }
+
+                    .toggle-lightbox, .slider-gallery-lightbox-close {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        position: absolute;
+
+                        color: map-get($map, lightboxToggleColor);
+                        border-radius: map-get($map, lightboxToggleBorderRadius);
+                        border: map-get($map, lightboxToggleBorder);
+                        background: map-get($map, lightboxToggleBackground);
+                        width: map-get($map, lightboxToggleWidth);
+                        height: map-get($map, lightboxToggleHeight);
+                    }
+
+                    .slider-gallery-lightbox-close {
+                        font-size: map-get($map, lightboxToggleCloseIconSize);
+                    }
+
+                    &.slider-gallery-slide-video {
+                        .toggle-lightbox {
+                            bottom: map-get($map, lightboxToggleVideoBottomPos);
+                            top: map-get($map, lightboxToggleVideoTopPos);
+                            left: map-get($map, lightboxToggleVideoLeftPos);
+                            right: map-get($map, lightboxToggleVideoRightPos);
+                        }
+                    }
+
+                    .dmh-player-wrapper, .embed {
+                        width: map-get($map, galleryPlayerWidth);
+                        height: map-get($map, galleryPlayerHeight);
+                        margin: map-get($map, galleryPlayerMargin);
+
+                        &[data-type="audio"] {
+                            margin: map-get($map, galleryAudioMargin);
+                        }
+
+                        &.audio.no-image {
+                            padding-top: map-get($map, galleryAudioPaddingTop);
+                        }
+
+                        &[data-type="video"] {
+                            .dmh-player-title {
+
+                                $videoTitleDisplay: map-get($map, galleryVideoTitleDisplay);
+
+                                @if $videoTitleDisplay != null {
+                                    display: $videoTitleDisplay;
+                                }
+
+                                @else {
+                                    display: none !important;
+                                }
+
+                            }
+                        }
+                    }
+
+                    .dmh-player-wrapper {
+                        .jwplayer {
+                            max-width: map-get($map, galleryJWPlayerMaxWidth);
+                            max-height: map-get($map, galleryJWPlayerMaxHeight);
+                        }
+                    }
+
+                    .embed {
+                        .iframe-container {
+                            // 16:9 video iframe
+                            & > .sixteen-to-nine + .stretcher iframe {
+                                height: map-get($map, galleryEmbedIframeHeight);
+                                width: map-get($map, galleryEmbedIframeWidth);
+
+                            }
+                        }
+                    }
+
+                    .toggle-social,
+                    .toggle-download {
+                        position: absolute;
+
+                        display: map-get($map, galleryButtonsDisplay);
+                        right: map-get($map, galleryButtonsRightPos);
+                    }
+                }
+            }
+        }
+
+
+        .control-panel {
+            margin-right: auto;
+            margin-left: auto;
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+
+            background: map-get($map, controlPanelBackground);
+            max-width: map-get($map, controlPanelMaxWidth);
+            margin-bottom: map-get($map, controlPanelMarginBottom);
+
+            .slick-dots {
+                margin: 0;
+                order: 2;
+                display: flex;
+                justify-content: center;
+
+                background: map-get($map, controlPanelPaginationBackground);
+                width: map-get($map, controlPanelPaginationWidth);
+                max-width: map-get($map, controlPanelPaginationMaxWidth);
+                padding: map-get($map, controlPanelPaginationPadding);
+
+                @include fontFamily(map-get($map, controlPanelFontFamily), map-get($map, controlPanelFontStyle), map-get($map, controlPanelFontSize));
+
+                li {
+                    list-style: none;
+
+                    color: map-get($map, controlPanelPaginationColor);
+
+                    &[aria-hidden = "true"] {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        .toggle-share,
+        .toggle-download {
+            display: map-get($map, galleryButtonsDisplay);
+        }
+
+        .slick-arrow {
+            display: block;
+
+            z-index: map-get($map, slickArrowZIndex);
+            background: map-get($map, slickArrowBackground);
+            border: map-get($map, slickArrowBorder);
+            padding: map-get($map, slickArrowPadding);
+            color: map-get($map, slickArrowColor);
+            font-size: map-get($map, slickArrowSize);
+
+            &.slick-prev {
+                order: 1;
+            }
+            &.slick-next {
+                order: 3;
+            }
+        }
+    }
+
+    //
+    // Desktop
+    //
+    @media (min-width: $screen-sm-min) {
+        .slider-gallery-wrapper {
+            .slider-gallery {
+
+                .image-lightbox-container {
+                    margin: map-get($map, galleryMarginDesktop);
+
+                    .toggle-download {
+                        position: absolute;
+
+                        z-index: map-get($map, toggleDownloadZIndex);
+                        top: map-get($map, toggleDownloadTopPos);
+                        right: map-get($map, toggleDownloadRightPos);
+                        font-size: map-get($map, toggleDownloadIconSize);
+                        padding: map-get($map, toggleDownloadPadding);
+                        border: map-get($map, toggleDownloadBorder);
+                        bottom: map-get($map, toggleDownloadBottomPos);
+                        left: map-get($map, toggleDownloadLeftPos);
+                        width: map-get($map, toggleDownloadButtonWidth);
+                        height: map-get($map, toggleDownloadButtonHeight);
+                    }
+
+                    figure {
+                        display: flex;
+                        justify-content: flex-start;
+                        flex-wrap: wrap;
+                        margin: 0 auto;
+                        
+                        height: map-get($map, galleryFigureHeightDesktop);
+                        width: map-get($map, galleryFigureWidthDesktop);
+                        max-height: map-get($map, galleryFigureMaxHeightDesktop);
+                        max-width: map-get($map, galleryFigureMaxWidthDesktop);
+                        background-color: map-get($map, galleryFigureBackgroundDesktop);
+                        box-shadow: map-get($map, galleryFigureBoxShadowDesktop);
+                        border-radius: map-get($map, galleryFigureBorderRadiusDesktop);
+
+                        picture {
+                            overflow: hidden;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+
+                            height: map-get($map, galleryPictureHeightDesktop);
+                            width: map-get($map, galleryPictureWidthDesktop);
+                            max-height: map-get($map, galleryPictureMaxHeightDesktop);
+                            max-width: map-get($map, galleryPictureMaxWidthDesktop);
+
+                            img {
+                                margin-right: auto;
+                                margin-left: auto;
+
+                                height: map-get($map, galleryImageHeightDesktop);
+                                width: map-get($map, galleryImageWidthDesktop);
+                                max-height: map-get($map, galleryImageMaxHeightDesktop);
+                                max-width: map-get($map, galleryImageMaxWidthDesktop);
+                            }
+                        }
+
+                        figcaption {
+                            position: relative;
+                            display: flex;
+                            align-content: flex-end;
+                            flex-wrap: wrap;
+
+                            padding: map-get($map, galleryCaptionPaddingDesktop);
+                            width: map-get($map, galleryCaptionWidthDesktop);
+
+                            $borderPos: map-get($map, galleryCaptionBorderPositionDesktop);
+                            $galleryCaptionBorderDesktop: map-get($map, galleryCaptionBorderDesktop);
+                            @if $galleryCaptionBorderDesktop != null {
+                                @if $borderPos == 'top' {
+                                    border-top: $galleryCaptionBorderDesktop;
+                                }
+
+                                @else if $borderPos == 'bottom' {
+                                    border-bottom: $galleryCaptionBorderDesktop;
+                                }
+
+                                @else if $borderPos == 'all' {
+                                    border: $galleryCaptionBorderDesktop;
+                                }
+
+                                @else {
+                                    border: $galleryCaptionBorderDesktop;
+                                }
+                            }
+
+                            @else {
+                                border: none;
+                            }
+
+                            span {
+                                &.slide-number {
+                                    display: map-get($map, gallerySlideNoDisplayDesktop);
+                                }
+                            }
+                        }
+
+                        &.slider-gallery-slide-video {
+                            .toggle-lightbox {
+                                bottom: map-get($map, lightboxToggleVideoBottomPosDesktop);
+                                top: map-get($map, lightboxToggleVideoTopPosDesktop);
+                                left: map-get($map, lightboxToggleVideoLeftPosDesktop);
+                                right: map-get($map, lightboxToggleVideoRightPosDesktop);
+                            }
+                        }
+
+                        .dmh-player-wrapper, .embed {
+                             width: map-get($map, galleryPlayerWidthDesktop);
+                             height: map-get($map, galleryPlayerHeightDesktop);
+                         }
+
+                        .embed {
+                            .iframe-container {
+                                // 16:9 video iframe
+                                & > .sixteen-to-nine + .stretcher iframe {
+                                    height: map-get($map, galleryEmbedIframeHeightDesktop);
+                                    width: map-get($map, galleryEmbedIframeWidthDesktop);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .slick-arrow {
+                    padding: map-get($map, slickArrowPaddingDesktop);
+                    font-size: map-get($map, slickArrowSizeDesktop);
+
+                }
+            }
+        }
+    }
+}

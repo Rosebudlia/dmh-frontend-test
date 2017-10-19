@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="44px" viewBox="0 0 20 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43 (38999) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_bolt</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-752.000000, -308.000000)" id="teaser">
+            <g transform="translate(752.000000, 308.000000)">
+                <g id="ic-bolt">
+                    <polygon id="Shape" fill="#A8A8A8" points="6.58974359 3.97512275 0.0256410256 18.1428679 7.33333333 17.8370893 3.1025641 24.4877754 9.8974359 24.6406647 4.84615385 43.0638298 19.7692308 16.0024172 13.1794872 16.9707164 16.974359 8.76565529 10.2564103 10.2690671 13.4615385 1.93659826"></polygon>
+                    <polygon id="Shape" fill="#EBEBEB" points="3.35897436 2.7265265 0.0256410256 18.1428679 5.23076923 16.9197532 3.1025641 24.4877754 8.33333333 23.7488103 4.84615385 43.0638298 17.4871795 14.0913005 11 15.5947123 14.1025641 6.88002014 7.51282051 8.91854463 10.025641 0.12740778"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

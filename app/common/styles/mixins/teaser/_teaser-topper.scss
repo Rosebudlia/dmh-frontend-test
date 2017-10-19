@@ -1,0 +1,12 @@
+@mixin teaserBuildTopper($options:null) {
+    @if $options != null {
+        .teaser-topper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: map-get($options, height);
+            width: map-get($options, width);
+            background: map-get($options, background);
+        }
+    }
+}

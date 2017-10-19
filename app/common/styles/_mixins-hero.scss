@@ -1,0 +1,11 @@
+@import "mixins/hero/hero-bottomnav";
+
+@mixin heroBuild($map:null) {
+    @if $map != null {
+
+        $type: map-get($map, type);
+        @if $type == 'bottom-nav' {
+            @include heroBottomNavBuild($map);
+        }
+    }
+}

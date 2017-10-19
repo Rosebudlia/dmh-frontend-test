@@ -1,0 +1,350 @@
+
+$color-form-button-grey: #ebebeb;
+$color-form-button-border-grey: #ebebeb;
+$color-form-button-red: #cc0033;
+$color-form-button-border-red: #f2c0cc;
+$color-form-button-font: #343435;
+$color-form-button-disabled: #f0f0f0;
+
+$color-form-checkbox-inactive: #cacaca;
+$color-form-checkbox-default: #d1d1db;
+$color-form-checkbox-checked: #282850;
+
+.tooltip {
+    .tooltip-inner {
+        padding: 10px;
+        color: $color-footer-black;
+        background: $color-yellow;
+        font-weight: bold;
+        @include fontSize(13);
+    }
+
+    &.top {
+        .tooltip-arrow {
+            border-top-color: $color-yellow;
+        }
+    }
+
+    &.right {
+        .tooltip-arrow {
+            border-right-color: $color-yellow;
+        }
+    }
+
+    &.bottom {
+        .tooltip-arrow {
+            border-bottom-color: $color-yellow;
+        }
+    }
+
+    &.left {
+        .tooltip-arrow {
+            border-left-color: $color-yellow;
+        }
+    }
+}
+
+
+.form {
+    @include fontFamily(roboto);
+    @include fontSize(16);
+    color: #161642;
+    padding: 0 13px;
+
+    //
+    // Buttons
+    //
+    .btn {
+        border: 2px solid $color-form-button-grey;
+        background-color: $color-white;
+        color: $color-violet;
+        padding: 6px 26px;
+        margin: 0 auto;
+        font-weight: bold;
+        border-radius: 0;
+        transition: border-radius 0.2s linear;
+        opacity: 1;
+
+        &, &:active, &:visited, &:hover, &:focus {
+            outline: none;
+            text-decoration: none;
+        }
+
+        &:not(:disabled):not(.disabled){
+            &:hover {
+                border-radius: 20px;
+                border: 2px solid $color-violet;
+            }
+        }
+
+        &:disabled,
+        &.disabled {
+            transition: none;
+            color: #c9c9c9;
+            cursor: not-allowed;
+
+            &, &:hover {
+                border-radius: 0;
+                //border: 0 none !important;
+            }
+        }
+
+        &.btn-violet {
+            color: $color-white;
+            background: $color-violet;
+        }
+    }
+
+
+    //
+    // Inputs
+    //
+    input {
+        background: $color-white;
+        color: $color-violet;
+        border: 2px solid $color-form-button-grey;
+        box-shadow: none;
+        height: auto;
+        padding: 19px 15px;
+        border-radius: 10px;
+
+        &:not(:empty) {
+            background: red;
+        }
+
+        &[type="text"],
+        &[type="password"],
+        &[type="number"] {
+            font-weight: bold;
+            color: $color-footer-black;
+
+            &::-webkit-input-placeholder {
+                color: $color-footer-black;
+                font-weight: normal;
+                font-style: italic;
+            }
+            &::-moz-placeholder {
+                color: $color-footer-black;
+                font-weight: normal;
+                font-style: italic;
+            }
+            &:-ms-input-placeholder {
+                color: $color-footer-black;
+                font-weight: normal;
+                font-style: italic;
+            }
+            &:-moz-placeholder {
+                color: $color-footer-black;
+                font-weight: normal;
+                font-style: italic;
+            }
+
+            & ~ .input-icon {
+                display: none;
+                position: absolute;
+                right: 13px;
+                top: 15px;
+                color: $color-footer-black;
+                font-size: 2.2rem;
+                height: 100%;
+                font-weight: bold;
+            }
+        }
+    }
+
+
+    //
+    // Textarea
+    //
+    textarea {
+        background: $color-white;
+        color: $color-footer-black;
+        border: 2px solid $color-form-button-grey;
+        border-radius: 10px;
+    }
+
+
+    //
+    // Checkbox styles
+    //
+    .form-checkbox {
+        position: relative;
+        vertical-align: top;
+        padding-left: 20px;
+
+        label {
+            margin-bottom: 0;
+            color: #878787;
+            font-weight: normal;
+        }
+
+        input[type="checkbox"] {
+            display: none;
+
+            & + span {
+                position: absolute;
+                content: ' ';
+                left: 0;
+                top: calc(50% - 6px);
+                background: $color-form-checkbox-inactive;
+                border: 0 none;
+                //border-radius: 4px;
+                width: 10px;
+                height: 10px;
+            }
+
+            &:checked + span {
+                background: $color-violet;
+            }
+
+            &:checked + span + span {
+                color: $color-violet;
+            }
+        }
+
+        &.disabled {
+            &, label {
+               color: $color-form-checkbox-inactive;
+            }
+
+            input[type="checkbox"] {
+                & + span {
+                    background: $color-form-checkbox-inactive;
+                }
+            }
+        }
+    }
+
+
+    //
+    // Radio styles
+    //
+    .form-radiobutton {
+        position: relative;
+        vertical-align: top;
+        padding-left: 25px;
+
+        label {
+            font-weight: normal;
+            color: #878787;
+        }
+
+        input[type="radio"] {
+            display: none;
+
+            & + span {
+                font-weight: normal;
+                position: absolute;
+                content: ' ';
+                left: 0;
+                top: calc(50% - 8px);
+                background: $color-form-checkbox-inactive;
+                border: 2px solid $color-form-checkbox-inactive;
+                border-radius: 50%;
+                width: 10px;
+                height: 10px;
+            }
+
+            &:checked + span {
+                background: $color-violet;
+                border-color: $color-violet;
+            }
+
+            &:disabled + span + span {
+                color: $color-form-checkbox-inactive;
+            }
+
+            &:checked + span + span {
+                color: $color-violet;
+            }
+        }
+    }
+
+
+    @import "forms-select";
+
+
+    //
+    // Datepicker
+    //
+    .form-datetime {
+        @extend .select;
+
+        &:after {
+            @include icon($input-select-calendar-content, true);
+        }
+
+        &, & > div {
+            position: relative;
+
+            input {
+                background: $color-white;
+                border: 0 none;
+                border-radius: $input-border-radius-default;
+                height: auto;
+                color: $color-violet;
+            }
+        }
+    }
+
+
+
+    //
+    // Upload
+    //
+    .upload{
+        border: 0 none;
+
+        .button-container {
+            position: relative;
+            display: inline-block;
+            height: auto;
+            text-align: center;
+            background: $color-violet;
+            color: $color-white;
+            margin: 5px 0;
+
+            input{
+                overflow: hidden;
+            }
+
+
+            [type=file]{
+                display: none;
+
+                &:not(:disabled) {
+                    cursor: pointer;
+                }
+
+                &:disabled {
+                    cursor: not-allowed;
+                }
+            }
+        }
+
+        &.disabled .button-container {
+            background: $color-form-checkbox-inactive;
+            color: $color-white;
+            cursor: not-allowed;
+        }
+
+        .filename{
+            font-style: italic;
+            margin-left: 20px;
+            text-align: center;
+            @include fontSize(16);
+            color: $color-footer-black;
+            display: inline-block;
+        }
+    }
+}
+
+
+//
+// Desktop
+//
+@media (min-width: $screen-sm-min) {
+    .form {
+        padding: initial;
+    }
+}

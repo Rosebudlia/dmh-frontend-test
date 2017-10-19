@@ -1,0 +1,30 @@
+{
+  "name": "dmh",
+  "authors": [
+    "Digital Media Hub GmbH"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.2.3",
+    "slick-carousel": "1.6.0",
+    "slick-lightbox": "0.1.21",
+    "jquery-ui": "^1.12.0",
+    "clipboard": "^1.5.12",
+    "jquery-qrcode": "*",
+    "jquery.cookie": "^1.4.1",
+    "bootstrap": "^3.3.7",
+    "jquery.marquee": "jQuery.Marquee#^1.4.0",
+    "eonasdan-bootstrap-datetimepicker": "^4.17.43"
+  },
+  "resolutions": {
+    "jquery": "~2.2.3",
+    "slick-carousel": "^1.6.0"
+  }
+}

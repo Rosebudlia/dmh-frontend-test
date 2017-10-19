@@ -1,0 +1,12 @@
+@import "social-share-overlay";
+@import "mixins/social/social-share-overlay";
+
+@mixin socialShareBuild($options:null) {
+    @if $options != null {
+
+        $type: map-get($options, type);
+        @if $type == overlay {
+            @include socialShareOverlayBuild($options);
+        }
+    }
+}

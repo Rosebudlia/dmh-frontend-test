@@ -1,0 +1,353 @@
+
+//
+// Titlesearch tablet and desktop styles
+//
+@mixin _titlesearchBuildDesktop($options:null) {
+    @media (min-width: $screen-sm-min) {
+        .titlesearch-container {
+            .titlesearch-header {
+                padding: map-get($options, headerPadding);
+            }
+
+            .titlesearch-content {
+                .titlesearch {
+                    margin: -4px;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    flex-direction: row;
+                    align-items: flex-start;
+
+                    .navigation-titlesearch-item {
+                        flex-basis: 24%;
+                        flex-wrap: wrap;
+                        margin: 4px;
+                        flex-grow: 1;
+                        max-width: map-get($options, coverMaxWidth);
+
+                        .navigation-titlesearch-title {
+                            padding: map-get($options, titlePadding);
+                            width: 100%;
+                            margin-top: 0;
+
+                            .navigation-titlesearch-time {
+                                margin-bottom: 10px;
+                                top: -30px;
+                            }
+                        }
+
+                        .navigation-titlesearch-cover {
+                            width: map-get($options, coverMaxWidth);
+                            height: map-get($options, coverMaxWidth);
+                        }
+
+                        .navigation-titlesearch-icons {
+                            display: flex;
+                            align-self: center;
+                            background: none;
+
+                            .navigation-titlesearch-icon {
+                                padding: initial;
+
+                                &:first-of-type {
+                                    margin-right: 10px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//
+// Titlesearch control panel
+//
+@mixin _titlesearchBuildControls($map:null) {
+    .titlesearch-control {
+        position: relative;
+
+        $size: map-get($map, fontSize);
+        @if $size != null {
+            @include fontSize($size);
+        }
+
+        padding: map-get($map, padding);
+        background: map-get($map, background);
+        color: map-get($map, color);
+        width: map-get($map, width);
+        margin: map-get($map, margin);
+        max-width: map-get($map, maxWidth);
+
+        &:last-of-type {
+            margin-top: 34px;
+            margin-bottom: 0;
+        }
+    }
+}
+
+
+//
+// Titlesearch content area
+//
+@mixin _titlesearchBuildContent($map:null) {
+    @if $map != null {
+        .titlesearch-content {
+            position: relative;
+            margin-bottom: 16px;
+            @include fontSize(16);
+            background: linear-gradient(180deg, #F0F0F0 0%, #EBEBEB 100%);
+            padding: 26px 13px;
+
+            a {
+                &, &:hover, &:visited, &:active, &:focus {
+                    text-decoration: none;
+                }
+            }
+
+            $controls: map-get($map, controls);
+            @if $controls != null {
+                @include _titlesearchBuildControls($controls);
+            } @else {
+                @error("Titlesearch: Cannot find required key for controls!");
+            }
+
+            .titlesearch {
+                margin: 0 auto;
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+
+                .navigation-titlesearch-item {
+                    position:relative;
+                    display: inline-flex;
+                    flex-direction: row;
+                    justify-content: space-between;
+                    overflow: hidden;
+                    flex-basis: 100%;
+                    flex-shrink: 0;
+                    flex-wrap: wrap;
+
+                    @include boxShadow();
+
+                    $zIndex: map-get($map, zIndex);
+                    @if $zIndex != null {
+                        z-index: $zIndex;
+                    } @else {
+                        z-index: 3;
+                    }
+
+                    background: map-get($map, background);
+                    margin-bottom: map-get($map, marginBottom);
+                    width: map-get($map, width);
+                    border-radius: map-get($map, borderRadius);
+
+                    .navigation-titlesearch-icons {
+                        display: flex;
+                        align-self: center;
+                        margin-right: 0;
+                        flex-basis: 100%;
+                        font-size: 3rem;
+                        background: map-get($map, iconBackground);
+                        padding: map-get($map, iconPadding);
+                        border-top: map-get($map, iconBorderTop);
+
+                        .navigation-titlesearch-icon {
+                            flex-basis: 50%;
+                            text-align: center;
+                            padding: 4px 16px;
+                            cursor: pointer;
+
+                            &, a {
+                                $size: map-get($map, iconFontSize);
+                                @if $size != null {
+                                    @include fontSize($size);
+                                }
+
+                                color: map-get($map, iconColor);
+                            }
+
+                            &:first-of-type {
+                                margin-right: 10px;
+                            }
+                        }
+                    }
+
+                    .navigation-titlesearch-title {
+                        flex-grow: 1;
+                        line-height: normal;
+                        font-weight: normal;
+                        position: relative;
+                        overflow: visible;
+                        width: map-get($map, titleWidth);
+                        padding: map-get($map, titlePadding);
+
+                        .navigation-titlesearch-time {
+                            $titleFontFamily: map-get($map, titleFontFamily);
+                            @if $titleFontFamily != null {
+                                @include fontFamily($titleFontFamily);
+                            }
+                            position: absolute;
+                            border-left: 0 none;
+                            background-clip: padding-box;
+                            box-sizing: border-box;
+                            left: 0;
+                            top: 0;
+                            max-height: 32px;
+                            background: map-get($map, titleTimeBackground);
+                            color: map-get($map, titleTimeColor);
+
+                            $size: map-get($map, titleFontSize);
+                            @if $size != null {
+                                @include fontSize($size);
+                            }
+                            padding: map-get($map, titleTimePadding);
+                            background: map-get($map, titleBackground);
+                            border: map-get($map, titleTimeBorder);
+                        }
+
+                        .title {
+                            font-weight: 800;
+                            line-height: 21px;
+                            margin-bottom: 6px;
+                            margin-top: 6px;
+                        }
+
+                        .title, .artist {
+                            max-width: 100%;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                        }
+                    }
+
+                    $cover: map-get($map, cover);
+                    @if $cover != null {
+                        .navigation-titlesearch-cover {
+                            width: map-get($cover, widthMobile);
+                            height: map-get($cover, widthMobile);
+                            overflow: hidden;
+                            background: map-get($cover, background);
+
+                            img {
+                                width: auto;
+                                height: 100%;
+                            }
+                        }
+                    } @else {
+                        @error("Titlesearch: Cannot find required key for cover!");
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//
+// Titlesearch header
+//
+@mixin _titlesearchBuildHeader($map:null) {
+    @if $map != null {
+        $size: map-get($map, fontSize);
+
+
+        .titlesearch-header {
+            padding: map-get($map, padding);
+            background: map-get($map, background);
+
+            .titlesearch-filter-toggle {
+                margin-top: map-get($map, filterMarginTop);
+            }
+
+            .titlesearch-filter-form {
+                padding: map-get($map, filterPadding);
+
+                .form-group {
+                    margin-bottom: 16px;
+
+                    .form-control {
+                        font-style: normal;
+
+                        @if $size != null {
+                            @include fontSize($size);
+                        }
+                    }
+                }
+
+                &.open {
+                    display: block !important;
+                }
+
+                .btn {
+                    height: 100%;
+                    @if $size != null {
+                        @include fontSize($size);
+                    }
+
+                    padding: map-get($map, buttonPadding);
+                    text-transform: map-get($map, buttonTransform);
+                }
+            }
+        }
+    }
+}
+
+
+
+//
+// Build titlesearch styles
+//
+@mixin titlesearchBuild($map:null) {
+    @if $map != null {
+        //
+        // Preview player
+        //
+        #titlesearch-preview-player {
+            display: none;
+        }
+
+        .titlesearch-container {
+            h1, h2 {
+                font-weight: 800;
+
+                $size: map-get($map, headlineFontSize);
+                @if $size != null {
+                    @include fontSize($size);
+                }
+
+                color: map-get($map, headlineColor);
+                text-transform: map-get($map, headlineTransform);
+            }
+
+            h1:first-of-type {
+                padding-bottom: map-get($map, headlinePaddingBottom);
+                margin-bottom: 0;
+            }
+
+            .row{
+                max-width: none;
+            }
+
+            $header: map-get($map, header);
+            @if $header != null {
+                @include _titlesearchBuildHeader();
+            } @else {
+                @error("Titlesearch: Cannot find required key for header!");
+            }
+
+            $content: map-get($map, content);
+            @if $content != null {
+                @include _titlesearchBuildContent($content);
+            } @else {
+                @error("Titlesearch: Cannot find required key for content!");
+            }
+        }
+
+        $desktop: map-get($map, desktop);
+        @if $desktop != null {
+            @include _titlesearchBuildDesktop($desktop);
+        }
+    }
+}

@@ -1,0 +1,410 @@
+@mixin lightboxBuildDefault($map:null) {
+    .slider-gallery-lightbox {
+        z-index: map-get($map, lightboxMainZIndex);
+
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        .slider-gallery,
+        .slick-track,
+        .slick-list {
+            height: 100%;
+        }
+
+        .slider-gallery {
+            z-index: map-get($map, lightboxSliderZIndex);
+
+            .image-lightbox-container {
+                display: flex;
+                align-items: center;
+                position: relative;
+                justify-content: center;
+
+                figure {
+                    display: block;
+
+                    margin: map-get($map, lightboxFigureMargin);
+                    max-width: map-get($map, lightboxFigureMaxWidth);
+                    border-radius: map-get($map, lightboxFigureBorderRadius);
+
+                    @media (max-width: $screen-xs-max) and (orientation: landscape) {
+                        height: 100%;
+                        align-self: flex-start;
+                    }
+
+                    picture {
+                        position: relative;
+                        display: block;
+
+                        width: map-get($map, lightboxPictureWidth);
+                        height: map-get($map, lightboxPictureHeight);
+                        max-height: map-get($map, lightboxPictureMaxHeight);
+
+                        img {
+                            width: 100%;
+                            height: auto;
+                        }
+                    }
+
+                    .dmh-player-wrapper {
+                        height: map-get($map, lightboxPlayerHeight);
+                        width: map-get($map, lightboxPlayerWidth);
+                        min-width: map-get($map, lightboxPlayerMinWidth);
+
+                        &.audio.no-image {
+                            padding-top: map-get($map, lightboxAudioPaddingTop);
+                        }
+
+                        &[data-type="video"] {
+                            .dmh-player-title {
+                                display: none !important;
+                            }
+                        }
+                    }
+
+                    figcaption {
+                        margin: map-get($map, lightboxCaptionMargin);
+                        min-height: map-get($map, lightboxCaptionMinHeight);
+                        width: map-get($map, lightboxCaptionWidth);
+                        max-width: map-get($map, lightboxCaptionMaxWidth);
+                        border-radius: map-get($map, lightboxCaptionBorderRadius);
+                        border-top: map-get($map, lightboxCaptionBorderTop);
+                        @include fontFamily(map-get($map, lightboxCaptionFontFamily), map-get($map, lightboxCaptionFontStyle), map-get($map, lightboxCaptionFontSize));
+                        position: map-get($map, lightboxCaptionPosition);
+                        bottom: map-get($map, lightboxCaptionBottomPos);
+                        left: map-get($map, lightboxCaptionLeftPos);
+                        right: map-get($map, lightboxCaptionRightPos);
+                        top: map-get($map, lightboxCaptionTopPos);
+                        background: map-get($map, lightboxCaptionBackground);
+                        padding: map-get($map, lightboxCaptionPadding);
+
+                        span:not(.ic-ic_download) {
+                            position: relative;
+
+                            margin: map-get($map, lightboxCaptionSpanMargin);
+                            color: map-get($map, lightboxCaptionColor);
+
+                            &.slide-number {
+                                display: map-get($map, lightboxSlideNoDisplay);
+                                color: map-get($map, lightboxSlideNoColor);
+
+                                @include fontFamily(map-get($map, lightboxSlideNoFontFamily), map-get($map, lightboxSlideNoFontStyle), map-get($map, lightboxSlideNoFontSize));
+                            }
+
+                            &.copyright {
+                                display: map-get($map, lightboxCopyrightDisplay);
+                                @include fontFamily(map-get($map, lightboxCopyrightFontFamily), map-get($map, lightboxCopyrightFontStyle), map-get($map, lightboxCopyrightFontSize));
+                                margin: map-get($map, lightboxCopyrightMargin);
+                                width: map-get($map, lightboxCopyrightWidth);
+                                color: map-get($map, lightboxCopyrightColor);
+
+                            }
+
+                            &.info {
+                                display: map-get($map, lightboxInfoDisplay);
+                                @include fontFamily(map-get($map, lightboxInfoFontFamily), map-get($map, lightboxInfoFontStyle), map-get($map, lightboxInfoFontSize));
+                                margin: map-get($map, lightboxInfoMargin);
+                                width: map-get($map, lightboxInfoWidth);
+                                color: map-get($map, lightboxInfoColor);
+                            }
+
+                        }
+
+                    .embed {
+                        min-width: map-get($map, lightboxEmbedMinWidth);
+                        width: map-get($map, lightboxEmbedWidth);
+                        height: map-get($map, lightboxEmbedHeight);
+
+                        .iframe-container {
+
+                            // 16:9 video iframe
+                            & > .sixteen-to-nine + .stretcher iframe {
+                                width: map-get($map, lightboxEmbedIframeWidth);
+                                height: map-get($map, lightboxEmbedIframeHeight);
+
+                            }
+                        }
+                    }
+                }
+            }
+
+                @media (max-width: $screen-md-max) and (orientation: landscape) {
+                    &.slick-slide {
+                        figure {
+                            max-width: map-get($map, lightboxFigureMaxWidthLandscape);
+
+                            height: 100%;
+                            align-self: flex-start;
+
+                            picture {
+                                width: 100%;
+                                height: auto;
+
+                                img {
+                                    width: 100%;
+                                    height: auto;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &.single-slide-gallery {
+                    display: flex;
+                    justify-content: center;
+                    height: 100%;
+                    z-index: map-get($map, lightboxSliderZIndex);
+
+                    .slide-number {
+                        display: none !important;
+                    }
+                }
+
+                }
+
+                .videoWrapper {
+                    width: 100%;
+
+                    iframe {
+                        border-radius: 0;
+                    }
+                }
+            }
+
+            //
+            // Custom slide styles
+            // (custom means "ads" most of the time)
+            //
+            .image-lightbox-container-custom {
+                min-height: map-get($map, lightboxAdMinHeight);
+
+                margin: 0 auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .slick-arrow {
+                position: absolute;
+                flex-grow: 0;
+                align-self: center;
+                opacity: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                z-index: map-get($map, lightboxArrowsZIndex);
+                border-radius: map-get($map, lightboxArrowsBorderRadius);
+                font-size: map-get($map, lightboxArrowsSize);
+                color: map-get($map, lightboxArrowsColor);
+                background: map-get($map, lightboxArrowsBackground);
+                top: map-get($map, lightboxArrowsTopPos);
+                padding: map-get($map, lightboxArrowsPadding);
+                width: map-get($map, lightboxArrowsWidth);
+                height: map-get($map, lightboxArrowsHeight);
+
+                &.slick-prev {
+                    left: map-get($map, lightboxPrevLeftPos);
+                    right: auto;
+                }
+
+                &.slider-button-capsule {
+                    right: map-get($map, lightboxNextRightPos);
+                    left: auto;
+                }
+            }
+
+
+        .slider-gallery-lightbox-share {
+            display: flex;
+            justify-content: center;
+            text-align: map-get($map, lightboxIconsAlign);
+
+            .toggle-download,
+            .toggle-share {
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+
+                position: map-get($map, lightboxIconsPosition);
+                font-size: map-get($map, lightboxIconSize);
+                padding: map-get($map, lightboxIconPadding);
+                width: map-get($map, lightboxIconWidth);
+                height: map-get($map, lightboxIconHeight);
+                color: map-get($map, lightboxIconColor);
+                background: map-get($map, lightboxIconBackground);
+                border-radius: map-get($map, lightboxIconBorderRadius);
+                box-shadow: map-get($map, lightboxIconBoxShadow);
+
+            }
+            
+            .toggle-download {
+                bottom: map-get($map, lightboxDownloadBottomPos);
+                top: map-get($map, lightboxDownloadTopPos);
+                left: map-get($map, lightboxDownloadLeftPos);
+                right: map-get($map, lightboxDownloadRightPos);
+                margin: map-get($map, lightboxDownloadMargin);
+            }
+
+            .toggle-share {
+                bottom: map-get($map, lightboxShareBottomPos);
+                top: map-get($map, lightboxShareTopPos);
+                left: map-get($map, lightboxShareLeftPos);
+                right: map-get($map, lightboxShareRightPos);
+                margin: map-get($map, lightboxShareMargin);
+            }
+        }
+
+        .slider-gallery-backdrop {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+
+            background: map-get($map, lightboxBackdropBackground);
+        }
+
+        .slick-slider {
+            display: flex;
+            align-content: center;
+            align-items: center;
+        }
+
+        .slider-gallery-lightbox-close {
+            opacity: 0;
+            position: absolute;
+            display: flex !important;
+            justify-content: center;
+            align-items: center;
+
+            z-index: map-get($map, lightboxCloseZIndex);
+            font-size: map-get($map, lightboxCloseIconSize);
+            padding: map-get($map, lightboxCloseIconPadding);
+            left: map-get($map, lightboxCloseIconLeftPos);
+            top: map-get($map, lightboxCloseIconTopPos);
+            right: map-get($map, lightboxCloseIconRightPos);
+            bottom: map-get($map, lightboxCloseIconBottomPos);
+            color: map-get($map, lightboxCloseIconColor);
+            border-radius: map-get($map, lightboxCloseIconBorderRadius);
+            border: map-get($map, lightboxCloseIconBorder);
+            background: map-get($map, lightboxCloseIconBackground);
+            width: map-get($map, lightboxCloseIconWidth);
+            height: map-get($map, lightboxCloseIconHeight);
+            
+        }
+
+    }
+
+    //
+    // Lightbox portrait mobile stylingz
+    //
+
+    @media (max-width: $screen-xs-max) and (orientation: portrait) {
+        .slider-gallery-lightbox {
+            .slider-gallery {
+                .image-lightbox-container {
+                    figure {
+                        max-width: map-get($map, lightboxFigureWidthPortrait);
+                        width: map-get($map, lightboxFigureMaxWidthPortrait);
+
+                        .slider-gallery-lightbox-close {
+                            left: map-get($map, lightboxCloseLeftPosPortrait);
+                            top: map-get($map, lightboxCloseTopPosPortrait);
+                            bottom: map-get($map, lightboxCloseBottomPosPortrait);
+                            right: map-get($map, lightboxCloseRightPosPortrait);
+                            font-size: map-get($map, lightboxCloseIconSizePortrait);
+                            padding: map-get($map, lightboxClosePaddingPortrait);
+                        }
+
+                        figcaption {
+                            span {
+                                &.slide-number {
+                                    position: relative;
+
+                                    display: map-get($map, lightboxSlideNoDisplayPortrait);
+                                    margin: map-get($map, lightboxSlideNoMarginPortrait);
+                                    width: map-get($map, lightboxSlideNoWidthPortrait);
+                                }
+
+                                &.copyright {
+                                    display: map-get($map, lightboxCopyrightDisplayPortrait);
+                                    margin: map-get($map, lightboxCopyrightMarginPortrait);
+                                    width: map-get($map, lightboxCopyrightWidthPortrait);
+
+                                }
+
+                                &.info {
+                                    display: map-get($map, lightboxInfoDisplayPortrait);
+                                    margin: map-get($map, lightboxInfoMarginPortrait);
+                                    width: map-get($map, lightboxInfoWidthPortrait);
+                                }
+                            }
+                        }
+
+                        .embed {
+                            .iframe-container {
+                                // 16:9 video iframe
+                                & > .sixteen-to-nine + .stretcher iframe {
+                                    width: map-get($map, lightboxIframeWidthPortrait);
+                                    height: map-get($map, lightboxIframeHeightPortrait);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .slider-gallery-lightbox-share {
+                .toggle-download,
+                .toggle-share {
+                    margin: map-get($map, lightboxIconsMarginPortrait);
+                }
+            }
+        }
+    }
+
+    //
+    // Desktop
+    //
+    @media (min-width: $screen-sm-min) {
+        .slider-gallery-lightbox {
+            .slider-gallery {
+                .image-lightbox-container {
+                    figure {
+                        figcaption {
+                            padding: map-get($map, lightboxCaptionPaddingDesktop);
+
+                            span {
+                                &.slide-number {
+                                    text-align: map-get($map, lightboxSlideNoTextAlign);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .slick-arrow {
+                width: map-get($map, lightboxArrowsWidthDesktop);
+                height: map-get($map, lightboxArrowsHeightDesktop);
+            }
+
+            .slider-gallery-lightbox-share {
+                display: initial;
+
+                .toggle-share,
+                .toggle-download {
+                    width: map-get($map, lightboxIconWidthDesktop);
+                    height: map-get($map, lightboxIconWidthDesktop);
+                }
+            }
+        }
+    }
+
+
+}
+

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="38px" viewBox="0 0 24 38" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43 (38999) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_startStream_desktop</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="0%" y1="0%" x2="100%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#9E54BC" offset="0%"></stop>
+            <stop stop-color="#642A86" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-110.000000, -434.000000)" fill="url(#linearGradient-1)">
+            <g id="--mobil" transform="translate(127.000000, 433.000000)">
+                <path d="M19.8741576,5.0743298 C21.0450193,3.90335602 22.1319981,4.28636475 22.3023336,5.93309898 L23.8367505,20.7672158 C24.0069334,22.4124747 22.8127509,23.6083995 21.1661743,23.4380477 L6.33347756,21.9034839 C4.68837616,21.7332847 4.30471574,20.6452623 5.47479059,19.4750754 L19.8741576,5.0743298 Z" id="icon---play" transform="translate(14.325165, 13.925179) rotate(-45.000000) translate(-14.325165, -13.925179) "></path>
+            </g>
+            <g id="--desktop" transform="translate(93.000000, 432.000000)">
+                <path d="M29.0833376,7.59250784 C31.4297622,5.2458586 33.6092097,6.02429401 33.9484926,9.30434226 L36.1753005,30.8322127 C36.5158268,34.124282 34.111364,36.5157104 30.8316298,36.176395 L9.30582019,33.949374 C6.01406606,33.6088151 5.24410094,31.4340269 7.59414964,29.0837532 L29.0833376,7.59250784 Z" id="icon---play" transform="translate(21.212432, 21.212432) rotate(-45.000000) translate(-21.212432, -21.212432) "></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43 (38999) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_sharing_twitch_grey</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="50" height="50"></rect>
+    </defs>
+    <g id="assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="--50px" transform="translate(-631.000000, -78.000000)">
+            <g id="grey" transform="translate(0.000000, 78.000000)">
+                <g id="ic_sharing_twitch" transform="translate(631.000000, 0.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Rectangle-2" fill="#C9C9C9" xlink:href="#path-1"></use>
+                    <path d="M12.109375,10 L10,15.1492537 L10,36.1940299 L17.5,36.1940299 L17.5,40 L21.71875,40 L25.703125,36.1940299 L31.796875,36.1940299 L40,28.358209 L40,10 L12.109375,10 L12.109375,10 Z M37.1875,27.0149254 L32.5,31.4925373 L25,31.4925373 L21.015625,35.2985075 L21.015625,31.4925373 L14.6875,31.4925373 L14.6875,12.6865672 L37.1875,12.6865672 L37.1875,27.0149254 L37.1875,27.0149254 Z M32.5,17.8358209 L32.5,25.6716418 L29.6875,25.6716418 L29.6875,17.8358209 L32.5,17.8358209 L32.5,17.8358209 Z M25,17.8358209 L25,25.6716418 L22.1875,25.6716418 L22.1875,17.8358209 L25,17.8358209 L25,17.8358209 Z" id="Shape" fill="#FFFFFF" mask="url(#mask-2)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,573 @@
+.radioplayer {
+    max-width: 950px;
+    width: 100%;
+    margin: 0 auto;
+    max-height: 100%;
+
+    .menu-container {
+        ul {
+            width: 100%;
+        }
+    }
+
+    .navigation-webradio {
+        overflow: hidden;
+        .navigation-webradio-slider-channel {
+            &,
+            .navigation-webradio-future-container,
+            .navigation-webradio-play,
+            .navigation-webradio-favorite-badge
+            {
+                display: none;
+            }
+
+            &.active-channel {
+                display: block;
+            }
+        }
+
+        .navigation-webradio-image-blur {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            @include doBlur(30px);
+            transform: scale(1.5);
+
+            &:before {
+                position: absolute;
+                background: #642a86;
+                opacity: 0.1;
+                height: 100%;
+                width: 100%;
+                left: 0;
+                top: 0;
+                content: '';
+            }
+        }
+
+        .navigation-webradio-channels {
+            display: none;
+        }
+
+        .navigation-webradio-error {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            width: 100%;
+            display: none;
+
+            &.show ~ .navigation-webradio-slider {
+                display: block;
+                opacity: 0.2;
+                pointer-events: none;
+            }
+        }
+
+        .navigation-webradio-content {
+            position: relative;
+
+            .navigation-webradio-info-container {
+                height: 165px;
+                position: relative;
+
+                .navigation-webradio-cover {
+                    width: 100px;
+                    height: 100px;
+                    overflow: hidden;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+                    background: #d8d8d8;
+                    margin-left: 160px;
+
+                    img {
+                        width: 100%;
+                        height: auto;
+                    }
+                }
+
+                .navigation-webradio-info {
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                    @include fontFamily(open-sans, normal);
+                    width: 100%;
+
+
+                    div {
+                        padding: 5px 20px 5px 13px;
+                        color: $color-font-black;
+
+                        .track {
+                            @include fontFamily(open-sans, extra-bold);
+                            text-transform: uppercase;
+                        }
+
+                        .artist {
+                            @include fontFamily(open-sans);
+                            font-weight: 400;
+
+                            &:before {
+                                content:'-';
+                                padding-right: 4px;
+                                padding-left: 4px;
+                            }
+                        }
+
+                        .track-additional {
+                            @include fontSize(13);
+                            font-weight: 400;
+                        }
+                    }
+
+                    & > div  {
+                        background: $color-white;
+                        @include fontSize(16);
+                        display: inline-block;
+                    }
+
+                    & > div:first-child {
+                        background: $color-white;
+                        font-weight: normal;
+                        font-style: italic;
+                        text-transform: uppercase;
+                        @include fontSize(13);
+                    }
+
+                    & > div:last-child {
+                        text-overflow: ellipsis;
+                        //white-space: nowrap;
+                        width: 100%;
+                        padding-right: 30px;
+                    }
+                }
+            }
+        }
+    }
+
+    .alphabet {
+        padding-top: 10px !important;
+
+        & > ul {
+            display: block !important;
+            width: 100% !important;
+            padding-left: 26px;
+
+            li {
+                float: left;
+            }
+        }
+    }
+
+    .cookie-consent-text {
+        font-size: 12px;
+        line-height: normal;
+    }
+
+    .navigation-webradio-outside, .navigation-webradio-outside-desktop {
+        min-height: 110px;
+    }
+
+    .radioplayer-header {
+        overflow: hidden;
+        min-height: 165px;
+        background: $color-footer-black;
+    }
+
+    .navigation-webradio-cover {
+        margin-left: -13px;
+    }
+
+    .navigation-webradio-outside-desktop {
+        &.collapsed {
+            top: 0;
+            width: 100%;
+            min-width: 0;
+            overflow: visible;
+
+            .row:first-of-type {
+                z-index: 4;
+            }
+        }
+    }
+
+    .radioplayer-head {
+        margin-left: 0;
+        margin-right: 0;
+        margin-bottom: 0;
+
+        .stn-logo {
+            margin-left: 16px;
+        }
+    }
+
+    .radioplayer-body {
+        padding: 0;
+        margin: 0;
+    }
+
+    .radioplayer-localwrapper {
+        position: static;
+        background: $color-white;
+        padding-top: 65px;
+    }
+
+    .now-playing-strip {
+        background: $color-white !important;
+        color: $color-black;
+    }
+
+    .radioplayer-channel-image {
+        display: none;
+    }
+
+    .titlesearch-header {
+        padding-top: 20px;
+    }
+
+    .titlesearch-container .titlesearch-header h1 {
+        margin-top: 0;
+    }
+
+    .anno-text {
+        font-size: 12px;
+        width: 100%;
+
+        a {
+            display: inline-block;
+            text-decoration: underline;
+        }
+    }
+
+
+    @keyframes animateEqualizer {
+        0% {
+            height: 30%;
+        }
+
+        50% {
+            height: 80%;
+        }
+
+        100% {
+            height: 30%;
+        }
+    }
+
+    .animatedEqualizer {
+        position: relative;
+        min-height: 15px;
+        width: 26px;
+        display: none;
+
+        div {
+            position: absolute;
+            display: inline-block;
+            height: 30%;
+            width: 2px;
+            background: $color-footer-black;
+            left: 5px;
+            bottom: 0;
+            animation: animateEqualizer 1s infinite ease-in-out;
+
+            &:nth-child(2) {
+                left: 9px;
+                height: 80%;
+                animation-delay: 0.3s;
+            }
+
+            &:nth-child(3) {
+                left: 13px;
+                height: 80%;
+                animation-delay: .7s;
+            }
+
+            &:nth-child(4) {
+                left: 17px;
+                animation-delay: .5s;
+            }
+        }
+
+        &.no-anim {
+            div {
+                animation: none;
+                height: 20%;
+            }
+        }
+    }
+
+
+    .webradio-popup-channel-select {
+        max-width: 320px;
+        overflow: visible;
+        @include fontFamily(open-sans, bold, 16);
+        position: relative;
+        margin: 16px 16px 62px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+
+        .webradio-popup-channel-select-main {
+            background: $gradient-yellow;
+            padding: 13px 0;
+            cursor: pointer;
+
+            .icon {
+                float: left;
+                @include fontSize(21);
+                margin-left: 21px;
+                margin-top: -2px;
+            }
+        }
+
+        .webradio-popup-channel-select-items {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .2s linear;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            background-color: #ebebeb;
+            padding: 0;
+            left: 0;
+            position: absolute;
+            width: 100%;
+            z-index: 999;
+
+            &.open {
+                max-height: 100%;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                padding-top: 60px;
+                padding-bottom: 5px;
+
+                .webradio-popup-channel-select-items-header {
+                    padding: 17px 26px;
+                    background: $gradient-yellow;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16);
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    font-weight: bold;
+                    z-index: 99999;
+
+                    .webradio-popup-channel-select-items-header-close {
+                        cursor: pointer;
+                        @include fontSize(19);
+                        font-weight: bold;
+                    }
+                }
+            }
+
+            .webradio-popup-channel-select-item {
+                background: $color-white;
+                display: flex;
+                margin: 10px;
+                cursor: pointer;
+                color: $color-footer-black;
+                transition: box-shadow .2s linear .1s, transform .2s linear;
+
+                &:hover,
+                &:active,
+                &:focus,
+                &:visited,
+                &.active {
+                    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+                    transform: scale(1.025);
+                    z-index: 9;
+                    text-decoration: none;
+                }
+
+                & > div:first-of-type {
+                    flex-basis: 40%;
+                }
+
+                & > div:nth-child(2) {
+                    flex-basis: 60%;
+                    padding: 10px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    & > span {
+                        max-width: 117px;
+                    }
+                }
+
+                &.active > div:nth-child(2) {
+                    background: $gradient-yellow;
+                }
+
+                &.active div.animatedEqualizer {
+                    display: block;
+                }
+
+                img {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+        }
+    }
+
+    footer {
+        .footer-additional-links {
+            padding: 34px;
+        }
+    }
+}
+
+.console-wrapper {
+    width: 100%;
+}
+
+
+//
+// Tablet & Desktop
+//
+@media (min-width: $screen-sm-min) {
+
+    .console-wrapper {
+        position: relative;
+    }
+
+    .radioplayer {
+        max-width: 1074px;
+
+        .anno-text {
+            font-size: 16px;
+        }
+
+        .channel-slider,
+        .navigation-webradio-outside-desktop.collapsed {
+            width: 400px;
+        }
+
+        .channel-slider {
+            padding-top: 22px;
+        }
+
+        .titlesearch-header {
+            padding-top: 60px;
+        }
+
+        .titlesearch-container .titlesearch-header h1 {
+            margin-top: initial;
+        }
+
+        .radioplayer-channel-image {
+            display: block;
+        }
+
+        .navigation-webradio {
+            .navigation-webradio-content {
+                position: relative;
+
+                .navigation-webradio-info-container {
+                    height: 165px;
+                    position: relative;
+
+                    .navigation-webradio-play {
+                        display: none;
+                    }
+
+                    .navigation-webradio-cover {
+                        position: absolute;
+                        bottom: -24px;
+                        left: 62px;
+                        width: 174px;
+                        height: 174px;
+                        overflow: hidden;
+                        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+                        background: #d8d8d8;
+                        margin-left: -13px;
+
+                        img {
+                            width: 100%;
+                            height: auto;
+                        }
+                    }
+
+                    .navigation-webradio-info {
+                        position: absolute;
+                        left: 223px;
+                        bottom: 24px;
+                        @include fontFamily(roboto);
+
+                        div {
+                            padding: 5px 13px;
+                            color: $color-font-black;
+
+                            .artist {
+                                font-weight: bold;
+                            }
+                        }
+
+                        & > div  {
+                            background: $color-white;
+                            @include fontSize(16);
+                            display: inline-block;
+                        }
+
+                        & > div:first-child {
+                            background: $color-white;
+                            font-weight: normal;
+                            font-style: italic;
+                            @include fontSize(13);
+                            text-transform: uppercase;
+                        }
+
+                        & > div:last-child {
+                            width: auto;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
+                        }
+                    }
+                }
+            }
+        }
+
+
+        .webradio-popup-channel-select {
+            max-width: 320px;
+            overflow: visible;
+            @include fontFamily(open-sans, bold, 16);
+            position: relative;
+            margin: 16px auto 62px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+
+            .webradio-popup-channel-select-main {
+                background: $gradient-yellow;
+                padding: 13px 0;
+                cursor: pointer;
+
+                .icon {
+                    float: left;
+                    @include fontSize(21);
+                    margin-left: 21px;
+                    margin-top: -2px;
+                }
+            }
+
+            .webradio-popup-channel-select-items {
+                &.open {
+                    max-height: 300px;
+                    position: absolute;
+                    width: 100%;
+                    height: auto;
+                    overflow: auto;
+                    padding-top: 0;
+                    top: auto;
+                }
+            }
+        }
+
+        .breaking-news {
+            .col-md-1 {
+                display: flex !important;
+            }
+        }
+    }
+}

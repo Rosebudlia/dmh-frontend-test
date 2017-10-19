@@ -1,0 +1,6 @@
+//
+// Calculate font size, based on given int
+//
+@function getFontSize($size:16) {
+    @return $size / 10;
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>JAM FM | 93,6 Musik die dich bewegt</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+    <link rel="stylesheet" href="/dist/jamfm/styles/vendor.css"/>
+    <link rel="stylesheet" href="/dist/jamfm/styles/common.css"/>
+    <link rel="stylesheet" href="/dist/jamfm/styles/main.css"/>
+
+    <script>
+        // Globals
+        const DMH_ROOT_URL = 'http://127.0.0.1:3000/?station=jamfm&';
+        const DMH_RES_URL  = '/dist/jamfm/';
+        const DMH_WRFBIMG_SRC  = '${resourceBaseUrl}/';
+        const DMH_DATA_POLICY = '';
+
+        var ga = {};
+    </script>
+
+    <script type='text/javascript'>
+        var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+        (function () {
+            var gads = document.createElement("script");
+            gads.async = true;
+            gads.type = 'text/javascript';
+            var useSSL = 'https:' == document.location.protocol;
+            gads.src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
+            var node = document.getElementsByTagName('script')[0];
+            node.parentNode.insertBefore(gads, node);
+        })();
+    </script>
+
+    <script>
+        var OMSres = OMSres || {};
+        OMSres.oms_site_display = 'pn.jamfm.de';
+        OMSres.oms_site_mobile = 'mew.jamfm.de';
+        OMSres.oms_zone = 'test';
+        //OMSres.oms_zone = 'test'; //test
+        OMSres.screen_width = typeof document.documentElement != 'undefined' ? document.documentElement.clientWidth : window.innerWidth;
+        /* Fix für Redirect Wallpaper */
+        adlWallPaperLeft = ( OMSres.screen_width / 2) + (1030 / 2);
+        OMSres.network_code = OMSres.screen_width < 800 ? 8635 : 5766;
+        var oms_mobile = OMSres.screen_width < 800 ? true : false,
+            rmsi_site = oms_mobile ? OMSres.oms_site_mobile : OMSres.oms_site_display,
+            rmsi_zone = OMSres.oms_zone;
+    </script>
+    <script type="text/javascript" src="//www.video.oms.eu/ada/cloud/omsv_container_151.js" charset="UTF-8"></script>
+</head>

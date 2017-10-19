@@ -1,0 +1,106 @@
+@mixin _footerBuildAdditionalDesktop($options:null) {
+    @if $options != null {
+        @media screen and (min-width: $screen-md-min) {
+            flex-wrap: nowrap;
+            padding: map-get($options, padding);
+
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            $left: map-get($options, left);
+            @if $left != null {
+                .footer-additional-left {
+                    flex-basis: map-get($left, flexBasis);
+                    margin-bottom: map-get($left, marginBottom);
+                    margin-left: map-get($left, marginLeft);
+                    margin-top: map-get($left, marginTop);
+                }
+            }
+
+            $right: map-get($options, right);
+            @if $right != null {
+                .footer-additional-right {
+                    justify-content: center;
+                    align-content: center;
+                    flex-wrap: wrap;
+                    flex-basis: map-get($right, flexBasis);
+                    padding: map-get($right, padding);
+
+                    a {
+                        &:first-of-type {
+                            margin: map-get($right, firstLinkMargin);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@mixin _footerBuildAdditionalRight($options:null) {
+    @if $options != null {
+        .footer-additional-right {
+            display: flex;
+            flex-basis: 100%;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: nowrap;
+            padding: map-get($options, padding);
+
+            a {
+                display: block;
+                flex-basis: initial;
+                margin: map-get($options, linkMargin);
+
+                &:first-of-type {
+                    margin-right: map-get($options, linkFirstMarginRight);
+                }
+            }
+        }
+    }
+}
+
+
+@mixin footerBuildAdditional($map:null) {
+    @if $map != null {
+        .footer-additional-widget {
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+            width: map-get($map, width);
+            margin: map-get($map, margin);
+            background: map-get($map, background);
+            padding: map-get($map, padding);
+
+            $footerMargin: map-get($map, footerMarginTop);
+            @if $footerMargin != null {
+                .footer-additional-widget + div footer {
+                    margin-top: $footerMargin;
+                }
+            }
+
+            img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            .footer-additional-left {
+                flex-basis: 100%;
+                margin-bottom: map-get($map, leftMarginBottom);
+            }
+
+            $right: map-get($map, right);
+            @if $right != null {
+                @include _footerBuildAdditionalRight($right);
+            }
+
+            $desktop: map-get($map, desktop);
+            @if $desktop != null {
+                @include _footerBuildAdditionalDesktop($desktop);
+            }
+        }
+    }
+}

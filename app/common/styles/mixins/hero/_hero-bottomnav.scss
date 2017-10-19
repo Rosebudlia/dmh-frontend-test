@@ -1,0 +1,516 @@
+@mixin heroBottomNavBuild($map:null) {
+    .hero-bottom-slider {
+        overflow: hidden;
+        height: map-get($map, heroHeightMobile);
+        margin: map-get($map, heroMargin);
+
+        .hero__slider {
+            color: map-get($map, heroStdFontColor);
+            background: map-get($map, heroBackground);
+            box-shadow: map-get($map, heroBoxShadow);
+
+            .hero__slider__slide {
+                &, &:hover, &:active, &:focus, &:visited {
+                    text-decoration: none !important;
+                }
+
+                figure {
+                    display: flex;
+                    justify-content: flex-start;
+                    flex-wrap: wrap;
+
+                    color: map-get($map, heroCaptionFontColor);
+
+                    figcaption {
+                        position: relative;
+                        vertical-align: top;
+                        order: map-get($map, heroCaptionOrder);
+                        flex-shrink: 1;
+                        width: map-get($map, heroCaptionWidth);
+                        padding: map-get($map, heroCaptionPadding);
+                        border: map-get($map, heroCaptionPadding);
+
+                        $heroCaptionFontSize: map-get($map, heroCaptionFontSize);
+                        @if $heroCaptionFontSize != null {
+                            @include fontSize($heroCaptionFontSize);
+                        }
+
+                        > span {
+                            display: block;
+                            padding: map-get($map, heroCaptionTextPadding);
+                        }
+                    }
+
+                    .kicker {
+                        padding: map-get($map, heroCaptionKickerPadding);
+                        color: map-get($map, heroCaptionKickerColor);
+
+                        $heroCaptionKickerFontSize: map-get($map, heroCaptionKickerFontSize);
+                        @if $heroCaptionKickerFontSize != null {
+                            @include fontSize($heroCaptionKickerFontSize);
+                        }
+                    }
+
+                    .headline {
+                        display: block;
+                        text-transform: map-get($map, heroHeadlineTextTransform);
+                        margin-bottom: map-get($map, heroHeadlineMarginBottom);
+                        color: map-get($map, heroHeadlineColor);
+
+                        @include fontFamily(map-get($map, heroHeadlineFontFamily), map-get($map, heroHeadlineFontStyle), map-get($map, heroHeadlineFontSize));
+
+                    }
+
+                    .text {
+                        @include fontFamily(map-get($map, heroTextFontFamily), map-get($map, heroTextFontStyle), map-get($map, heroTextFontSize));
+                    }
+
+                    picture {
+                        flex-shrink: 1;
+                        overflow: hidden;
+                        border-right: none;
+                        border-left: none;
+
+                        order: map-get($map, heroPictureOrder);
+                        width: map-get($map, heroPictureWidth);
+
+                        $borderPos: map-get($map, heroPictureBorderPositionMobile);
+                        $heroPictureBorder: map-get($map, heroPictureBorder);
+                        @if $heroPictureBorder != null {
+                            @if $borderPos == 'top' {
+                                border-top: $heroPictureBorder;
+                            }
+
+                            @else if $borderPos == 'bottom' {
+                                border-bottom: $heroPictureBorder;
+                            }
+
+                            @else if $borderPos == 'all' {
+                                border: $heroPictureBorder;
+                            }
+
+                            @else {
+                                border: $heroPictureBorder;
+                            }
+                        }
+
+                        @else {
+                            border: none;
+                        }
+
+                        img {
+                            width: 100%;
+                            height: auto;
+                        }
+                    }
+                }
+
+                &.sponsored-featured {
+                    figure {
+                        figcaption {
+                            padding-top: 0;
+                        }
+                    }
+                }
+
+                .hero__slider__slide--featured__caption,
+                .hero__slider__slide--sponsored__caption {
+                    width: 100%;
+                    position: relative;
+                    top: 0;
+                    left: 0;
+                    display: flex;
+
+                    text-transform: map-get($map, heroBannerTextTransform);
+                    margin-bottom: map-get($map, heroBannerMarginBottom);
+                    padding: map-get($map, heroBannerPadding);
+                    @include fontFamily(map-get($map, heroBannerFontFamily), map-get($map, heroBannerFontStyle), map-get($map, heroBannerFontSize));
+
+                }
+
+                .hero__slider__slide--featured__caption {
+                    background: map-get($map, heroFeaturedBackground);
+                    color: map-get($map, heroFeaturedFontColor);
+
+                }
+
+                .hero__slider__slide--sponsored__caption {
+                    justify-content: space-between;
+                    align-items: center;
+
+                    background: map-get($map, heroSponsoredBackground);
+                    color: map-get($map, heroSponsoredFontColor);
+
+                    span {
+                        flex-basis: 40%;
+                        flex-grow: 1;
+                        display: block;
+                    }
+
+                    .sponsor-logo {
+                        flex-basis: 40%;
+                        display: flex;
+                        flex-grow: 0;
+                        justify-content: flex-end;
+                        align-items: flex-end;
+
+                        img {
+                            max-width: 100%;
+                            height: auto;
+                            max-height: map-get($map, heroSponsorLogoMaxheight);
+                        }
+                    }
+                }
+
+            }
+        }
+
+        .hero__nav {
+            background: map-get($map, heroNavBackground);
+
+            width: 100%;
+
+            ul {
+                padding-left: 0;
+                width: 100%;
+
+                .hero-nav-button {
+                    display: inline-block;
+                    cursor: pointer;
+                    font-size: map-get($map, heroNavButtonSize);
+
+                    &.slick-disabled {
+                        opacity: map-get($map, heroNavButtonDisabledOpacity);
+                    }
+
+                    &.hero-nav-prev,
+                    &.hero-nav-next {
+                        margin-top: map-get($map, heroNavButtonMarginTop);
+                    }
+
+                    &.hero-nav-prev {
+                        float: left;
+                        padding-left: 6px;
+                    }
+
+                    &.hero-nav-next {
+                        float: right;
+                        padding-right: 6px;
+                    }
+                }
+
+                .slick-list {
+                    float: left;
+                    margin: 0 auto;
+                    overflow: hidden;
+
+                    width: map-get($map, heroNavWidth);
+                    padding: map-get($map, heroNavPadding);
+                }
+
+                li {
+                    position: relative;
+                    display: inline-block;
+                    cursor: pointer;
+                    text-align: center;
+
+                    @include fontFamily(map-get($map, heroNavFontFamily), map-get($map, heroNavFontStyle), map-get($map, heroNavFontSize));
+                    color: map-get($map, heroNavFontColor);
+                    margin: map-get($map, heroNavItemsMargin);
+                    padding: map-get($map, heroNavItemsPadding);
+
+                    span {
+                        width: 100%;
+                        display: none;
+                    }
+
+                    &.active {
+                        color: map-get($map, heroNavActiveTextColor);
+                    }
+
+                    &:not(.hero-nav-button) {
+                        padding-top: 0;
+
+                        span {
+                            display: none;
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
+                            overflow: hidden;
+                        }
+                    }
+
+                    .hero-nav-progress {
+                        position: absolute;
+                        left: 0;
+                        width: 100%;
+
+                        top: map-get($map, heroNavProgressTop);
+                        height: map-get($map, heroNavProgressHeight);
+                        background: map-get($map, heroNavProgressBackground);
+                        overflow: hidden;
+
+                        .slick-progress {
+                            position: absolute;
+                            animation-name: fillBox;
+                            animation-timing-function: linear;
+                            height: 100%;
+                            top: 0;
+                            left: 0;
+                            overflow: hidden;
+                            text-align: inherit;
+                            white-space: nowrap;
+                            line-height: inherit;
+                            padding: 0;
+                            margin: 0;
+                            z-index: 5;
+                            transform: translate3d(-100%, 0, 0);
+                            background: map-get($map, heroNavProgressBarBackground);
+                            width: 100%;
+
+                            &.no-animation {
+                                animation: none !important;
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+
+    .hero-onesie-parent{
+        height: auto;
+
+        margin-bottom: map-get($map, heroOneSlideMarginBottom);
+    }
+
+
+    //
+    // In the tablet view the navbar is the same as the desktop view but the picture and caption both take 100% width
+    //
+    @media (min-width: $screen-md-min) {
+        .hero-bottom-slider {
+            .hero__nav {
+                background: map-get($map, heroNavBackgroundTablet);
+
+                ul {
+                    border-bottom: map-get($map, heroNavBottomBorderDesktop);
+
+                    .slick-list {
+                        overflow: visible;
+
+                        padding: map-get($map, heroNavPaddingDesktop);
+
+                    }
+
+                    li {
+                        position: relative;
+
+                        &:not(.hero-nav-button) {
+                            span {
+                                padding-top: map-get($map, heroNavTextPaddingTop);
+                                display: block;
+                            }
+                        }
+
+                        .hero-nav-progress {
+                            background: map-get($map, heroNavProgressBackgroundDesktop);
+                            height: map-get($map, heroNavProgressHeightDesktop);
+
+                            $heroNavProgressPos: map-get($map, heroNavProgressPos);
+                            $pixels: map-get($map, heroNavProgressPosPixels);
+                            @if $heroNavProgressPos == 'top' {
+                                top: $pixels;
+                                bottom: auto;
+                            }
+
+                            @else if $heroNavProgressPos == 'bottom' {
+                                bottom: $pixels;
+                                top: auto;
+                            }
+
+                            @else {
+                                top: 0;
+                                bottom: auto;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    //
+    // Desktop
+    //
+    @media (min-width: $screen-sm-min) {
+        .hero-bottom-slider .hero__slider {
+            max-height: map-get($map, heroNavMaxHeightDesktop);
+
+            .hero__slider__slide {
+                figure {
+                    flex-wrap: nowrap;
+
+                    figcaption {
+                        flex-shrink: 0;
+                        z-index: 999;
+
+                        order: map-get($map, heroCaptionOrderDesktop);
+                        width: map-get($map, heroCaptionWidthDesktop);
+                        padding: map-get($map, heroCaptionPaddingDesktop);
+
+                    }
+
+                    .headline {
+                        white-space: initial;
+                        overflow: visible;
+                    }
+
+                    .text {
+                        display: block;
+                        overflow: hidden;
+
+                        max-height: map-get($map, heroCaptionTextMaxHeight);
+                    }
+
+                    picture {
+                        order: map-get($map, heroPictureOrderDesktop);
+                        border-top: none;
+                        border-bottom: none;
+
+                        $borderPosDesktop: map-get($map, heroPictureBorderPositionDesktop);
+                        $heroPictureBorder: map-get($map, heroPictureBorder);
+                        @if $heroPictureBorder != null {
+                            @if $borderPosDesktop == 'right' {
+                                border-right: $heroPictureBorder;
+                            }
+
+                            @else if $borderPosDesktop == 'left' {
+                                border-left: $heroPictureBorder;
+                            }
+
+                            @else if $borderPosDesktop == 'all' {
+                                border: $heroPictureBorder;
+                            }
+
+                            @else {
+                                border: $heroPictureBorder;
+                            }
+                        }
+
+                        @else {
+                            border: none;
+                        }
+                    }
+                }
+            }
+
+            .hero__nav {
+                ul {
+                    .hero-nav-button {
+                        &.hero-nav-prev {
+                            padding: map-get($map, heroNavLeftButtonPadding);
+                        }
+
+                        &.hero-nav-next {
+                            padding: map-get($map, heroNavRightButtonPadding);
+                        }
+                    }
+
+                    .slick-list {
+                        width: map-get($map, heroNavWidthDesktop);
+
+                    }
+
+                    .slick-arrow + .slick-list {
+                        float: left;
+
+                        width: map-get($map, heroNavWidthWithArrows);
+
+                    }
+                }
+            }
+
+
+        }
+
+        //
+        // Hero with sidebar
+        //
+        .col-md-8, .col-sm-8 {
+            .hero-bottom-slider {
+                overflow: visible;
+
+                max-height: map-get($map, heroWithSidebarMaxHeight);
+
+                .hero__slider__slide {
+                    .hero__slider__slide--sponsored__caption {
+                        .sponsor-logo {
+                            flex-basis: map-get($map, heroWithSidebarLogoWidth);
+                        }
+                    }
+                }
+
+                .hero__nav {
+                    overflow: hidden;
+
+                    background-color: map-get($map, heroWithSidebarNavBackground);
+
+                    ul {
+                        .slick-list {
+                            padding-top: 0;
+                        }
+
+                        li {
+                            &:not(.hero-nav-button) {
+                                span {
+                                    display: block;
+
+                                    padding-top: map-get($map, heroNavTextPaddingTopDesktop);
+                                }
+                            }
+
+                        }
+                    }
+                }
+
+                .hero__slider__slide {
+                    figure {
+                        flex-wrap: wrap !important;
+
+                        figcaption {
+                            width: 100% !important;
+                            padding: map-get($map, heroCaptionPaddingWithSidebar);
+                            border-left: none;
+                            border-right: none;
+
+                            $borderPosSidebar: map-get($map, heroPictureBorderPositionWithSidebar);
+                            $heroPictureBorder: map-get($map, heroPictureBorder);
+                            @if $heroPictureBorder != null {
+                                @if $borderPosSidebar == 'top' {
+                                    border-top: $heroPictureBorder;
+                                }
+
+                                @else if $borderPosSidebar == 'bottom' {
+                                    border-bottom: $heroPictureBorder;
+                                }
+
+                                @else if $borderPosSidebar == 'all' {
+                                    border: $heroPictureBorder;
+                                }
+
+                                @else {
+                                    border: $heroPictureBorder;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+

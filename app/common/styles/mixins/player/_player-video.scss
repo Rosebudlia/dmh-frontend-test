@@ -1,0 +1,79 @@
+//
+// Build video player styles
+//
+@mixin _playerBuildVideo($options:null) {
+    @if $options != null {
+        &[data-type="video"] {
+            &.dmh-player-wrapper {
+                .jwplayer {
+                    &.jw-skin-dmh-skin {
+
+                        .jw-display-icon-container.jw-background-color {
+                            background-color: transparent;
+                            height: 70px;
+                            width: 70px;
+
+                            .jw-icon {
+                                &.jw-button-color.jw-icon-display{
+                                    color: map-get($options, iconColor);
+                                    font-size: map-get($options, iconFontSize);
+                                    background: map-get($options, iconBackground);
+                                    border-radius: map-get($options, iconBorderRadius);
+                                    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.20);
+                                }
+                            }
+                        }
+
+                        .jw-title {
+                            display: none;
+                        }
+
+                        .jw-controlbar.jw-background-color {
+                            background: map-get($options, controlBackground);
+                        }
+
+                        .jw-slider-horizontal {
+                            height: 6px;
+
+                            .jw-rail {
+                                height: 6px;
+                            }
+                        }
+
+                        .jw-background-color {
+                            background-color: map-get($options, background);
+                        }
+
+                        .jw-progress {
+                            background-color: map-get($options, backgroundProgress);
+                        }
+
+                        .jw-icon {
+                            font-size: map-get($options, mainIconFontSize);
+                            color: map-get($options, mainIconColor);
+                        }
+
+                        .jw-text {
+                            @include fontFamily(map-get($options, fontFamily), bold-italic);
+                            font-size: map-get($options, fontSize);
+                        }
+
+                        .jw-knob {
+                            display: none;
+                        }
+
+                    }
+                }
+
+                .dmh-player-title {
+                    display: block;
+                    min-height: 36px;
+                    @include fontFamily(map-get($options, titleFontFamily), italic, map-get($options, titleFontSize));
+                    color: map-get($options, titleColor);
+                    background: map-get($options, titleBackground);
+                    padding: map-get($options, titlePadding);
+                }
+            }
+        }
+    }
+}

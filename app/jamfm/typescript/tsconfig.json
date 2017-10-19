@@ -1,0 +1,20 @@
+/*
+ * Compiler config for WebradioBrocken class
+ */
+{
+    "compilerOptions": {
+        "module": "system",
+        "sourceMap": false,
+        "removeComments": true,
+        "outFile": "../scripts/typescript-combine.js",
+        "types": ["jquery"]
+    },
+
+    "include": [
+        "./**/*.ts"
+    ],
+
+    "typeroots": [
+        "../../../node_modules/@types"
+    ]
+}

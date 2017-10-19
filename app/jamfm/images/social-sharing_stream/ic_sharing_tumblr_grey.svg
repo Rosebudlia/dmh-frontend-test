@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43 (38999) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_sharing_tumblr_grey</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="50" height="50"></rect>
+    </defs>
+    <g id="assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="--50px" transform="translate(-70.000000, -78.000000)">
+            <g id="grey" transform="translate(0.000000, 78.000000)">
+                <g id="ic---tumblr" transform="translate(70.000000, 0.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Rectangle-2" fill="#C9C9C9" xlink:href="#path-1"></use>
+                    <path d="M32,22.7659574 L26,22.7659574 L26,31.0638298 C26,32.5531915 26.2,33.4042553 28.2,33.4042553 L32,33.4042553 L32,39.787234 C32,39.787234 30,40 27.8,40 C22.6,40 20,36.5957447 20,32.7659574 L20,22.7659574 L16,22.7659574 L16,16.8085106 C20.8,16.3829787 21.2,12.5531915 21.6,10 L26,10 L26,16.3829787 L32,16.3829787 L32,22.7659574 Z" id="Path" fill="#FFFFFF" mask="url(#mask-2)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

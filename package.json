@@ -1,0 +1,44 @@
+{
+  "name": "DMH-Platform",
+  "repository": "git@git-ssh.ethinking.de:dmhub/dmh-platform.git",
+  "license": "UNLICENSED",
+  "author": "Digital Media Hub GmbH",
+  "eslintIgnore": [
+    "jwplayer.js",
+    "jquery.jscrollpane.min.js",
+    "*.bak",
+    "jquery.placeholder-images.min.js"
+  ],
+  "devDependencies": {
+    "@types/jquery": "^2.0.37",
+    "browser-sync": "^2.13.0",
+    "clear": "0.0.1",
+    "event-stream": "^3.3.3",
+    "grunt": "^1.0.1",
+    "grunt-bower-install-simple": "^1.2.0",
+    "grunt-bower-main": "^0.2.0",
+    "grunt-build-number": "^1.0.0",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-compass": "^1.1.1",
+    "grunt-contrib-connect": "^1.0.2",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-cssmin": "^2.0.0",
+    "grunt-contrib-uglify": "git://github.com/gruntjs/grunt-contrib-uglify.git#harmony",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-eslint": "^20.1.0",
+    "grunt-exec": "^2.0.0",
+    "grunt-import-js": "^0.1.4",
+    "grunt-includes": "^1.0.0",
+    "grunt-string-replace": "^1.3.1",
+    "grunt-wiredep": "^3.0.1",
+    "lazypipe": "^1.0.1",
+    "main-bower-files": "^2.13.1",
+    "readline-sync": "^1.4.7",
+    "run-sequence": "^1.1.5",
+    "wiredep": "^4.0.0",
+    "yargs": "^4.7.1"
+  },
+  "dependencies": {
+    "jshint": "^2.9.2"
+  }
+}

@@ -1,0 +1,278 @@
+@import "../../common/styles/global";
+
+
+@keyframes blink {
+    0% {
+        opacity: .2;
+    }
+    20% {
+        opacity: 1;
+    }
+    100% {
+        opacity: .2;
+    }
+}
+
+body, html {
+    background: $color-background-body;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    @include fontFamily(roboto);
+    font-size: 10px;
+}
+
+.no-overflow {
+    overflow: hidden;
+}
+
+body.no-overflow {
+    position: fixed;
+}
+
+.container {
+    max-width: 1074px;
+    color: $color-black;
+    @include fontSize();
+
+}
+
+body {
+    > .container {
+        background-color: $color-background-body;
+        background-clip: content-box;
+    }
+}
+
+.no-padding {
+    padding: 0 !important;
+}
+
+* {
+    outline: none;
+}
+
+.article-qr-code-wrapper {
+    display: none;
+}
+
+//Fallback title stylings for any widget without its own title
+
+h1.widget-title {
+    @include fontFamily(open-sans, bold);
+    @include fontSize(21);
+    color: $color-font-black;
+    text-transform: uppercase;
+    text-align: center;
+
+    @media screen and (min-width: $screen-sm-min) {
+        @include fontSize(34);
+    }
+}
+
+.sidebar {
+    h1.widget-title {
+        @include fontSize(21);
+    }
+}
+
+.sidebar {
+    padding: 30px 0;
+
+    img {
+        max-width: 100%;
+    }
+}
+
+
+//
+// Cookie overlay
+//
+#CookieLayer {
+    background-color: $color-white;
+    color: $color-footer-black;
+    @include fontSize(16);
+    padding: 27px;
+    z-index: 1000000;
+    border:0;
+    margin:0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
+    & > .container > div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: nowrap;
+    }
+
+    .CookieInfoText {
+        @include fontSize(16);
+        line-height: 26px;
+        margin-bottom: 0;
+
+        a {
+            color: $color-footer-black;
+        }
+    }
+
+    .CookieButton {
+        .btn {
+            padding: 13px 65px;
+            border: 2px solid #ebebeb;
+            background-color: $color-white;
+            margin-left: 26px;
+
+            @include fontSize(16);
+            text-transform: uppercase;
+            color: $color-violet;
+            font-weight: bold;
+        }
+    }
+}
+
+
+
+// Error messages
+.error-messages {
+    span {
+        display: block;
+        color: $color-red;
+        margin: 0 100px 10px;
+        padding: 0 8px;
+        font-size: 13px;
+    }
+}
+
+
+
+//
+// Ad Styles
+//
+#superbanner {
+    @extend .container;
+    @extend .no-padding;
+
+    margin-bottom: 10px;
+}
+
+#skyscraper {
+    position: absolute;
+    left: calc(50% + 525px);
+    top: 100px;
+}
+
+.sidebar {
+    div[id*="rectangle"] {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 13px;
+    }
+}
+
+.image-lightbox-container-custom {
+    margin: 0 auto;
+}
+
+
+// Pagination for sliders (N.B. Element '.control-panel' MUST be present and have the slick-dots and slick-arrows appended to it)
+
+.control-panel {
+    margin-right: auto;
+    margin-left: auto;
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background-color: #dbdcdf;
+
+    .slick-dots {
+        width: 20%;
+        padding: 8px;
+        display: flex;
+        justify-content: center;
+        font-size: 16px;
+        margin: 0;
+        background-color: #dbdcdf;
+        order: 2;
+
+        li {
+            color: #315382;
+            font-weight: 700;
+            list-style: none;
+
+            &[aria-hidden = "true"] {
+                display: none;
+            }
+        }
+    }
+
+    .slick-arrow {
+        display: block;
+        padding: 2px;
+        z-index: 99;
+        color: #0f103f;
+        top: -40px;
+        font-size: 21px;
+
+
+        &.slick-prev {
+            order: 1;
+        }
+
+        &.slick-next {
+            order: 3;
+        }
+    }
+}
+
+
+
+@media (max-width: $screen-sm-max) {
+    .container {
+        padding-left: 0;
+        padding-right: 0;
+
+        &:not(.container-nav):not(.navigation):not(.navigation-webradio) {
+            overflow: hidden;
+        }
+    }
+
+    //
+    // Cookie overlay
+    //
+    #CookieLayer {
+        & > .container > div {
+            flex-wrap: wrap;
+        }
+    }
+
+    #CookieLayer {
+        @include fontSize(13);
+
+        .CookieInfoText {
+            @include fontSize(13);
+            margin-bottom: 13px;
+        }
+    }
+
+    #superbanner, #skyscraper {
+        display: none;
+    }
+}
+
+//
+// Desktop
+//
+@media (min-width: $screen-sm-min) {
+    .container:not(.container-nav) {
+        .row:first-of-type {
+            .col-md-8 + .col-md-4 {
+                margin-left: -15px;
+                background: #ebebeb;
+                box-shadow: inset 2px 0 4px 0 rgba(0,0,0,0.2);
+            }
+        }
+    }
+}

@@ -1,0 +1,140 @@
+@mixin tickerBuildDefault ($map: null) {
+
+    $topNavMargin: map-get($map, topNavMargin);
+    @if $topNavMargin != null {
+        nav:last-of-type + .breaking-news {
+            margin-top: $topNavMargin;
+        }
+    }
+
+    .breaking-news {
+        overflow: hidden;
+
+        background: map-get($map, background);
+        @include fontFamily (map-get($map, fontFamily), map-get($map, fontStyle), map-get($map, fontSize));
+
+        $boxShadow: map-get($map, boxShadow);
+        @if $boxShadow != null {
+            box-shadow: $boxShadow;
+        }
+
+        & > .row:first-of-type {
+            padding: map-get($map, tickerBodyPadding);
+        }
+
+        a {
+            color: map-get($map, tickerLinkColor);
+            display: inline-block;
+
+            &:hover, &:visited, &:active, &:focus {
+                text-decoration: map-get($map, tickerTextDecoration);
+            }
+        }
+
+        .title {
+            display: block;
+            width: 100%;
+            float:left;
+
+            padding: map-get($map, mobileTitlePadding);
+            border-bottom: map-get($map, mobileTitleBorder);
+
+            .ic-ic_share,
+            .breaking-news-close {
+                cursor: pointer;
+                vertical-align: middle;
+
+                $iconFontSize: map-get($map, iconFontSize);
+
+                @if $iconFontSize != null {
+                    @include fontSize($iconFontSize);
+                }
+            }
+        }
+
+        .text {
+            display: block;
+            margin: auto;
+            text-align: center;
+
+            div {
+                a {
+                    span:first-of-type {
+                        text-transform: map-get($map, breakingTextTransform);
+                    }
+                }
+            }
+        }
+
+        .headline {
+            font-weight: map-get($map, headlineFontWeight);
+        }
+
+        .slick-list {
+            .slick-track {
+                background: transparent;
+            }
+
+            &:before,
+            &:after {
+                position: absolute;
+                top: 0;
+                width: map-get($map, sideFadeWidth);
+                height: 100%;
+                content: ' ';
+                z-index: 999;
+            }
+
+            /*millions of fallbacks for the left and right ticker fades*/
+            &:before {
+                left: 0;
+                background: -moz-linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, map-get($map, background) 100%);
+                background: -webkit-linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, map-get($map, background) 100%);
+                background: -o-linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, map-get($map, background) 100%);
+                background: -ms-linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, map-get($map, background) 100%);
+                background: linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, map-get($map, background) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='rgba(255, 255, 255, 0)', endColorstr=map-get($map, background),GradientType=1 ); /* ie6-9 */
+            }
+
+            &:after {
+                right: -1px;
+                background: -moz-linear-gradient(270deg, map-get($map, background) 0%, rgba(255, 255, 255, 0) 100%);
+                background: -webkit-linear-gradient(270deg, map-get($map, background) 0%, rgba(255, 255, 255, 0) 100%);
+                background: -o-linear-gradient(270deg, map-get($map, background) 0%, rgba(255, 255, 255, 0), 100%);
+                background: -ms-linear-gradient(270deg, map-get($map, background) 0%, rgba(255, 255, 255, 0) 100%);
+                background: linear-gradient(270deg, map-get($map, background) 0%, rgba(255, 255, 255, 0) 100%);
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=map-get($map, background), endColorstr='rgba(255, 255, 255, 0)',GradientType=1 ); /* ie6-9 */
+            }
+        }
+
+        .breaking-news__slider {
+            padding: 0;
+            margin-bottom: 6px;
+
+            .breaking-news__slide {
+                overflow: hidden;
+            }
+        }
+    }
+
+    @media screen and (min-width: $screen-md-min) {
+        nav:last-of-type + .breaking-news{
+            margin-top: 0;
+        }
+
+        .breaking-news {
+            position: relative;
+
+            & > .row:first-of-type {
+                padding: map-get($map, tickerBodyDesktopPadding);
+
+            }
+
+            .col-md-1 {
+                display: flex !important;
+                justify-content: space-between;
+
+            }
+        }
+    }
+}

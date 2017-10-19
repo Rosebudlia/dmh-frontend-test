@@ -1,0 +1,9 @@
+@import "mixins/gallery-lightbox/gallery";
+@import "mixins/gallery-lightbox/lightbox";
+
+@mixin galleryLightboxBuild($gallerymap:null, $lightboxmap: null) {
+    @if $gallerymap != null and $lightboxmap != null {
+        @include galleryBuildDefault($gallerymap);
+        @include lightboxBuildDefault($lightboxmap);
+    }
+}

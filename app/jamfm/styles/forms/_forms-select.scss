@@ -1,0 +1,144 @@
+/**
+ * Styles for the select input
+ *
+ * All inputs should be wrapped in a container with the class .select, like:
+ *
+ * <div class="select">
+ *     <select class="form-control">
+ *         ...
+ *
+ * NOTE: Selects without the wrapper need to be styled separately.
+ */
+.select, .time-select {
+    position: relative;
+    background: $color-white;
+    color: $color-violet;
+    font-weight: bold;
+    border: 2px solid $color-form-button-grey;
+    border-radius: 10px;
+
+    input {
+        color: $color-violet;
+
+        &::-webkit-input-placeholder {
+            font-weight: bold;
+            color: $color-violet;
+        }
+        &::-moz-placeholder {
+            font-weight: bold;
+            color: $color-violet;
+        }
+        &:-ms-input-placeholder {
+            font-weight: bold;
+            color: $color-violet;
+        }
+        &:-moz-placeholder {
+            font-weight: bold;
+            color: $color-violet;
+        }
+    }
+
+    select {
+        @include fontSize(16);
+        line-height: normal;
+
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+
+        margin: 0;
+        padding: 0;
+        color: $color-violet;
+        font-style: italic;
+
+        option {
+            margin: 0;
+            padding: 0;
+            color: $color-violet;
+        }
+
+        &, &:active, &:focus {
+            background: none;
+            border: 0 none;
+            box-shadow: none;
+        }
+
+        &:disabled {
+            color: #c9c9c9;
+        }
+
+        &[readonly] {
+            color: #c9c9c9;
+            background: $color-white;
+        }
+
+        &.form-control {
+            padding: 14px;
+            height: auto;
+        }
+    }
+
+    &:after {
+        position: absolute;
+        right: 15px;
+        top: 30%;
+        height: 100%;
+
+        @include icon($input-select-arrow-content);
+        color: $color-footer-black;
+        font-size: 2.2rem;
+        pointer-events: none;
+    }
+
+    &.disabled:after {
+        color: #c9c9c9;
+    }
+}
+
+
+.time-select-container {
+    background: $color-white;
+    color: $color-footer-black;
+    border: 2px solid $color-form-button-grey;
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-start;
+    border-radius: 10px;
+
+    .time-select {
+        display: inline-block;
+        border: none;
+        flex-basis: 50%;
+        color: $color-footer-black;
+        border-radius: 10px;
+
+        &:first-of-type {
+            border-right: 2px solid $color-form-button-grey;
+        }
+
+        select {
+            &.form-control {
+                padding: 14px;
+            }
+
+            option {
+                text-align: right;
+            }
+        }
+
+        &:after {
+            font-size: 2.2rem;
+            @include icon($input-select-calendar-content);
+            color: $color-footer-black;
+            right: 8px;
+            top: calc(50% - (2.2rem / 2));
+        }
+    }
+}
+
+
+// IE11 fix
+select::-ms-expand {
+    display: none;
+}

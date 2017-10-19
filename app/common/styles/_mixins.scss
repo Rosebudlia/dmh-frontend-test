@@ -1,0 +1,270 @@
+@import "functions";
+@import "sizes";
+
+@-webkit-keyframes zoomShareIcon {
+    0% { transform: scale3d(0, 0, 0);}
+    50% { transform: scale3d(1.1, 1.1, 1.1); }
+    100% { transform: scale3d(1, 1, 1); }
+}
+
+@keyframes zoomShareIcon {
+    0% { transform: scale3d(0, 0, 0);}
+    50% { transform: scale3d(1.1, 1.1, 1.1); }
+    100% { transform: scale3d(1, 1, 1); }
+}
+
+
+//Default CSS animation for all progress bars (e.g. in the hero)
+
+@keyframes fillBox {
+    from {
+        transform: translate3d(-100%, 0, 0);
+    }
+
+    to {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+
+
+
+@keyframes rotate {
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(359deg);
+    }
+}
+
+@mixin spin($duration: 5s) {
+    animation: rotate $duration infinite linear;
+}
+
+@mixin getLineHeight($sizeList:null, $size:null) {
+    @if $sizeList != null and $size != null {
+        $h: map-get($sizeList, $size);
+
+        @if $h != null {
+            line-height: $h;
+        } @else {
+            line-height: normal;
+        }
+    }
+}
+
+@mixin ellipsis() {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+@mixin fontSize($size:13) {
+    font-size: #{getFontSize($size)}rem;
+    @include getLineHeight($font-sizes, $size);
+}
+
+
+@mixin fontFamily($family:open-sans, $style:normal, $size:null) {
+    @if $family == icon {
+        font-family: 'ic-font', sans-serif;
+    }
+
+    @else if $family == player {
+        font-family: 'rb_jw7-font', sans-serif;
+    }
+
+    @else {
+        font-family: 'Open Sans', sans-serif;
+
+        @if $style == bold {
+            font-weight: 800;
+        }
+
+        @else if $style == extra-bold {
+            font-weight: 900;
+        }
+
+        @else if $style == bold-italic {
+            font-style: italic;
+            font-weight: 700;
+        }
+
+        @else if $style == italic {
+            font-style: italic;
+        }
+
+        @else {
+            font-weight: normal;
+        }
+    }
+
+    @if $size != null {
+        @include fontSize($size);
+    }
+}
+
+
+@mixin boxShadow() {
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, .2);
+}
+
+
+@mixin icon($content:'', $important:false) {
+    @include fontFamily(icon);
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    // Better Font Rendering
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    @if $content != "" {
+        @if $important == true {
+            content: $content !important;
+        } @else {
+            content: $content;
+        }
+    }
+}
+
+
+@mixin placeholderColor($color:#000) {
+    &::-webkit-input-placeholder {
+        color: $color;
+    }
+
+    &::-moz-placeholder {
+        color: $color;
+    }
+
+    &:-ms-input-placeholder {
+        color: $color;
+    }
+
+    &::-moz-placeholder {
+        color: $color;
+    }
+}
+
+
+@mixin doBlur($val:10px) {
+    -webkit-filter: blur($val);
+    -ms-filter: blur($val);
+    filter: blur($val);
+}
+
+
+@mixin mlEllipsisBox($font-size, $line-height, $lines-to-show:3, $fill:false) {
+    $delta: $line-height - $font-size;
+    $height: ($font-size + $delta) * $lines-to-show;
+
+    @if $fill {
+        height: $height;
+    }
+
+    max-height: $height;
+    position: relative;
+    overflow: hidden;
+    display: block;
+    box-sizing: border-box;
+}
+
+
+@mixin forceElementColor($color, $text-decoration:"") {
+    &,
+    &:active,
+    &:hover,
+    &:focus {
+        color: $color;
+
+        @if $text-decoration != "" {
+            text-decoration: $text-decoration;
+        }
+    }
+}
+
+
+@mixin hyphensText($mode:auto) {
+    -ms-hyphens: $mode;
+    -moz-hyphens: $mode;
+    -webkit-hyphens: $mode;
+    hyphens: $mode;
+}
+
+
+/**
+    Mixin for usage as a override to make mobile menu appear on
+    certain screen resolutions, other than the default ones
+ */
+@mixin navigationMobileOverride() {
+    .navbar-nav .open .dropdown-menu {
+        position: static;
+        float: none;
+        width: auto;
+        margin-top: 0;
+        background-color: transparent;
+        border: 0;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+    .navbar-nav .open .dropdown-menu > li > a {
+        line-height: 20px;
+    }
+    .navbar-nav .open .dropdown-menu > li > a,
+    .navbar-nav .open .dropdown-menu .dropdown-header {
+        padding: 5px 15px 5px 25px;
+    }
+    .dropdown-menu > li > a {
+        display: block;
+        padding: 3px 20px;
+        clear: both;
+        font-weight: normal;
+        line-height: 1.42857143;
+        color: #333;
+        white-space: nowrap;
+    }
+    .navbar-header {
+        float: none;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        /*margin: 7.5px -15px;*/
+        margin: 7.5px 50px 7.5px -15px
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .navbar-text {
+        float: none;
+        margin: 15px 0;
+    }
+    /* since 3.1.0 */
+    .navbar-collapse.collapse.in {
+        display: block!important;
+    }
+    .collapsing {
+        overflow: hidden!important;
+    }
+}

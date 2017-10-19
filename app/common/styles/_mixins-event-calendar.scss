@@ -1,0 +1,327 @@
+@import "sizes";
+@import "mixins";
+@import "functions";
+
+
+@mixin _eventCalendarBuildBody($map:null) {
+    background: map-get($map, bodyBackground);
+    padding: map-get($map, bodyPadding);
+
+    .event-calendar-head {
+        padding-bottom: map-get($map, headerPadding);
+    }
+
+    .event-calendar-head,
+    .event-calendar-filter {
+        background: map-get($map, topBackground);
+    }
+
+    .event-calendar-noentries {
+        background: map-get($map, noentriesBackground);
+        margin-bottom: map-get($map, noentriesMargin);
+        text-align: map-get($map, noentriesTextAlign);
+
+        span {
+            color: map-get($map, noentriesTextColor);
+            display: map-get($map, noentriesDisplay);
+            margin: map-get($map, noentriesSpanMargin);
+            padding: map-get($map, noentriesPadding);
+        }
+    }
+
+    .event-calendar-addnew {
+        background-color: map-get($map, addnewBackground);
+        padding: map-get($map, addnewPadding);
+
+        .btn {
+            width: map-get($map, addnewWidth);
+        }
+    }
+
+    .event-calendar-filter {
+        form {
+            margin: map-get($map, filterMargin);
+
+            overflow: hidden;
+
+        }
+    }
+
+    .event-calendar-list {
+        .event-calendar-list-separator {
+            background: map-get($map, separatorBackground);
+            height: auto;
+            overflow: hidden;
+
+            padding: map-get($map, separatorPadding);
+            position: relative;
+            text-align: map-get($map, separatorTextAlign);
+
+            & > span {
+                @include fontFamily(map-get($map, sepa
+                ratorFontFamily), map-get($map, separatorFontStyle), map-get($map, separatorFontSize));
+                color: map-get($map, separatorColor);
+                display: map-get($map, separatorSpanDisplay);
+                padding: map-get($map, separatorSpanPadding);
+                position: relative;
+            }
+        }
+    }
+}
+
+@mixin _eventCalendarBuildItems($map:null) {
+    .event-calendar-list-item {
+        background: map-get($map, itemBackground);
+        border-radius: map-get($map, itemBorderRadius);
+        box-shadow: map-get($map, itemBoxShadow);
+        cursor: map-get($map, itemCursor);
+
+        display: flex;
+        flex-direction: column;
+        margin: map-get($map, itemMargin);
+        overflow: hidden;
+        position: relative;
+
+        .event-calendar-list-item-title {
+            padding: map-get($map, titlePadding);
+            width: map-get($map, titleWidth);
+
+            .event-kicker {
+                @include fontFamily(map-get($map, kickerFontFamily), map-get($map, kickerFontStyle), map-get($map, kickerFontSize));
+                color: map-get($map, kickerColor);
+                display: block;
+                margin-top: map-get($map, kickerMargin);
+
+            }
+
+            h2 {
+                @include fontFamily(map-get($map, headerFontFamily), map-get($map, headerFontStyle), map-get($map, headerFontSize));
+                color: map-get($map, headerColor);
+                margin: map-get($map, headerMargin);
+                text-transform: map-get($map, headerTextTransform);
+
+            }
+
+            .event-calendar-list-item-meta {
+                @include fontFamily(map-get($map, metaFontFamily), map-get($map, metaFontStyle), map-get($map, metaFontSize));
+
+                color: map-get($map, metaColor);
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                margin-bottom: map-get($map, metaMargin);
+                overflow: hidden;
+                width: map-get($map, metaWidth);
+
+                .icon {
+                    color: map-get($map, metaIconColor);
+                    float: left;
+                    font-size: map-get($map, metaIconSize);
+                    margin: map-get($map, metaIconMargin);
+                    vertical-align: map-get($map, metaIconVertAlign);
+                }
+
+
+                .event-time {
+                    flex-basis: map-get($map, metaTimeWidth);
+
+                    span:last-of-type {
+                        display: inline-block;
+
+                        line-height: map-get($map, metaTextLineHeight);
+                    }
+                }
+
+                .event-place {
+                    flex-basis: map-get($map, metaPlaceWidth);
+
+                    span:last-of-type {
+                        display: inline-block;
+
+                        line-height: map-get($map, metaTextLineHeight);
+                    }
+                }
+            }
+        }
+
+        .event-calendar-list-item-image {
+            background: map-get($map, imageBackground);
+            flex-shrink: 0;
+            width: map-get($map, imageWidth);
+            z-index: map-get($map, imageZIndex);
+
+            img {
+                display: block;
+                height: map-get($map, imgHeight);
+                margin: map-get($map, imgMargin);
+                width: map-get($map, imgWidth);
+            }
+        }
+
+        .event-footer {
+            @include fontFamily(map-get($map, footerFontFamily), map-get($map, footerFontStyle), map-get($map, footerFontSize));
+
+            background: map-get($map, footerBackground);
+            border-top: map-get($map, footerBorderTop);
+            color: map-get($map, footerColor);
+            display: flex;
+            height: map-get($map, footerHeight);
+            justify-content: map-get($map, footerJustify);
+            padding: map-get($map, footerPadding);
+            position: relative;
+            width: map-get($map, footerWidth);
+            z-index: map-get($map, footerZIndex);
+
+            &.featured {
+                background: map-get($map, featuredBackground);
+                border-top: map-get($map, featuredBorderTop);
+                color: map-get($map, featuredColor);
+                font-size: map-get($map, featuredFontSize);
+                line-height: map-get($map, featuredLineHeight);
+            }
+
+            &.sponsored {
+                background: map-get($map, sponsoredBackground);
+                border-top: map-get($map, sponsoredBorderTop);
+                color: map-get($map, sponsoredColor);
+                font-size: map-get($map, sponsoredFontSize);
+                line-height: map-get($map, sponsoredLineHeight);
+            }
+
+            .footer-image {
+                max-width: map-get($map, footerImageMaxWidth);
+
+                img {
+                    float: map-get($map, footerImgFloat);
+                    height: map-get($map, footerImgHeight);
+                    max-height: map-get($map, footerImgMaxHeight);
+                    max-width: map-get($map, footerImgMaxWidth);
+                    width: map-get($map, footerImgWidth);
+                }
+            }
+        }
+    }
+}
+
+@mixin _eventCalendarBuildDesktop($map:null) {
+    @media (min-width: $screen-sm-min) {
+        .event-calendar {
+            padding: map-get($map, bodyPaddingDesktop);
+
+            .event-calendar-head {
+                h1 {
+                    padding-top: map-get($map, headerPaddingDesktop);
+                }
+            }
+
+            .event-calendar-addnew {
+                .btn {
+                    width: map-get($map, buttonWidth);
+                }
+            }
+
+            .event-calendar-filter {
+                form {
+                    height: map-get($map, formHeight);
+                    margin: map-get($map, formMargin);
+                    overflow: initial;
+                }
+            }
+
+            .event-calendar-list {
+                .event-calendar-list-separator {
+                    & > span {
+                        $fontSize: map-get($map, separatorFontSize);
+                        @if $fontSize != null {
+                            @include fontSize($fontSize);
+                        }
+
+                        padding: map-get($map, separatorPaddingDesktop);
+                    }
+                }
+            }
+
+            form {
+                .btn {
+                    &.yesterday,
+                    &.tomorrow {
+                        width: map-get($map, dayButtonWidth);
+                    }
+                }
+            }
+
+            .event-calendar-list-item {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+
+                margin: map-get($map, itemMargin);
+                min-height: map-get($map, itemMinHeightDesktop);
+
+                .event-calendar-list-item-image,
+                .event-calendar-list-item-title {
+                    display: initial;
+                    vertical-align: initial;
+                }
+
+                .event-calendar-list-item-image {
+                    border-right: map-get($map, itemImageBorderRightDesktop);
+                    min-height: map-get($map, itemImageMinHeightDesktop);
+                    width: map-get($map, itemImageWidthDesktop);
+
+                    img {
+                        max-height: map-get($map, itemImgMaxHeight);
+                        width: map-get($map, itemImgWidth);
+                    }
+                }
+
+                .event-calendar-list-item-title {
+                    padding: map-get($map, itemTitlePaddingDesktop);
+                    width: map-get($map, itemTitleWidthDesktop);
+
+                    .event-calendar-list-item-meta {
+                        display: flex;
+
+                        margin-bottom: map-get($map, metaMarginDesktop);
+                    }
+                }
+
+                .event-footer {
+                    width: map-get($map, footerWidthDesktop);
+
+                    .footer-image {
+                        max-width: map-get($map, footerImageMaxWidthDesktop);
+                        overflow: hidden;
+
+                        img {
+                            display: block;
+                            height: map-get($map, footerImgHeightDesktop);
+                            max-height: map-get($map, footerImgMaxHeightDesktop);
+                            max-width: map-get($map, footerImgMaxWidthDesktop);
+                            width: map-get($map, footerImgWidthDesktop);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@mixin eventCalendarBuild($map:null) {
+    .event-calendar {
+        $body: map-get($map, body);
+        @if $body != null {
+            @include _eventCalendarBuildBody($body);
+        }
+
+        $items: map-get($map, items);
+        @if $items != null {
+            @include _eventCalendarBuildItems($items);
+        }
+    }
+
+    $desktop: map-get($map, desktop);
+    @if $desktop != null {
+        @include _eventCalendarBuildDesktop($desktop);
+    }
+
+}

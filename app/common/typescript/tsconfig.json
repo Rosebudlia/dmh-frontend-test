@@ -1,0 +1,15 @@
+/*
+ * Compiler config for WebradioBrocken class
+ */
+{
+
+    // IMPORTANT: We don't want these files to be compiled itself, as they are Interfaces, so we always exclude all
+    //            typescript files. Never change this, unless you know what you're doing.
+    "exclude": [
+        "./**/*.ts"
+    ],
+
+    "typeroots": [
+        "../../node_modules/@types"
+    ]
+}

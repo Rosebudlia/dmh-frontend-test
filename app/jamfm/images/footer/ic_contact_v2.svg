@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="62px" height="62px" viewBox="0 0 62 62" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_contact</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M42,40.8653594 L40.1418618,40.9707291 C39.7659209,40.9918031 39.3997829,41.0013821 39.0429577,41.0013821 L39.0419774,41.0013821 C35.030634,41.0013821 32.1873053,39.7704718 31.2388755,39.29535 C29.3748556,40.0861021 24.4459616,42 20.416973,42 C9.15835171,42 7.10542736e-15,34.1494745 7.10542736e-15,24.499521 C7.10542736e-15,14.8495676 9.15835171,7 20.416973,7 C31.6755943,7 40.8344362,14.8505255 40.8344362,24.500479 C40.8344362,28.0078548 39.630641,31.3806448 37.3495081,34.2768761 C37.5676224,37.2253134 40.5383888,39.676118 40.5687778,39.7010236 L42,40.8653594 L42,40.8653594 Z" id="path-1"></path>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-2" y="-2" width="46" height="39">
+            <rect x="-2" y="5" width="46" height="39" fill="white"></rect>
+            <use xlink:href="#path-1" fill="black"></use>
+        </mask>
+    </defs>
+    <g id="assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="_overview_assets_measurements" transform="translate(-30.000000, -214.000000)">
+            <g id="--footer" transform="translate(30.000000, 214.000000)">
+                <g id="ic---contact" transform="translate(2.000000, 10.000000)">
+                    <g id="icon">
+                        <path d="M58,33.8653594 L56.1418618,33.9707291 C55.7659209,33.9918031 55.3997829,34.0013821 55.0429577,34.0013821 L55.0419774,34.0013821 C51.030634,34.0013821 48.1873053,32.7704718 47.2388755,32.29535 C45.3748556,33.0861021 40.4459616,35 36.416973,35 C25.1583517,35 16,27.1494745 16,17.499521 C16,7.84956757 25.1583517,0 36.416973,0 C47.6755943,0 56.8344362,7.85052548 56.8344362,17.500479 C56.8344362,21.0078548 55.630641,24.3806448 53.3495081,27.2768761 C53.5676224,30.2253134 56.5383888,32.676118 56.5687778,32.7010236 L58,33.8653594 L58,33.8653594 Z" id="ic---speech-bubble" fill="#239CD7"></path>
+                        <g id="ic---speech-bubble" transform="translate(21.000000, 24.500000) scale(-1, 1) translate(-21.000000, -24.500000) ">
+                            <use fill="#1F2A40" fill-rule="evenodd" xlink:href="#path-1"></use>
+                            <use stroke="#FFFFFF" mask="url(#mask-2)" stroke-width="4" xlink:href="#path-1"></use>
+                        </g>
+                    </g>
+                </g>
+            </g>
+            <g id="_measurments"></g>
+        </g>
+    </g>
+</svg>

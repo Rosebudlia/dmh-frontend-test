@@ -1,0 +1,515 @@
+@import "mixins/forms/mixin-form-select";
+@import "mixins";
+
+
+@mixin _formsBuildInputs($options:null) {
+    @if $options != null {
+        input {
+            background: map-get($options, background);
+            border: map-get($options, border);
+            border-radius: map-get($options, borderRadius);
+            box-shadow: map-get($options, boxShadow);
+            color: map-get($options, color);
+            font-style: map-get($options, fontStyle);
+            font-weight: map-get($options, fontWeight);
+            height: map-get($options, height);
+            padding: map-get($options, padding);
+
+            &:not(:empty) {
+                background: #f00;
+            }
+
+            &[type="text"],
+            &[type="password"],
+            &[type="number"] {
+                &::-webkit-input-placeholder {
+                    color: map-get($options, placeholderColor);
+                    font-style: map-get($options, placeholderFontStyle);
+                    font-weight: map-get($options, placeholderFontWeight);
+                }
+
+                &::-moz-placeholder {
+                    color: map-get($options, placeholderColor);
+                    font-style: map-get($options, placeholderFontStyle);
+                    font-weight: map-get($options, placeholderFontWeight);
+                }
+
+                &:-ms-input-placeholder {
+                    color: map-get($options, placeholderColor);
+                    font-style: map-get($options, placeholderFontStyle);
+                    font-weight: map-get($options, placeholderFontWeight);
+                }
+
+                $icon: map-get($options, icon);
+                @if $icon != null {
+                    & ~ .input-icon {
+                        color: map-get($icon, color);
+                        display: none;
+                        font-size: map-get($icon, fontSize);
+                        font-weight: map-get($icon, fontWeight);
+                        height: map-get($icon, height);
+                        position: absolute;
+                        right: map-get($icon, right);
+                        top: map-get($icon, top);
+                    }
+                }
+            }
+
+            $disabled: map-get($options, disabled);
+            @if $disabled != null {
+                &:disabled {
+                    background: map-get($disabled, background);
+                    color: map-get($disabled, color);
+
+                    &::-webkit-input-placeholder {
+                        color: map-get($disabled, color);
+                    }
+
+                    &::-moz-placeholder {
+                        color: map-get($disabled, color);
+                    }
+
+                    &:-ms-input-placeholder {
+                        color: map-get($disabled, color);
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@mixin _formsBuildButtons($options:null) {
+    @if $options != null {
+        .btn {
+            background-color: map-get($options, backgroundColor);
+            border: map-get($options, border);
+            border-radius: map-get($options, borderRadius);
+            color: map-get($options, color);
+            font-weight: map-get($options, fontWeight);
+            margin: map-get($options, margin);
+            opacity: map-get($options, opacity);
+            padding: map-get($options, padding);
+            transition: map-get($options, transition);
+            width: 100%;
+
+            $size: map-get($options, fontSize);
+            @if $size != null {
+                @include fontSize($size);
+            }
+
+            &,
+            &:active,
+            &:visited,
+            &:hover,
+            &:focus {
+                outline: none;
+                text-decoration: none;
+            }
+
+            $hover: map-get($options, hover);
+            @if $hover != null {
+                &:hover {
+                    background: map-get($hover, background);
+                    border: map-get($hover, border);
+                    border-radius: map-get($hover, borderRadius);
+                    color: map-get($hover, color);
+                }
+            }
+
+            $disabled: map-get($options, disabled);
+            @if $disabled != null {
+                &:disabled,
+                &.disabled {
+                    background: map-get($disabled, background);
+                    color: map-get($disabled, color);
+                    cursor: not-allowed;
+                    transition: none;
+
+                    &,
+                    &:hover {
+                        border-radius: map-get($options, borderRadius);
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@mixin _formsBuildTextarea($options:null) {
+    @if $options != null {
+        textarea {
+            background: map-get($options, background);
+            border: map-get($options, border);
+            border-radius: map-get($options, borderRadius);
+            color: map-get($options, color);
+
+            $disabled: map-get($options, disabled);
+            @if $disabled != null {
+                &:disabled {
+                    background: map-get($disabled, background);
+                    color: map-get($disabled, color);
+                }
+            }
+        }
+    }
+}
+
+
+@mixin _formsBuildCheckbox($options:null) {
+    @if $options != null {
+        .form-checkbox {
+            padding-left: map-get($options, paddingLeft);
+            position: relative;
+            vertical-align: top;
+
+            $label: map-get($options, label);
+            @if $label != null {
+                label {
+                    color: map-get($label, color);
+                    font-weight: map-get($label, fontWeight);
+                    margin-bottom: map-get($label, marginBottom);
+                }
+            }
+
+
+            input[type="checkbox"] {
+                display: none;
+
+                $box: map-get($options, box);
+                @if $box != null {
+                    $w: map-get($box, width);
+                    $top: 6px; // Default
+                    @if $w != null {
+                        $top: round($w / 2) + 1;
+                    }
+
+                    & + span {
+                        background: map-get($box, background);
+                        border: map-get($box, border);
+                        border-radius: map-get($box, borderRadius);
+                        content: " ";
+                        height: map-get($box, width);
+                        left: 0;
+                        position: absolute;
+                        top: calc(50% - #{$top});
+                        width: $w;
+                    }
+
+                    &:checked + span {
+                        background: map-get($box, checkedBackground);
+                        border: map-get($box, checkedBorder);
+                    }
+
+                    &:checked + span + span {
+                        color: map-get($box, checkedBackground);
+                    }
+                }
+            }
+
+            $disabled: map-get($options, disabled);
+            @if $disabled != null {
+                &.disabled {
+                    cursor: not-allowed;
+
+                    &,
+                    label {
+                        color: map-get($disabled, color);
+                    }
+
+                    input[type="checkbox"] {
+                        & + span {
+                            background: map-get($disabled, background);
+                            border: map-get($disabled, border);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@mixin _formsBuildRadio($options:null) {
+    @if $options != null {
+        .form-radiobutton {
+            padding-left: map-get($options, paddingLeft);
+            position: relative;
+            vertical-align: top;
+
+            $label: map-get($options, label);
+            @if $label != null {
+                label {
+                    color: map-get($label, color);
+                    font-weight: map-get($label, fontWeight);
+                }
+            }
+
+            input[type="radio"] {
+                display: none;
+
+
+                $box: map-get($options, box);
+                @if $box != null {
+                    $w: map-get($box, width);
+                    $top: 6px; // Default
+                    @if $w != null {
+                        $top: round($w / 2) + 1;
+                    }
+
+                    & + span {
+                        background: map-get($box, background);
+                        border: map-get($box, border);
+                        border-radius: map-get($box, borderRadius);
+                        content: " ";
+                        font-weight: map-get($box, fontWeight);
+                        height: map-get($box, height);
+                        left: 0;
+                        position: absolute;
+                        top: calc(50% - #{$top});
+                        width: $w;
+                    }
+
+                    &:checked + span {
+                        background: map-get($box, checkedBackground);
+                        border: map-get($box, checkedBorder);
+                        color: map-get($box, checkedColor);
+                    }
+
+                    &:checked + span + span {
+                        color: map-get($box, checkedColor);
+                    }
+                }
+
+                $disabled: map-get($options, disabled);
+                @if $disabled != null {
+                    &:disabled + span {
+                        background: map-get($disabled, background);
+                        border: map-get($disabled, border);
+                        cursor: not-allowed;
+                    }
+
+                    &:disabled + span + span {
+                        color: map-get($disabled, color);
+                        cursor: not-allowed;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@mixin _formsBuildDateTime($options:null) {
+    @if $options != null {
+        .form-datetime {
+            @extend .select;
+
+            &::after {
+                @include icon($input-select-calendar-content, true);
+            }
+
+            &,
+            & > div {
+                position: relative;
+
+                input {
+                    background: map-get($options, background);
+                    border: map-get($options, border);
+                    border-radius: map-get($options, borderRadius);
+                    color: map-get($options, color);
+                    height: map-get($options, height);
+                }
+            }
+        }
+    }
+}
+
+
+@mixin _formsBuildUpload($options:null) {
+    @if $options != null {
+        .upload {
+            border: map-get($options, border);
+
+            .button-container {
+                display: inline-block;
+                height: auto;
+                position: relative;
+                text-align: center;
+                width: auto;
+
+                $button: map-get($options, button);
+                @if $button != null {
+                    background: map-get($button, background);
+                    color: map-get($button, color);
+                    margin: map-get($button, margin);
+                    max-width: map-get($button, maxWidth);
+                    padding: map-get($button, padding);
+                }
+
+                input {
+                    overflow: hidden;
+                }
+
+
+                [type=file] {
+                    display: none;
+
+                    &:not(:disabled) {
+                        cursor: pointer;
+                    }
+
+                    &:disabled {
+                        cursor: not-allowed;
+                    }
+                }
+            }
+
+            $disabled: map-get($options, disabled);
+
+            &.disabled .button-container {
+                cursor: not-allowed;
+
+                @if $disabled != null {
+                    background: map-get($disabled, background);
+                    color: map-get($disabled, color);
+                }
+            }
+
+            .filename {
+                display: inline-block;
+                font-style: italic;
+                text-align: center;
+
+                $filename: map-get($options, filename);
+                @if $filename != null {
+                    color: map-get($filename, color);
+                    margin-left: map-get($filename, marginLeft);
+
+                    $size: map-get($filename, fontSize);
+                    @if $size != null {
+                        @include fontSize($size);
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@mixin _formsBuildTimeSelect($options:null) {
+    @if $options != null {
+        .time-select-container {
+            background: map-get($options, background);
+            border: map-get($options, border);
+            border-radius: map-get($options, borderRadius);
+
+            color: map-get($options, color);
+            display: flex;
+            justify-content: flex-start;
+            overflow: hidden;
+
+            $select: map-get($options, select);
+
+            .time-select {
+                border-style: none;
+                display: inline-block;
+                flex-basis: 50%;
+
+                @if $select != null {
+                    border-radius: map-get($select, borderRadius);
+                    color: map-get($select, color);
+                }
+
+                &:first-of-type {
+                    border-right: 2px solid map-get($select, borderColor);
+                }
+
+                select {
+                    &.form-control {
+                        padding: map-get($select, padding);
+                    }
+
+                    option {
+                        text-align: right;
+                    }
+                }
+
+                $icon: map-get($select, icon);
+                @if $icon != null {
+                    &::after {
+                        color: map-get($icon, color);
+
+                        $content: map-get($icon, content);
+                        @if $content != null {
+                            @include icon($content);
+                        }
+
+                        font-size: map-get($icon, fontSize);
+                        right: map-get($icon, right);
+                        top: map-get($icon, top);
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+
+@mixin formsBuild($map:null) {
+    @if $map != null {
+        .form {
+            @include fontFamily(map-get($map, fontFamily), map-get($map, fontWeight), map-get($map, fontSize));
+            background: map-get($map, background);
+            color: map-get($map, color);
+            padding: map-get($map, padding);
+
+            $buttons: map-get($map, buttons);
+            @if $buttons != null {
+                @include _formsBuildButtons($buttons);
+            }
+
+            $inputs: map-get($map, inputs);
+            @if $inputs != null {
+                @include _formsBuildInputs($inputs);
+            }
+
+            $textarea: map-get($map, textarea);
+            @if $textarea != null {
+                @include _formsBuildTextarea($textarea);
+            }
+
+            $checkbox: map-get($map, checkbox);
+            @if $checkbox != null {
+                @include _formsBuildCheckbox($checkbox);
+            }
+
+            $radio: map-get($map, radio);
+            @if $radio != null {
+                @include _formsBuildRadio($radio);
+            }
+
+            $select: map-get($map, select);
+            @if $select != null {
+                @include _formsBuildSelect($select);
+            }
+
+            $datetime: map-get($map, datetime);
+            @if $datetime != null {
+                @include _formsBuildDateTime($datetime);
+            }
+
+            $upload: map-get($map, upload);
+            @if $upload != null {
+                @include _formsBuildUpload($upload);
+            }
+
+            $timeselect: map-get($map, timeselect);
+            @if $timeselect != null {
+                @include _formsBuildTimeSelect($timeselect);
+            }
+        }
+    }
+}

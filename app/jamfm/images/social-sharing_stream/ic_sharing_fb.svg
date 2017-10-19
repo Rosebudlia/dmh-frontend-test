@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43 (38999) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_sharing_fb</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="50" height="50"></rect>
+    </defs>
+    <g id="assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="--50px">
+            <g id="colour">
+                <g id="ic---facebook">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Rectangle-11" fill="#455897" xlink:href="#path-1"></use>
+                    <path d="M26.4996334,50.3333333 L26.4996334,32.9999821 L20.6666667,32.9999821 L20.6666667,26.2443782 L26.4996334,26.2443782 L26.4996334,21.2628797 C26.4996334,15.4814511 30.0308352,12.3333333 35.1887532,12.3333333 C37.6584331,12.3333333 39.7816047,12.5172341 40.4003834,12.599657 L40.4003834,18.6414624 L36.8242296,18.642997 C34.0185918,18.642997 33.4759055,19.975894 33.4759055,21.9316621 L33.4759055,26.2443782 L40.1650083,26.2443782 L39.2939095,32.9999821 L33.4759055,32.9999821 L33.4759055,50.3333333 L26.4996334,50.3333333 Z" fill="#FFFFFF" mask="url(#mask-2)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

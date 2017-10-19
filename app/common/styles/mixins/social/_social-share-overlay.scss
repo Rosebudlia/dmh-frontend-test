@@ -1,0 +1,124 @@
+//
+// Private function to build the backdrop for
+// the social share overlay
+//
+@mixin _socialShareOverlayBackdrop($options:null) {
+    .social-share-overlay-backdrop {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: map-get($options, background);
+
+        @if $options != null {
+            $fontSize: map-get($options, fontSize);
+            @if $fontSize != null {
+                @include fontSize($fontSize);
+            }
+
+            padding-bottom: map-get($options, paddingBottom);
+        }
+    }
+}
+
+
+//
+// Build general social share overlay styles
+//
+@mixin socialShareOverlayBuild($options:null) {
+    @if $options != null {
+        $backdrop: map-get($options, backdrop);
+        @if $backdrop != null {
+            @include _socialShareOverlayBackdrop($backdrop);
+        }
+
+        .social-share-overlay-container {
+            box-shadow: map-get($options, boxShadow);
+            background: map-get($options, background);
+            border-radius: map-get($options, borderRadius);
+            color: map-get($options, color);
+            min-width: map-get($options, minWidth);
+            font-family: map-get($options, fontFamily);
+
+            $close: map-get($options, close);
+            @if $close != null {
+                .social-share-overlay-close {
+                    font-size: map-get($close, fontSize);
+                    color: map-get($close, color);
+                    transition: text-shadow .2s ease-in-out;
+
+                    &:hover {
+                        text-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+                    }
+                }
+            }
+
+            $alert: map-get($options, alert);
+            @if $alert != null {
+                .alert {
+                    @include fontSize(map-get($alert, fontSize));
+                    margin: map-get($alert, margin);
+                    max-width: map-get($alert, maxWidth);
+                }
+            }
+
+            $headline: map-get($options, headline);
+            @if $headline != null {
+                .social-share-overlay-headline {
+                    text-align: center;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+
+                    $fontFamily: map-get($headline, fontFamily);
+                    $fontSize: map-get($headline, fontSize);
+                    @if $fontFamily != null {
+                        @include fontFamily($fontFamily, bold, $fontSize);
+                    } @else {
+                        font-weight: bold;
+                        @include fontSize(map-get($headline, fontSize));
+                    }
+
+                    padding: map-get($headline, padding);
+                    max-width: map-get($headline, maxWidth);
+                }
+            }
+
+            $channels: map-get($options, channels);
+            @if $channels != null {
+                .social-share-overlay-channels,
+                .social-share-overlay-additional {
+                    background: map-get($channels, background);
+                    color: map-get($channels, color);
+
+                    .social-share-overlay-share-icon {
+                        &:not(:last-child) {
+                            margin-right: map-get($channels, marginRight);
+                        }
+                    }
+                }
+
+                .social-share-overlay-channels-headline,
+                .social-share-overlay-additional-headline {
+                    display: none;
+                    @include fontFamily(map-get($channels, fontFamily), bold, map-get($channels, fontSize));
+                    padding: map-get($channels, padding);
+                }
+
+                .social-share-overlay-channels {
+                    padding-top: map-get($channels, paddingTop);
+                }
+
+                .social-share-overlay-additional {
+                    padding-top: map-get($channels, additionalPaddingTop);
+                    padding-bottom: map-get($channels, additionalPaddingBottom);
+
+                    .social-share-overlay-share-icon {
+                        &:not(:last-child) {
+                            margin-right: map-get($channels, additionalMarginRight);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

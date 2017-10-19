@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="30px" height="65px" viewBox="0 0 30 65" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 44.1 (41455) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_wiener</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-793.000000, -308.000000)" id="voting">
+            <g transform="translate(793.000000, 308.000000)">
+                <g id="ic-bolt_color">
+                    <polygon id="Shape" fill="#1C1C1C" points="9.88461538 5.96268412 0.0384615385 27.2143019 11 26.7556339 4.65384615 36.7316631 14.8461538 36.9609971 7.26923077 64.5957447 29.6538462 24.0036258 19.7692308 25.4560745 25.4615385 13.1484829 15.3846154 15.4036007 20.1923077 2.90489739"></polygon>
+                    <polygon id="Shape" fill="#FFD900" points="5.03846154 4.08978975 0.0384615385 27.2143019 7.84615385 25.3796299 4.65384615 36.7316631 12.5 35.6232154 7.26923077 64.5957447 26.2307692 21.1369508 16.5 23.3920685 21.1538462 10.3200302 11.2692308 13.3778169 15.0384615 0.191111671"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

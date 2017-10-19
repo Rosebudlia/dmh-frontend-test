@@ -1,0 +1,168 @@
+@import "videoBox";
+@import "player-audio";
+@import "player-video";
+@import "player-playlist";
+
+
+
+@mixin _playerBuildAdditional($options:null) {
+    @if $options != null {
+        .dmh-player-additional {
+            padding: 0;
+            background: rgb(201, 201, 201);
+            @include fontSize(16);
+            height: 0;
+            overflow: hidden;
+            transition: height .4s ease-out;
+
+            & > div:first-child > div:first-child {
+                margin-bottom: 13px;
+            }
+
+            &.show {
+                height: 100%;
+            }
+        }
+
+
+        @media (min-width: $screen-xs-max) {
+            .dmh-player-wrapper {
+                .dmh-player-additional {
+                    &.show {
+                        padding: map-get($options, paddingDesktop);
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+@mixin playerBuild($options:null) {
+    @if $options != null {
+
+        // Add a video box
+        $vbox: map-get($options, videoBox);
+        @if $vbox != null {
+            @include playerBuildVideoBox($vbox);
+        }
+
+        .dmh-player-wrapper {
+            position: relative;
+            box-shadow: map-get($options, playerBoxShadow);
+
+            &[data-playlist] {
+                opacity: 0.2;
+                transition: opacity .8s ease-in-out;
+
+                &.init {
+                    opacity: 1;
+                }
+            }
+
+            .dmh-player-error {
+                position: relative;
+                width: 100%;
+                top: 0;
+                left: 0;
+            }
+
+            $additional: map-get($options, additional);
+            @if $additional != null {
+                @include _playerBuildAdditional($additional);
+            }
+
+            .jwplayer {
+                &.jw-skin-dmh-skin {
+                    .jw-slider-horizontal {
+                        height: 6px;
+
+                        .jw-rail, .jw-buffer, .jw-progress {
+                            height: 6px;
+                        }
+                    }
+
+                    .jw-background-color {
+                        background-color: map-get($options, playerBackground);
+                    }
+
+                    .jw-slider-vertical {
+                        padding: 10px;
+                    }
+
+                    .jw-progress {
+                        background-color: map-get($options, playerProgressBackground);
+                    }
+
+                    .jw-icon {
+                        font-size: 24px;
+                        color: map-get($options, playerIconColor);
+
+                    }
+
+                    .jw-text {
+                        @include fontFamily(map-get($options, playerFontFamily), bold-italic);
+                        font-size: 12px;
+
+                    }
+
+                    .jw-knob {
+                        display: none;
+                    }
+
+                    .jw-tooltip-time {
+                        display: none;
+                    }
+
+                    .jw-time-tip {
+                        background-color: map-get($options, payerTimeBackground);
+                        padding: map-get($options, playerTimePadding);
+                        top: -5px;
+                        display: none;
+
+                        &.jw-background-color {
+                            background-color: map-get($options, payerTimeBackground) !important;
+                        }
+
+                        span {
+                            color: map-get($options, playerTimeColor);
+                            margin-bottom: 5px;
+                        }
+                    }
+                }
+            }
+
+
+            $audio: map-get($options, audio);
+            @if $audio != null {
+                @include _playerBuildAudio($audio);
+            }
+
+            $video: map-get($options, video);
+            @if $video != null {
+                @include _playerBuildVideo($video);
+            }
+        }
+
+        // Playlist styles
+        $playlist: map-get($options, playlist);
+        @if $playlist != null {
+            @include _playerBuildPlaylist($playlist);
+        }
+
+        // Desktop styles
+        @media (min-width: $screen-xs-max) {
+            .dmh-player-wrapper {
+                .jwplayer {
+                    &.jw-skin-dmh-skin {
+                        .jw-time-tip,
+                        .jw-tooltip-time {
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

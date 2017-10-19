@@ -1,0 +1,286 @@
+
+//
+// Titlesearch variables
+//
+$titlesearch-cover-max-width: 241px;
+$titlesearch-cover-max-width-mobile: 100px;
+
+
+.titlesearch-container {
+
+    h1, h2 {
+        @include fontSize(42);
+        font-weight: 800;
+        color: $color-footer-black;
+        text-transform: uppercase;
+    }
+
+    h1:first-of-type {
+        padding-bottom: 31px;
+        margin-bottom: 0;
+    }
+
+    .row{
+        max-width: none;
+    }
+
+    .titlesearch-header {
+        padding: 26px;
+        background: $color-white;
+
+        .titlesearch-filter-toggle {
+            margin-top: 26px;
+        }
+
+        h1 {
+            margin-bottom: 16px;
+        }
+
+        .titlesearch-filter-form {
+            .form-group {
+                margin-bottom: 16px;
+
+                .form-control {
+                    font-style: normal;
+                    @include fontSize(13);
+                }
+            }
+
+            &.open {
+                display: block !important;
+            }
+
+            .btn {
+                height: 100%;
+                @include fontSize(13);
+                padding: 12px 26px;
+                text-transform: uppercase;
+            }
+
+            .traffic-filter-anchor {
+                background: $color-white;
+                display: inline-block;
+                border-radius: 60px;
+                margin-bottom: 16px;
+
+                a {
+                    &, &:hover, &:visited, &:active, &:focus {
+                        color: darkblue;
+                        text-decoration: none;
+                        padding: 10px 26px;
+                    }
+                }
+
+                &:hover {
+                    @include boxShadow();
+                }
+
+                &:not(:last-of-type) {
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+
+    .titlesearch-content {
+        position: relative;
+        margin-bottom: 16px;
+        @include fontSize(16);
+        background: $color-violet;
+        padding: 26px 13px;
+
+        a {
+            &, &:hover, &:visited, &:active, &:focus {
+                text-decoration: none;
+            }
+        }
+
+        .titlesearch-control {
+            padding: 13px auto;
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.26);
+            color: $color-white;
+            width: calc(100% - 26px);
+            max-width: 786px;
+            margin: 13px auto 34px;
+
+            &:last-of-type {
+                margin-top: 34px;
+                margin-bottom: 0;
+            }
+        }
+
+        .titlesearch {
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+
+            .navigation-titlesearch-item {
+                z-index: 3;
+                position:relative;
+                display: inline-flex;
+                flex-direction: row;
+                justify-content: space-between;
+                overflow: hidden;
+                @include boxShadow();
+                flex-basis: 100%;
+                background: $color-white;
+                flex-shrink: 0;
+                margin-bottom: 13px;
+                flex-wrap: wrap;
+                width: 100%;
+
+                .navigation-titlesearch-icons {
+                    font-size: 3rem;
+                    display: flex;
+                    align-self: center;
+                    margin-right: 0;
+                    background: $color-white;
+                    flex-basis: 100%;
+                    padding: 10px;
+                    border-top: 1px solid #a8a8a8;
+
+                    .navigation-titlesearch-icon {
+                        flex-basis: 50%;
+                        text-align: center;
+                        padding: 4px 16px;
+                        cursor: pointer;
+
+                        &, a {
+                            @include fontSize(20);
+                            color: #a8a8a8;
+                        }
+
+                        &:first-of-type {
+                            margin-right: 10px;
+                        }
+                    }
+                }
+
+                .navigation-titlesearch-title {
+                    flex-grow: 1;
+                    line-height: normal;
+                    font-weight: normal;
+                    position: relative;
+                    overflow: visible;
+                    width: calc(100% - 100px);
+                    padding: 32px 13px 26px;
+
+                    .navigation-titlesearch-time {
+                        position: absolute;
+                        background: $color-white;
+                        border: 2px solid rgba(0, 0, 0, 0.25);
+                        border-left: 0 none;
+                        @include fontSize(13);
+                        top: 0;
+                        max-height: 32px;
+                        left: 0;
+                        padding: 6px 13px;
+                        font-weight: bold;
+                    }
+
+                    .title {
+                        font-weight: 800;
+                        line-height: 21px;
+                    }
+
+                    .title, .artist {
+                        max-width: 100%;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        white-space: nowrap;
+                    }
+                }
+
+                .navigation-titlesearch-cover {
+                    width: auto;
+                    height: auto;
+                    overflow: hidden;
+                    background-color: $color-footer-black;
+                    min-width: 100px;
+                    min-height: 100px;
+
+                    img {
+                        width: 100%;
+                        height: auto;
+                        max-width: 100px;
+                        max-height: 100px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+//
+// Preview player
+//
+#titlesearch-preview-player {
+    display: none;
+}
+
+
+//
+// Tablet & Desktop
+//
+@media (min-width: $screen-sm-min) {
+    .titlesearch-container {
+        .titlesearch-header {
+            padding: 21px 16px;
+        }
+
+        .titlesearch-content {
+            .titlesearch {
+                margin: -4px;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+                flex-direction: row;
+                align-items: flex-start;
+
+                .navigation-titlesearch-item {
+                    flex-basis: 24%;
+                    flex-wrap: wrap;
+                    max-width: $titlesearch-cover-max-width;
+                    margin: 4px;
+                    flex-grow: 1;
+
+                    .navigation-titlesearch-title {
+                        padding: 11px 13px 26px;
+                        width: 100%;
+                        margin-top: 0;
+
+                        .navigation-titlesearch-time {
+                            margin-bottom: 10px;
+                            top: -32px;
+                        }
+                    }
+
+                    .navigation-titlesearch-cover {
+                        width: 100%;
+
+                        img {
+                            max-width: none;
+                            max-height: none;
+                        }
+                    }
+
+                    .navigation-titlesearch-icons {
+                        display: flex;
+                        align-self: center;
+                        background: none;
+
+                        .navigation-titlesearch-icon {
+                            padding: initial;
+
+                            &:first-of-type {
+                                margin-right: 10px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,92 @@
+@import "../../../common/styles/social-share-overlay";
+
+
+
+.social-share-overlay-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99;
+    background: rgba(0,0,0,0.2);
+    @include fontSize(16);
+    padding-bottom: 42px;
+}
+
+.social-share-overlay-container {
+    background: $color-white;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    color: #293333;
+    min-width: 300px;
+
+    .social-share-overlay-close {
+        font-size: 21px;
+        color: #293333;
+        transition: text-shadow .2s ease-in-out;
+
+        &:hover {
+            text-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+        }
+    }
+
+    .alert {
+        @include fontSize(13);
+        margin: 16px auto;
+        max-width: 90%;
+    }
+
+    .social-share-overlay-headline {
+        @include fontSize(21);
+        font-weight: bold;
+        padding-top: 16px;
+        padding-bottom: 21px;
+        text-align: center;
+        padding-left: 26px;
+        padding-right: 26px;
+        max-width: 275px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    .social-share-overlay-channels,
+    .social-share-overlay-additional {
+        background: $color-violet;
+        color: $color-white;
+
+        .social-share-overlay-share-icon {
+            &:not(:last-child) {
+                margin-right: 16px;
+            }
+        }
+    }
+
+    .social-share-overlay-channels-headline,
+    .social-share-overlay-additional-headline {
+        @include fontFamily(roboto-slab, bold);
+        @include fontSize(16);
+        padding: 16px 0;
+        display: none;
+    }
+
+
+    .social-share-overlay-channels {
+        padding-top: 42px;
+    }
+
+    .social-share-overlay-additional {
+        padding-top: 55px;
+        padding-bottom: 42px;
+
+        .social-share-overlay-share-icon {
+            &:not(:last-child) {
+                margin-right: 8px;
+            }
+        }
+    }
+}

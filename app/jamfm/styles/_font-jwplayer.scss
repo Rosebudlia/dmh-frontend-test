@@ -1,0 +1,98 @@
+@font-face {
+  font-family: 'rb_jw7-font';
+  src:  url('../fonts/rb_jw7-font.eot?28ymzl');
+  src:  url('../fonts/rb_jw7-font.eot?28ymzl#iefix') format('embedded-opentype'),
+    url('../fonts/rb_jw7-font.ttf?28ymzl') format('truetype'),
+    url('../fonts/rb_jw7-font.woff?28ymzl') format('woff'),
+    url('../fonts/rb_jw7-font.svg?28ymzl#rb_jw7-font') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="jw-icon-"], [class*=" jw-icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'rb_jw7-font' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.jw-icon-playlist:before {
+  content: "\e616";
+}
+.jw-icon-play:before {
+  content: "\e60e";
+}
+.jw-icon-pause:before {
+  content: "\e60d";
+}
+.jw-icon-prev:before {
+  content: "\e60f";
+}
+.jw-icon-next:before {
+  content: "\e60c";
+}
+.jw-icon-audio-tracks:before {
+  content: "\e600";
+}
+.jw-icon-cast:before {
+  content: "\e603";
+}
+.jw-icon-cast.jw-off:before {
+  content: "\e602";
+}
+.jw-icon-hd.jw-off:before {
+  content: "\e609";
+}
+.jw-icon-hd:before {
+  content: "\e60a";
+}
+.jw-icon-cc.jw-off:before {
+  content: "\e604";
+}
+.jw-icon-cc:before {
+  content: "\e605";
+}
+.jw-icon-volume.jw-off:before {
+  content: "\e611";
+}
+.jw-icon-volume:before {
+  content: "\e612";
+}
+.jw-icon-fullscreen:before {
+  content: "\e608";
+}
+.jw-icon-fullscreen.jw-off:before {
+  content: "\e613";
+}
+.jw-icon-more:before {
+  content: "\e614";
+}
+.jw-icon-close:before {
+  content: "\e615";
+}
+.jw-icon-buffer:before {
+  content: "\e601";
+}
+.jw-icon-replay:before {
+  content: "\e610";
+}
+.jw-icon-error:before {
+  content: "\e607";
+}
+.jw-icon-cue:before {
+  content: "\e606";
+}
+.jw-icon-jw-logo:before {
+  content: "\e60b";
+}
+.jw-icon-rewind:before {
+  content: "\e900";
+}

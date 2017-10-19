@@ -1,0 +1,96 @@
+#include "partials/_header.html"
+
+<body>
+    #include "partials/navigation/_navigation.html"
+
+    <div class="container">
+
+        #include "partials/hero/_hero.html"
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="superbanner text-center">
+                    <img src="../../../dist/jamfm/images/dummy/superbanner_ad.png"/>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        #include "partials/social/_social-feed.html"
+
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="placeholder-remove-me text-center" style="height: 350px; width: 100%; background-color: purple; color: white;">
+                    <strong>
+
+                        YOUR NEW WIDGET HERE
+
+                    </strong>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+             <div class="col-xs-12">
+                <div class="row">
+                    <div class="col-xs-12 col-md-8 nopadding">
+                        <div class="with-sidebar">
+                            #include "partials/teasers/_teaser_4c.html"
+
+                            <div class="placeholder-remove-me text-center" style="height: 350px; width: 100%; background-color: purple; color: white;">
+                                <strong>
+
+                                    YOUR NEW WIDGET HERE
+
+                                </strong>
+
+                            </div>
+
+                            #include "partials/teasers/_teaser_listed.html"
+                        </div>
+
+                    </div>
+
+                    <div class="col-xs-12 col-md-4">
+                        <div class="sidebar">
+
+                            <div class="placeholder-remove-me text-center" style="height: 350px; width: 100%; background-color: purple; color: white;">
+                                <strong>
+
+                                    YOUR NEW WIDGET HERE
+
+                                </strong>
+
+                            </div>
+
+                            <div class="rectangle clearfix">
+                                <img src="../../../dist/jamfm/images/dummy/sidebar_ad.png" height="602" width="303"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        #include "partials/_footer.html"
+    </div>
+
+    <script src="/dist/jamfm/scripts/vendor.js"></script>
+    <script src="/dist/jamfm/scripts/common.js"></script>
+    <script src="/dist/jamfm/scripts/main.js"></script>
+
+    <script type="text/javascript">
+        $(function(){
+            console.log('DOM READY');
+
+            initHomepage();
+        });
+    </script>
+</body>
+</html>

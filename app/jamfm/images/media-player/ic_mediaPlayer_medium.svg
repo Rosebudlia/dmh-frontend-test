@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="24px" height="38px" viewBox="0 0 24 38" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_mediaPlayer_medium</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="_overview_assets_measurements" transform="translate(-123.000000, -1086.000000)" fill="#C31924">
+            <g id="--media-player" transform="translate(105.000000, 1083.000000)">
+                <g id="ic_mediaPlayer_medium">
+                    <path d="M29.9833392,8.39249563 C32.3297638,6.04584639 34.5092113,6.8242818 34.8484941,10.1043301 L37.075302,31.6322005 C37.4158283,34.9242698 35.0113655,37.3156982 31.7316313,36.9763828 L10.2058217,34.7493618 C6.91406758,34.4088029 6.14410247,32.2340147 8.49415117,29.883741 L29.9833392,8.39249563 Z" id="icon---play" transform="translate(22.112433, 22.012420) rotate(-45.000000) translate(-22.112433, -22.012420) "></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

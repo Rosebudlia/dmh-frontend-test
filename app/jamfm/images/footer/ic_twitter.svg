@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>ic_twitter</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="60" height="60" rx="4"></rect>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.14 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M51,17.7875793 C49.52875,18.4299173 47.94625,18.8642953 46.28625,19.05995 C47.98125,18.059527 49.2825,16.4770621 49.895,14.5906556 C48.31,15.5160162 46.5525,16.1878869 44.68375,16.5508941 C43.18625,14.9807345 41.05375,14 38.69375,14 C34.16125,14 30.4875,17.6165353 30.4875,22.0784465 C30.4875,22.7109402 30.56,23.327437 30.7,23.9193232 C23.87875,23.5821573 17.8325,20.3655451 13.785,15.4778696 C13.07875,16.6714863 12.67375,18.059527 12.67375,19.5398577 C12.67375,22.3417804 14.1225,24.8151509 16.32375,26.2634878 C14.97875,26.2216497 13.71375,25.8586426 12.6075,25.2532205 C12.60625,25.2876754 12.60625,25.3208998 12.60625,25.3553547 C12.60625,29.2696789 15.435,32.5342819 19.19,33.276293 C18.50125,33.4608729 17.77625,33.5593155 17.0275,33.5593155 C16.49875,33.5593155 15.985,33.5088637 15.48375,33.4153432 C16.5275,36.6245722 19.55875,38.9601231 23.15,39.0253413 C20.34125,41.1923092 16.8025,42.4831379 12.9575,42.4831379 C12.295,42.4831379 11.6425,42.4449913 11,42.3711594 C14.63125,44.6624111 18.945,46 23.58,46 C38.675,46 46.92875,33.689752 46.92875,23.0148818 C46.92875,22.66418 46.92125,22.3159392 46.905,21.9701596 C48.50875,20.8306864 49.9,19.4081907 51,17.7875793" id="path-3"></path>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-4">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="4" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="assets" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="--footer" transform="translate(-120.000000, -120.000000)">
+            <g id="ic---twitter" transform="translate(140.000000, 140.000000)">
+                <g id="Rectangle-11">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    <use fill="#00ABF1" fill-rule="evenodd" xlink:href="#path-1"></use>
+                </g>
+                <g id="Page-1">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
+                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-3"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,397 @@
+
+
+@mixin _teaserBuildListedTablet($map:null) {
+    @if $map != null {
+        //TABLET
+        @media (min-width: 530px) and (max-width: $screen-sm-max) {
+            .teaser-listed-box {
+                margin-bottom: 0;
+
+                .dmh-row {
+                    background-color: transparent;
+                    overflow: visible;
+                }
+
+                &.closed {
+                    height: auto;
+                    background: none;
+
+                    .dmh-row {
+                        height: auto;
+                        box-shadow: none;
+
+                        .dmh-col-listed {
+                            &:nth-child(3) {
+                                opacity: 1;
+
+                            }
+                        }
+                    }
+                }
+
+                .teaser-mobile-listed-expand {
+                    display: none;
+                }
+            }
+
+            .dmh-col.dmh-col-listed, .with-sidebar .dmh-col-listed, .sidebar .dmh-col-listed {
+                flex-basis: 100% !important;
+
+                a.teaser.teaser-listed {
+                    .teaser-sidebar-content {
+                        display: none;
+                    }
+
+                    .content {
+                        .teaser-image {
+                            width: 40%;
+                            float: left;
+                        }
+
+                        .teaser-text-box {
+                            width: 60%;
+                        }
+                    }
+
+                    .teaser-footer {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+@mixin _teaserBuildListedDesktop($map:null) {
+    @if $map != null {
+        // DESKTOP
+        @media (min-width: $screen-md-min) {
+            .teaser-listed-box {
+                margin-bottom: 0;
+
+                .dmh-row {
+                    background: none;
+                    overflow: visible;
+                }
+
+                &.closed {
+                    height: auto;
+
+                    .dmh-row {
+                        height: auto;
+                        box-shadow: none;
+
+                        .dmh-col-listed {
+                            &:nth-child(3) {
+                                opacity: 1;
+                            }
+                        }
+                    }
+                }
+
+                .teaser-mobile-listed-expand {
+                    display: none;
+                }
+            }
+
+            .dmh-col-listed {
+                flex-basis: calc(100% / 2);
+            }
+
+            .with-sidebar .dmh-col-listed, .sidebar .dmh-col-listed {
+                flex-basis: 100%;
+            }
+
+            .sidebar .dmh-col-listed {
+                padding: 0;
+                margin: 0;
+
+                &:nth-child(2){
+                    padding-top: map-get($map, paddingTop);
+                }
+
+                &:nth-child(n+1){
+                    border: map-get($map, sidebarBorder);
+                }
+
+                a.teaser.teaser-listed {
+                    position: relative;
+                    overflow: visible;
+                    border-radius: 0;
+
+                    &:hover {
+                        background: map-get($map, backgroundHover);
+
+                        .content {
+                            opacity: 1;
+                            transition: opacity linear 0.1s;
+                            z-index: 50;
+                            position: absolute;
+                            top: 30px;
+                            right: 300px;
+                            width: 250px;
+                            height: auto;
+                            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+                            padding-bottom: 10px;
+                            border-radius: map-get($map, borderRadiusHover);
+
+                            .teaser-list-index {
+                                display: none;
+                            }
+                        }
+                    }
+
+                    .teaser-sidebar-content {
+                        display: flex;
+                        width: 100%;
+                        height: 80px;
+                        align-items: center;
+                        padding-right: 15px;
+                        overflow: hidden;
+                        background: map-get($map, sidebarBackground);
+                        @include fontFamily(map-get($map, sidebarFontFamily), bold);
+
+                        .teaser-header {
+                            @include fontSize(map-get($map, sidebarFontSize));
+                            text-transform: uppercase;
+                            color: map-get($map, sidebarHeaderColor);
+                            max-height: 60px;
+                            flex-basis: 100%;
+                            overflow: hidden;
+                            word-break: break-all;
+                            @include hyphensText();
+                            padding: 0 16px;
+                        }
+
+                        .teaser-list-index {
+                            font-size: 55px;
+                            line-height: 58px;
+                            color: map-get($map, sidebarIndexColor);
+                            width: 90px;
+                            height: 60px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+
+                            & + .teaser-header {
+                                padding-left: 0;
+                                flex-basis: 70%;
+                            }
+                        }
+
+                    }
+
+                    .content {
+                        opacity: 0;
+                        height: 0;
+                        transition: opacity linear 0.1s;
+                        margin-bottom: 0;
+                    }
+
+                    .teaser-footer {
+                        position: relative;
+                    }
+                }
+            }
+
+            .with-sidebar .dmh-col-listed {
+                margin-bottom: 10px;
+
+                a.teaser.teaser-listed {
+                    .content {
+                        .teaser-image {
+                            overflow: hidden;
+                            width: 40%;
+                            float: left;
+                            background: map-get($map, noSidebarImageBackground);
+
+                            .teaser-image-box {
+                                position: relative;
+                            }
+                        }
+
+                        .teaser-text-box {
+                            overflow: hidden;
+                            width: 60%;
+                            border-left: map-get($map, noSidebarTextBorderLeft);
+                            max-height: map-get($map, textboxMaxHeight);
+
+                            .teaser-text {
+                                border-top: none;
+                            }
+
+                        }
+                    }
+
+                    .teaser-footer {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+@mixin teaserBuildListed($map:null, $parent:null) {
+    @if $map != null {
+        .teaser-listed-box {
+            height: auto;
+            overflow: visible;
+            margin-bottom: 50px;
+            position: relative;
+
+            .dmh-row {
+                background: map-get($map, expandBackground);
+                height: auto;
+                overflow: hidden;
+            }
+
+            &.closed {
+                .dmh-row {
+                    height: 400px;
+                    box-shadow: inset 0px -4px 5px 0px rgba(0,0,0,0.5);
+
+                    .dmh-col-listed {
+                        &:nth-child(3) {
+                            opacity: 0.5;
+
+                        }
+                    }
+                }
+            }
+
+
+            .teaser-mobile-listed-expand {
+                display: block;
+                width: 100%;
+                position: absolute;
+                bottom: -20px;
+                right: 0;
+                left: 0;
+
+                .listed-expand-button {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 42px;
+                    height: 42px;
+                    background-color: map-get($map, expandButtonBackground);
+                    color: map-get($map, expandButtonColor);
+                    font-size: 36px;
+                    border-radius: 50%;
+                    border-radius: map-get($map, expandBorderRadius);
+                    margin-right: auto;
+                    margin-left: auto;
+
+                }
+            }
+        }
+
+
+        .with-sidebar > a, a {
+            #{$parent}.teaser.teaser-listed {
+                overflow: hidden;
+                min-height: 0;
+                width: 100%;
+                margin-bottom: map-get($map, marginBottom);
+
+                $borderRadius: map-get($map, borderRadius);
+                @if $borderRadius != null {
+                    border-radius: $borderRadius;
+                }
+                @else {
+                    border-radius: 0;
+                }
+
+                .teaser-sidebar-content {
+                    display: none;
+                }
+
+                .content {
+                    overflow: hidden;
+                    background: map-get($map, background);
+                    display: flex;
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    margin-bottom: 32px;
+
+                    $fontSize: map-get($map, fontSizeContent);
+                    $fontFamily: map-get($map, fontFamilyContent);
+                    @if $fontFamily != null and $fontSize != null {
+                        @include fontFamily($fontFamily, regular, $fontSize);
+                    }
+
+                    .teaser-text {
+                        .teaser-kicker {
+                            @include fontFamily(roboto, regular, map-get($map, kickerFontSize));
+                        }
+
+                        .teaser-body {
+                            margin-bottom: map-get($map, marginBottom);
+                        }
+                    }
+
+                    .teaser-image {
+                        overflow: hidden;
+                        width: 100%;
+                        background: map-get($map, imageBackground);
+
+                        .teaser-image-box {
+                            position: relative;
+                        }
+
+                        .teaser-list-index {
+                            position: absolute;
+                            top: 10px;
+                            left: 10px;
+                            width: map-get($map, indexWidth);
+                            height: map-get($map, indexHeight);
+                            background: map-get($map, indexBackground);
+
+                            @include fontFamily(map-get($map, fontFamily), bold);
+
+                            color: map-get($map, color);
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            border: map-get($map, border);
+                            background-clip: content-box;
+                        }
+
+                        .post-type-icon {
+                            z-index: 10;
+                        }
+                    }
+
+                    .teaser-text-box,
+                    .teaser-footer {
+                        width: 100%;
+                    }
+                }
+
+                &:not(.featured):not(.sponsored) {
+                    .content {
+                        margin-bottom: map-get($map, marginBottomContent);
+
+                        .teaser-image {
+                            .post-type-icon {
+                                margin-bottom: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        @include _teaserBuildListedTablet($map);
+
+        $desktop: map-get($map, desktop);
+        @if $desktop != null {
+            @include _teaserBuildListedDesktop($desktop);
+        }
+    }
+}

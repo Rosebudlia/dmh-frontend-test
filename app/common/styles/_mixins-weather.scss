@@ -1,0 +1,1128 @@
+@import "sizes";
+
+@mixin _weatherTriangle($size:15px) {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+    border-top: $size solid #d6dde6;
+}
+
+@mixin _weatherBuildOverview($options:null) {
+    @if $options != null {
+        .weather-overview {
+            background-color: map-get($options, wrapperBackground);
+            overflow: hidden;
+
+            .weather-overview-filter {
+                padding: map-get($options, filterPadding);
+            }
+
+            .filter-zip {
+                position: relative;
+            }
+
+            .ic-ic_search {
+                color: map-get($options, iconColor);
+                font-size: map-get($options, iconSize);
+                position: absolute;
+                right: map-get($options, iconRight);
+                top: map-get($options, iconTop);
+            }
+
+            .weather-overview-slider {
+                background: map-get($options, sliderBackground);
+                height: map-get($options, sliderHeight);
+
+                .weather-overview-slider-item {
+                    background-color: map-get($options, slideBackground);
+                    border-radius: map-get($options, slideRadius);
+                    box-shadow: map-get($options, slideShadow);
+                    display: block;
+                    margin: map-get($options, slideMargin);
+                    padding: map-get($options, slidePadding);
+                    text-decoration: none;
+
+                    &:active, &:focus {
+                        outline: none;
+                    }
+                }
+
+                .weather-overview-item-wrapper {
+                    align-items: center;
+                    display: flex;
+                }
+
+                .weather-overview-slider-icon {
+                    height: map-get($options, imageHeight);
+
+                    img {
+                        height: 100%;
+                        margin: 0 auto;
+                    }
+                }
+
+                .weather-overview-slider-temp {
+                    $size: map-get($options, tempFontSize);
+
+                    @if $size != null {
+                        @include fontSize($size);
+                    }
+
+                    color: map-get($options, tempFontColor);
+                    font-weight: map-get($options, tempFontWeight);
+                }
+
+                .weather-overview-slider-city {
+                    $size: map-get($options, cityFontSize);
+
+                    @if $size != null {
+                        @include fontSize($size);
+                    }
+
+                    color: map-get($options, cityFontColor);
+                    font-weight: map-get($options, cityFontWeight);
+                }
+
+                .text-right {
+                    display: map-get($options, readMoreDisplay);
+                }
+            }
+
+            .control-panel {
+                padding: map-get($options, controlPanelPadding);
+
+            }
+
+            .weather-overview-description {
+                margin: map-get($options, descriptionMargin);
+                max-width: map-get($options, descriptionMaxWidth);
+                padding: map-get($options, descriptionPadding);
+
+                h3 {
+                    color: map-get($options, descriptionHeaderColor);
+
+                    $size: map-get($options, descriptionHeaderFontSize);
+
+                    @if $size != null {
+                        @include fontSize($size);
+                    }
+                }
+
+                p {
+                    color: map-get($options, descriptionColor);
+                    font-size: map-get($options, descriptionFontSize);
+                    line-height: map-get($options, descriptionLineHeight);
+                }
+            }
+
+            .weather-overview-description-footer {
+                margin: map-get($options, footerMargin);
+                max-width: map-get($options, footerMaxWidth);
+                text-align: map-get($options, footerAlign);
+                width: map-get($options, footerWidth);
+
+
+                span {
+                    $size: map-get($options, footerFontSize);
+
+                    @if $size != null {
+                        @include fontSize($size);
+                    }
+
+                    color: map-get($options, footerColor);
+                    margin-right: map-get($options, footerMarginRight);
+                }
+            }
+        }
+
+        $desktop: map-get($options, desktop);
+        @if $desktop != null {
+            @media screen and (min-width: $screen-sm-min) {
+                .weather-overview {
+                    .weather-overview-slider {
+                        height: map-get($desktop, desktopSliderHeight);
+
+                        .weather-overview-slider-item {
+                            margin: map-get($desktop, desktopSliderMargin);
+                            padding: map-get($desktop, desktopSliderPadding);
+                        }
+
+                        .weather-overview-slider-icon {
+                            height: map-get($desktop, desktopImageHeight);
+                        }
+
+                        .weather-overview-item-wrapper {
+                            display: block;
+                        }
+
+                        .weather-overview-slider-temp {
+                            $size: map-get($desktop, desktopTempFontSize);
+
+                            @if $size != null {
+                                @include fontSize($size);
+                            }
+                        }
+                    }
+
+                    .weather-overview-description-footer {
+                        span {
+                            margin-right: map-get($options, desktopFooterMarginRight);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@mixin _weatherBuildHeadline($options:null) {
+    @if $options != null {
+        .weather-details-headline {
+            background: map-get($options, background);
+            margin: map-get($options, margin);
+            padding: map-get($options, padding);
+
+            h1 {
+                @include fontFamily(map-get($options, fontFamily), extra-bold, map-get($options, fontSize));
+                color: map-get($options, color);
+                text-transform: map-get($options, transform);
+            }
+
+            .weather-details-date {
+                @include fontFamily(map-get($options, dateFontFamily), map-get($options, dateFontStyle), map-get($options, dateFontSize));
+                color: map-get($options, dateColor);
+                margin: map-get($options, dateMargin);
+                padding: map-get($options, datePadding);
+            }
+
+            $desktop: map-get($options, desktop);
+            @if $desktop != null {
+                @media (min-width: $screen-sm-min) {
+                    padding: map-get($desktop, padding);
+
+                    $size: map-get($desktop, fontSize);
+                    @if $size != null {
+                        h1 {
+                            @include fontSize($size);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@mixin _weatherBuildWarningIcon($options:null) {
+    @if $options != null {
+        &.weather-warning {
+            &::after {
+                background-image: map-get($options, backgroundImage);
+                bottom: 36px;
+                content: "";
+                height: map-get($options, width);
+                position: absolute;
+                right: 16px;
+                width: map-get($options, width);
+            }
+        }
+    }
+}
+
+
+@mixin _weatherBuildHeader($options:null, $warning:null) {
+    .weather-details-header {
+        @include fontFamily(map-get($options, fontFamily));
+        background: map-get($options, background);
+        color: map-get($options, color);
+        padding: map-get($options, padding);
+
+        .weather-details-icon {
+            position: relative;
+
+            img {
+                height: 98px;
+                width: auto;
+            }
+
+            @if $warning != null {
+                @include _weatherBuildWarningIcon($warning);
+
+                &.weather-warning {
+                    &::after {
+                        bottom: 36px;
+                        right: 16px;
+                    }
+                }
+            }
+        }
+
+        .weather-details-data {
+            display: flex;
+            flex-wrap: wrap;
+            height: 100%;
+            justify-content: flex-start;
+
+            & > div {
+                align-self: center;
+            }
+
+            .weather-details-temp,
+            .weather-details-label {
+                color: map-get($options, headlineColor);
+                display: block;
+                width: 100%;
+            }
+
+            .weather-details-label {
+                @include fontFamily(map-get($options, headlineLabelFontFamily), bold, map-get($options, headlineLabelFontSize));
+                color: map-get($options, headlineLabelColor);
+                margin: map-get($options, headlineLabelMargin);
+            }
+
+            .weather-details-temp {
+                font-weight: bold;
+
+                $size: map-get($options, headlineFontSize);
+                @if $size != null {
+                    @include fontSize($size);
+                }
+            }
+        }
+
+        .weather-details-forecast {
+            margin-top: map-get($options, forecastMarginTop);
+            padding: map-get($options, forecastPadding);
+
+            .weather-details-forecast-item {
+                display: block;
+                margin-bottom: 10px;
+            }
+
+            table {
+                font-size: 1.6rem;
+                margin-bottom: 0;
+
+                & + a {
+                    color: map-get($options, forecastLinkColor);
+                    display: block;
+                    font-weight: bold;
+                    margin-top: map-get($options, forecastLinkMargin);
+                    text-decoration: underline;
+                }
+
+                tr {
+                    td {
+                        border: 0;
+                        padding-left: 0;
+                        padding-right: 0;
+                    }
+
+                    td:last-of-type {
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+
+
+        $desktop: map-get($options, desktop);
+        @if $desktop != null {
+            @media (min-width: $screen-sm-min) {
+                padding: map-get($desktop, padding);
+                padding-top: map-get($desktop, paddingTop);
+
+                $size: map-get($desktop, fontSize);
+                @if $size != null {
+                    h1 {
+                        @include fontSize($size);
+                    }
+                }
+
+                .weather-details-icon {
+                    display: flex;
+                    height: 100%;
+                    justify-content: center;
+
+                    img {
+                        align-self: center;
+                        height: auto;
+                        width: auto;
+                    }
+                }
+
+                $tempSize: map-get($desktop, tempFontSize);
+                @if $tempSize != null {
+                    .weather-details-data {
+                        .weather-details-temp {
+                            @include fontSize($tempSize);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@mixin _weatherBuildForm($options:null) {
+    @if $options != null {
+        .weather-details-search-box {
+            background: map-get($options, background);
+            border-radius: map-get($options, borderRadius);
+            color: map-get($options, color);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: map-get($options, margin);
+            max-width: map-get($options, maxWidth);
+            padding: map-get($options, padding);
+            text-align: center;
+
+            .weather-details-search-box-title,
+            .weather-details-search-box-input,
+            .weather-details-search-box-submit,
+            .weather-details-search-box-form {
+                align-self: center;
+                display: inline-block;
+            }
+
+            .weather-details-search-box-title,
+            .weather-details-search-box-input,
+            .weather-details-search-box-submit {
+                margin-bottom: map-get($options, elementMarginBottom);
+            }
+
+            .weather-details-search-box-title {
+                @include fontFamily(map-get($options, titleFontFamily), bold, map-get($options, titleFontSize));
+                color: map-get($options, titleColor);
+            }
+
+            .weather-details-search-box-input {
+                position: relative;
+                min-width: 242px;
+                position: relative;
+
+                input {
+                    max-height: map-get($options, inputMaxHeight);
+                }
+
+                .ic-ic_search {
+                    color: map-get($options, searchIconColor);
+                    font-size: map-get($options, searchIconSize);
+                    position: absolute;
+                    right: 6px;
+                    top: map-get($options, searchIconTop);
+                }
+            }
+
+            .weather-details-search-box-submit {
+                width: map-get($options, btnWidth);
+
+                .btn {
+                    @include fontFamily(map-get($options, btnFontFamily), map-get($options, btnFontWeight), map-get($options, btnFontSize));
+                    background: map-get($options, btnBackground);
+                    color: map-get($options, btnColor);
+                }
+            }
+
+
+            $desktop: map-get($options, desktop);
+            @if $desktop != null {
+                @media (min-width: $screen-sm-min) {
+                    flex-wrap: nowrap;
+                    justify-content: space-between;
+                    margin: map-get($desktop, margin);
+                    text-align: left;
+
+                    .weather-details-search-box-title,
+                    .weather-details-search-box-input,
+                    .weather-details-search-box-submit {
+                        margin-bottom: map-get($desktop, elementMarginBottom);
+                    }
+
+                    .weather-details-search-box-form {
+                        width: map-get($options, formWidth);
+                    }
+
+                    .weather-details-search-box-submit {
+                        .btn {
+                            margin: map-get($options, btnMargin);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@mixin _weatherBuildSeeds($options:null) {
+    @if $options != null {
+        .weather-details-main-seeds {
+            max-width: map-get($options, maxWidth);
+            padding: map-get($options, padding);
+
+            $item: map-get($options, item);
+            @if $item != null {
+                .weather-details-main-seeds-item {
+                    @include fontFamily(map-get($item, fontFamily), map-get($item, fontStyle));
+                    background: map-get($item, background);
+                    color: map-get($item, color);
+                    margin-bottom: map-get($item, marginBottom);
+                    overflow: hidden;
+
+                    .weather-details-main-seeds-item-label {
+                        padding: map-get($item, labelPadding);
+                    }
+
+                    .weather-details-main-seeds-item-percent {
+                        background: map-get($item, percentBackground);
+                        display: block;
+                        height: map-get($item, percentHeight);
+                        width: 100%;
+
+                        $bar: map-get($item, bar);
+                        @if $bar != null {
+                            .bar {
+                                height: 100%;
+                                left: .5rem;
+                                position: absolute;
+                                top: 0;
+
+                                &.p1 {
+                                    background: map-get($bar, p1-Background);
+                                    width: 12.5%;
+                                }
+
+                                &.p2 {
+                                    background: map-get($bar, p2-Background);
+                                    width: 25%;
+                                }
+
+                                &.p3 {
+                                    background: map-get($bar, p3-Background);
+                                    width: 50%;
+                                }
+
+                                &.p4 {
+                                    background: map-get($bar, p4-Background);
+                                    width: 75%;
+                                }
+
+                                &.p5,
+                                &.p6 {
+                                    background: map-get($bar, p5-Background);
+                                    width: 100%;
+                                }
+                            }
+                        }
+                    }
+                }
+            } @else {
+                @error("Weather error: Cannot find required key seeds -> item!");
+            }
+
+
+            $legend: map-get($options, legend);
+            @if $legend != null {
+                .weather-details-main-seeds-legend {
+                    background: map-get($legend, background);
+                    color: map-get($legend, color);
+                    font-style: map-get($legend, fontStyle);
+                    padding: map-get($legend, padding);
+
+                    & > strong {
+                        display: block;
+                        margin-bottom: map-get($legend, strongMarginBottom);
+                    }
+
+                    .title {
+                        vertical-align: super;
+                    }
+
+                    .color {
+                        display: map-get($legend, blockDisplay);
+                        height: map-get($legend, blockHeight);
+                        margin: map-get($legend, blockMargin);
+                        width: map-get($legend, blockWidth);
+
+                        &.pNone {
+                            background: map-get($legend, colorP1);
+                        }
+
+                        &.pMin {
+                            background: map-get($legend, colorP2);
+                        }
+
+                        &.pMid {
+                            background: map-get($legend, colorP3);
+                        }
+
+                        &.pMax {
+                            background: map-get($legend, colorP4);
+                        }
+                    }
+                }
+            }
+
+
+            $desktop: map-get($options, desktop);
+            @if $desktop != null {
+                @media (min-width: $screen-sm-min) {
+                    margin: 0 auto;
+                    padding: map-get($desktop, padding);
+
+                    h2 {
+                        padding: map-get($desktop, headlinePadding);
+                    }
+
+                    .weather-details-main-seeds-item {
+                        .weather-details-main-seeds-item-percent {
+                            height: map-get($desktop, percentHeight);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@mixin _weatherBuildWindDirIcons($className:null) {
+    @if $className != null {
+        // IMPORTANT: It's based on the direction the wind is coming from. If you want the direction where it is blowing,
+        // you need to modify the angle by 180deg
+
+        .#{$className} {
+            display: inline-block;
+
+            &.sw {
+                transform: rotate(45deg);
+            }
+
+            &.w {
+                transform: rotate(90deg);
+            }
+
+            &.nw {
+                transform: rotate(135deg);
+            }
+
+            &.n {
+                transform: rotate(180deg);
+            }
+
+            &.no {
+                transform: rotate(225deg);
+            }
+
+            &.o {
+                transform: rotate(270deg);
+            }
+
+            &.so {
+                transform: rotate(315deg);
+            }
+        }
+    }
+}
+
+
+@mixin _weatherBuildForecast($options:null, $warning:null) {
+    @if $options != null {
+        .weather-details-main-forecast {
+            h2 {
+                padding-left: map-get($options, paddingLeft);
+            }
+
+            $days: map-get($options, days);
+            @if $days != null {
+                .weather-details-forecast-days {
+                    background: map-get($days, background);
+                    overflow: hidden;
+                    padding: map-get($days, padding);
+                    position: relative;
+                    z-index: 0;
+
+                    $after: map-get($days, after);
+                    @if $after != null {
+                        &::after {
+                            background: map-get($after, background);
+                            content: " ";
+                            height: map-get($after, height);
+                            position: absolute;
+                            top: map-get($after, top);
+                            width: map-get($after, width);
+                        }
+                    }
+
+                    .slick-arrow {
+                        background: map-get($options, arrowBackground);
+                        border: map-get($options, arrayBorder);
+                        color: map-get($options, arrowColor);
+                        display: inline-block;
+                        font-size: map-get($options, arrowFontSize);
+                        height: 100%;
+                        position: absolute;
+                        top: 0;
+                        vertical-align: middle;
+                        z-index: map-get($options, arrowZIndex);
+                    }
+
+                    .slick-next {
+                        right: 0;
+                    }
+
+                    .slick-prev {
+                        left: 0;
+                    }
+
+
+                    $list: map-get($options, list);
+                    @if $list != null {
+                        ul {
+                            padding: map-get($list, padding);
+                            z-index: 3;
+
+                            li {
+                                display: inline-block;
+                                flex-basis: 25%;
+                                min-width: map-get($list, itemMinWidth);
+
+                                &:not(:last-of-type) {
+                                    margin-right: map-get($list, itemMarginRight);
+                                }
+
+                                .weather-details-forecast-day {
+                                    color: map-get($list, itemColor);
+                                    cursor: pointer;
+                                    padding: map-get($list, itemPadding);
+                                    text-align: center;
+
+                                    .weather-details-forecast-day-icon {
+                                        display: inline-block;
+                                        position: relative;
+
+                                        @if $warning != null {
+                                            @include _weatherBuildWarningIcon($warning);
+
+                                            &.weather-warning {
+                                                &::after {
+                                                    left: 0;
+                                                    top: 0;
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                    &.active {
+                                        background: map-get($list, itemActiveBackground);
+                                        border: map-get($list, itemActiveBorder);
+                                        border-bottom: map-get($list, itemActiveBorderBottom);
+                                        border-radius: map-get($list, itemActiveBorderRadius);
+                                        box-shadow: map-get($list, itemActiveBoxShadow);
+                                        position: relative;
+
+                                        &::after {
+                                            bottom: -15px;
+                                            left: 0;
+                                            margin: 0 auto;
+                                            right: 0;
+
+                                            $triangle: map-get($list, itemTriangle);
+                                            @if $triangle != null {
+                                                @include _weatherTriangle($triangle);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+
+                    $controlPanel: map-get($options, controls);
+                    @if $controlPanel != null {
+                        & + .control-panel {
+                            background: map-get($controlPanel, background);
+
+                            .slick-dots {
+                                li {
+                                    color: map-get($controlPanel, color);
+                                    font-weight: map-get($controlPanel, fontWeight);
+                                }
+                            }
+
+                            .slick-prev,
+                            .slick-next {
+                                color: map-get($controlPanel, arrowColor);
+                            }
+                        }
+                    }
+                }
+            }
+
+            $container: map-get($options, container);
+            @if $container != null {
+                .weather-details-forecast-container {
+                    display: none;
+
+                    &.active {
+                        display: block;
+                    }
+
+                    .weather-details-forecast-time {
+                        color: map-get($container, timeColor);
+                        margin: map-get($container, timeMargin);
+
+                        ul {
+                            display: flex;
+                            justify-content: space-between;
+                        }
+
+                        .mobile {
+                            display: block;
+
+                            .select {
+                                display: block;
+                                margin: map-get($container, selectMargin);
+                                width: auto;
+                            }
+                        }
+
+                        .desktop {
+                            display: none;
+                        }
+
+                        $nodata: map-get($container, nodata);
+                        @if $nodata != null {
+                            .weather-details-forecast-time-no-data {
+                                background: map-get($nodata, background);
+                                border-bottom: map-get($nodata, borderBottom);
+                                margin: map-get($nodata, margin);
+                                max-width: map-get($nodata, maxWidth);
+                                padding: map-get($nodata, padding);
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            $data: map-get($options, data);
+            @if $data != null {
+                .weather-details-forecast-data {
+                    color: map-get($data, color);
+                    display: none;
+
+                    &.active {
+                        display: block;
+                    }
+
+                    .weather-details-forecast-data-section {
+                        margin: map-get($data, sectionMargin);
+                        max-width: map-get($data, sectionMaxWidth);
+                        padding-bottom: map-get($data, sectionPaddingBottom);
+
+                        table {
+                            tr {
+                                td {
+                                    border: 0 none;
+                                }
+
+                                td:last-of-type {
+                                    font-weight: bold;
+                                }
+                            }
+                        }
+
+                        .weather-details-forecast-data-section-right {
+                            padding: map-get($data, sectionRightPadding);
+
+                            strong {
+                                display: block;
+                                margin-bottom: map-get($data, sectionRightMarginBottom);
+                            }
+
+                            table tr {
+                                td {
+                                    padding-left: 0;
+                                    padding-right: 0;
+
+                                    &:nth-child(2) {
+                                        text-align: right;
+                                    }
+                                }
+                            }
+                        }
+
+                        $after: map-get($data, after);
+                        @if $after != null {
+                            &::after {
+                                background: map-get($after, background);
+                                content: "";
+                                height: map-get($after, height);
+                                left: map-get($after, left);
+                                margin: map-get($after, margin);
+                                margin-top: map-get($after, marginTop);
+                                position: absolute;
+                                width: map-get($after, width);
+                            }
+
+                            $lastFull: map-get($after, lastFull);
+                            @if $lastFull == true {
+                                &:last-of-type::after {
+                                    left: 0;
+                                    width: 100%;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        $desktop: map-get($options, desktop);
+        @if $desktop != null {
+            //
+            // Tablet & Desktop
+            //
+            @media (min-width: $screen-sm-min) {
+                .weather-details-main-forecast {
+                    h2 {
+                        margin: map-get($desktop, margin);
+                        margin-left: map-get($desktop, marginLeft);
+                        max-width: map-get($desktop, maxWidth);
+                        padding-left: map-get($desktop, paddingLeft);
+                    }
+
+                    .weather-details-forecast-container {
+                        display: none;
+
+                        &.active {
+                            display: block;
+                        }
+
+                        .weather-details-forecast-time {
+                            margin: 0 auto;
+
+                            .mobile {
+                                display: none;
+                            }
+
+                            .desktop {
+                                color: map-get($desktop, timeColor);
+                                display: block;
+                                margin: map-get($desktop, timeMargin);
+                                max-width: map-get($desktop, timeMaxWidth);
+
+                                ul {
+                                    border-bottom: map-get($desktop, timeBorderBottom);
+                                    position: relative;
+
+                                    li {
+                                        border-bottom: map-get($desktop, timeItemBorderBottom);
+                                        cursor: pointer;
+                                        margin-bottom: map-get($desktop, timeItemMarginBottom);
+                                        position: relative;
+
+                                        $listMargin: map-get($desktop, timeListMargin);
+                                        @if $listMargin != null {
+                                            &:first-of-type {
+                                                margin-left: $listMargin;
+                                            }
+
+                                            &:last-of-type {
+                                                margin-right: $listMargin;
+                                            }
+                                        }
+
+                                        &.active {
+                                            border-color: map-get($desktop, timeItemActiveBorderColor);
+                                            color: map-get($desktop, timeItemActiveColor);
+
+                                            $triangle: map-get($desktop, triangle);
+                                            @if $triangle {
+                                                &::after {
+                                                    @include _weatherTriangle($triangle);
+                                                    bottom: -#{$triangle + 1};
+                                                    left: 0;
+                                                    margin: 0 auto;
+                                                    right: 0;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@mixin weatherBuild($map:null) {
+    @if $map != null {
+
+        $warningIcon: map-get($map, warningIcon);
+
+        $overview: map-get($map, overview);
+        @if $overview != null {
+            @include _weatherBuildOverview($overview);
+        } @else {
+            @error ("Weather error: Cannot find required key overview!");
+        }
+
+        .weather {
+            &.weather-details {
+                background: map-get($map, background);
+                margin: map-get($map, margin);
+                overflow: hidden;
+                padding: map-get($map, padding);
+                position: relative;
+
+                ul:not(.slick-dots) {
+                    list-style: none;
+                    margin: 0;
+                    padding: map-get($map, listPadding);
+                    width: 100%;
+
+                    & > .slick-list {
+                        overflow: visible;
+                    }
+                }
+
+                $headline: map-get($map, headline);
+                @if $headline != null {
+                    @include _weatherBuildHeadline($headline);
+                } @else {
+                    @error ("Weather error: Cannot find required key headline!");
+                }
+
+                $header: map-get($map, header);
+                @if $header != null {
+                    @include _weatherBuildHeader($header, $warningIcon);
+                } @else {
+                    @error ("Weather error: Cannot find required key header!");
+                }
+
+                $search: map-get($map, searchBox);
+                @if $search != null {
+                    @include _weatherBuildForm($search);
+                }
+
+                $windDirIcon: map-get($map, windDirIconClass);
+                @if $windDirIcon != null {
+                    @include _weatherBuildWindDirIcons($windDirIcon);
+                }
+
+                .weather-details-main {
+                    background: map-get($map, mainBackground);
+                    color: map-get($map, mainColor);
+                    padding: map-get($map, mainPadding);
+
+                    .weather-details-main-today {
+                        margin: map-get($map, todayMargin);
+                        max-width: map-get($map, todayMaxWidth);
+                        padding: map-get($map, todayPadding);
+                    }
+
+                    h2 {
+                        color: map-get($map, headlineColor);
+                        margin: map-get($map, headlineMargin);
+                        padding: map-get($map, headlinePadding);
+                        text-transform: map-get($map, headlineTransform);
+
+                        $size: map-get($map, headlineFontSize);
+                        @if $size != null {
+                            @include fontSize($size);
+                        }
+                    }
+
+                    $default: map-get($map, default);
+                    @if $default != null {
+                        .weather-details-main-uvindex,
+                        .weather-details-main-ozon {
+                            border-top: map-get($default, borderTop);
+                            margin: map-get($default, outerMargin);
+
+                            & > div {
+                                padding: map-get($default, padding);
+                            }
+                        }
+                    }
+
+                    $size: map-get($map, mainFontSize);
+                    @if $size != null {
+                        @include fontSize($size);
+                    }
+
+                    $forecast: map-get($map, forecast);
+                    @if $forecast != null {
+                        @include _weatherBuildForecast($forecast);
+                    }
+
+                    $seeds: map-get($map, seeds);
+                    @if $seeds != null {
+                        @include _weatherBuildSeeds($seeds);
+                    }
+
+                    $today: map-get($map, today);
+                    @if $today != null {
+
+                    }
+                }
+            }
+        }
+
+
+        //
+        // Tablet & Desktop
+        //
+        @media (min-width: $screen-sm-min) {
+            .weather {
+                &.weather-details {
+                    &:last-of-type {
+                        overflow: hidden;
+                    }
+
+                    .control-panel {
+                        display: none;
+                    }
+
+                    $desktop: map-get($map, desktop);
+                    @if $desktop != null {
+                        .weather-details-main {
+                            .weather-details-main-today {
+                                margin: map-get($desktop, todayMargin);
+                                max-width: map-get($desktop, todayMaxWidth);
+                                padding: map-get($desktop, todayPadding);
+                            }
+                        }
+
+                        $default: map-get($desktop, default);
+                        @if $default != null {
+                            .weather-details-main-uvindex,
+                            .weather-details-main-ozon {
+                                margin: map-get($default, outerMargin) !important;
+
+                                & > div {
+                                    margin: map-get($default, margin) !important;
+                                    max-width: map-get($default, maxWidth) !important;
+                                    padding: map-get($default, padding) !important;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

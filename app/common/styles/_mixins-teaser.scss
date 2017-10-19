@@ -1,0 +1,42 @@
+@import "mixins/teaser/teaser-topper";
+@import "mixins/teaser/teaser-default";
+@import "mixins/teaser/teaser-full";
+@import "mixins/teaser/teaser-square";
+@import "mixins/teaser/teaser-listed";
+@import "mixins/teaser/teaser-slider";
+@import "mixins/teaser/teaser-events";
+
+
+@mixin teaserBuild($list:null, $parent:null) {
+    @if $list != null {
+        @each $class, $map in $list {
+            @if $class == full {
+                @include teaserBuildFull($map, $parent);
+            }
+
+            @else if $class == default {
+                @include teaserBuildDefault($map, $parent);
+            }
+
+            @else if $class == square {
+                @include teaserBuildSquare($map, $parent);
+            }
+
+            @else if $class == listed {
+                @include teaserBuildListed($map, $parent);
+            }
+
+            @else if $class == slider {
+                @include teaserBuildSlider($map);
+            }
+
+            @else if $class == events {
+                @include teaserBuildEvents($map);
+            }
+
+            @else {
+                @debug "ERROR: Unknown teaser type: #{$class}!";
+            }
+        }
+    }
+}

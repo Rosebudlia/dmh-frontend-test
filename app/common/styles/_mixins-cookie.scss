@@ -1,0 +1,97 @@
+@import "sizes";
+@import "mixins";
+@import "functions";
+
+
+@mixin cookieLayerBuildDefault($map:null) {
+    #CookieLayer {
+        background-color: map-get($map, backgroundColor);
+        border: map-get($map, cookieBannerBorder);
+        bottom: 0;
+
+        box-shadow: map-get($map, cookieBannerShadow);
+        color: map-get($map, textColor);
+        margin: map-get($map, cookieBannerMargin);
+        padding: map-get($map, cookieBannerPadding);
+        position: fixed;
+        width: map-get($map, cookieBannerWidth);
+        z-index: 1000000;
+
+        & > .container > div {
+            align-items: flex-end;
+            display: flex;
+            flex-wrap: nowrap;
+            justify-content: center;
+        }
+
+        .CookieInfoText {
+            margin-bottom: 0;
+
+            width: map-get($map, cookieTextWidth);
+
+            $cookieTextFontSize: map-get($map, cookieTextFontSize);
+            @if $cookieTextFontSize != null {
+                @include fontSize($cookieTextFontSize);
+            }
+
+            a {
+                color: map-get($map, cookieLinkColor);
+                text-decoration: underline;
+            }
+        }
+
+        .CookieButton {
+            .btn {
+                background-color: map-get($map, cookieButtonBackground);
+                border-radius: map-get($map, cookieButtonBorderRadius);
+                color: map-get($map, cookieButtonTextColor);
+                font-weight: map-get($map, cookieButtonFontWeight);
+                margin: map-get($map, cookieButtonMargin);
+                padding: map-get($map, cookieButtonPadding);
+                text-transform: map-get($map, cookieButtonTextTransform);
+
+                $cookieButtonBorder: map-get($map, cookieButtonBorder);
+                @if $cookieButtonBorder != null {
+                    border: $cookieButtonBorder;
+                }
+
+                $cookieButtonFontSize: map-get($map, cookieButtonFontSize);
+                @if $cookieButtonFontSize != null {
+                    @include fontSize($cookieButtonFontSize);
+                }
+            }
+        }
+    }
+
+    @media screen and (min-width: $screen-sm-min) {
+        #CookieLayer {
+            padding: map-get($map, cookieLayerPaddingDesktop);
+
+            & > .container > div {
+                align-items: center;
+            }
+
+            .CookieInfoText {
+                margin: map-get($map, cookieTextMarginDesktop);
+                width: map-get($map, cookieTextWidthDesktop);
+
+                $cookieTextFontSizeDesktop: map-get($map, cookieTextFontSizeDesktop);
+                @if $cookieTextFontSizeDesktop != null {
+                    @include fontSize($cookieTextFontSizeDesktop);
+                }
+            }
+
+            .CookieButton {
+                .btn {
+                    margin: map-get($map, cookieButtonMarginDesktop);
+                }
+            }
+        }
+    }
+}
+
+@mixin cookieLayerBuild($map:null) {
+    @if $map != null {
+        @include cookieLayerBuildDefault ($map);
+    }
+}

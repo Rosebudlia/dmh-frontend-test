@@ -1,0 +1,28 @@
+
+//
+// Sizes
+//
+$screen-xs-max: 767px;
+$screen-sm-min: 768px;
+$screen-sm-max: 991px;
+$screen-md-min: 992px;
+$screen-md-max: 1199px;
+$screen-lg-min: 1200px;
+
+$size-min-width: 320px;
+$size-container-lg: 1044px;
+$size-container-md: 768px;
+$size-container-inner-md: 750px;
+$size-container-xs: 320px;
+
+
+//
+// Font definitions
+//
+$font-sizes: (
+    13: 1.6rem,
+    16: 2.1rem,
+    21: 2.6rem,
+    34: 4.2rem,
+    68: 8.3rem
+);

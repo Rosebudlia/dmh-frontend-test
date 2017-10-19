@@ -1,0 +1,75 @@
+.social-share-overlay-backdrop {
+    background: rgba(0, 0, 0, .2);
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 99;
+}
+
+
+body.social-share-overlay-open {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+
+.social-share-overlay-container {
+    -moz-animation: zoomShareIcon 1s;
+    -o-animation: zoomShareIcon 1s;
+    -webkit-animation: zoomShareIcon 1s;
+    animation: zoomShareIcon 1s;
+    -webkit-animation-fill-mode: forwards;
+    background: #e7e7ec;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, .7);
+    color: #161642;
+
+    max-width: 100%;
+    min-width: 288px;
+    overflow: hidden;
+    position: fixed;
+    z-index: 9999;
+
+    .tooltip {
+        position: absolute;
+    }
+
+    .social-share-overlay-close {
+        color: #7b7b92;
+        cursor: pointer;
+        font-size: 19px;
+        position: absolute;
+        right: 16px;
+        top: 16px;
+        transition: text-shadow .2s ease-in-out;
+
+        &:hover {
+            text-shadow: 0 0 2px rgba(0, 0, 0, .6);
+        }
+    }
+
+    .social-share-overlay-channels,
+    .social-share-overlay-additional {
+        text-align: center;
+
+        .social-share-overlay-share-icon {
+            -moz-animation: zoomShareIcon 2s;
+            -o-animation: zoomShareIcon 2s;
+            -webkit-animation: zoomShareIcon 2s;
+            animation: zoomShareIcon 2s;
+
+            -webkit-animation-fill-mode: forwards;
+            border-radius: 10px;
+            cursor: pointer;
+            display: inline-block;
+            overflow: hidden;
+
+            &:not(:last-child) {
+                margin-right: 30px;
+            }
+        }
+    }
+}

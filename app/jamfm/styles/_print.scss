@@ -1,0 +1,101 @@
+@media print {
+    body {
+        position: relative;
+    }
+
+    footer, #superbanner, #billboard, #skyscraper, #rectangle1, #rectangle2, #pos1, #pos2, #pos3, #pos4, #pos5, #pos6, #CookieLayer, .header__hamburger, .header__services, .header__social--m, .header__nav, .hide-l, .social, .sidebar, .hide-m, .top-links, .author-widget, .footer-additional-widget {
+        display: none !important;
+    }
+
+
+    header {
+        border: 0;
+    }
+
+    nav.navigation {
+        position: relative !important;
+    }
+
+    hr {
+        border: 0;
+        height: 1px;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+    }
+
+    article {
+        width: 66.66%;
+
+        table {
+            max-width: 60%;
+            margin-left: 0;
+        }
+
+        & > .intro-text {
+            margin-left: 0;
+            width: 100%;
+            margin-bottom: 20px;
+            float: none;
+            padding: 0;
+        }
+    }
+
+    .header__logo {
+        width: 200px;
+        margin: 30px;
+        padding: 0;
+    }
+
+    .breadcrumb {
+        padding-top: 50px;
+    }
+
+    table {
+        max-width: 100%;
+        margin-left: 30px;
+    }
+
+    .intro-text {
+        border: 0;
+        margin-bottom: 20px;
+        font-size: 2rem;
+        width: 60%;
+        float: right;
+    }
+
+    /*section pages */
+    .hero {
+        max-width: 50%;
+    }
+
+    .article-qr-code-wrapper {
+        display: block;
+        height: 300px;
+        position: absolute;
+        left: calc(100% + 40px);
+        top: 0;
+
+        .article-qr-code {
+            canvas, table {
+                width: auto;
+                height: 150px;
+            }
+        }
+    }
+
+    form, .form,
+    .slider-gallery,
+    .header__promo,
+    .toggle-lightbox,
+    .social-share,
+    .navigation-webradio-outside,
+    .article-tags,
+    .navigation-widgets,
+    .nav,
+    .navigation-subnavigation,
+    .navigation-widgets,
+    .navigation-bubble, .embed-box, .control-panel, .navigation-webradio, .navigation-right, .navigation-left, .dmh-player-wrapper, .social-feed, .breaking-news__slider, .voting__widget, .social-share-overlay-backdrop, .social-share-overlay-container, .tooltip
+    {
+        display: none !important;
+    }
+
+}

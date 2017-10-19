@@ -1,0 +1,159 @@
+@mixin headlinesBuildDefault($map:null) {
+    .headlines-full {
+        background: map-get($map, headlinesFullWidgetBackground);
+
+        .row:nth-child(2) > .col-xs-12 {
+            padding: 0 5px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            li {
+                display: block;
+                width: 100%;
+                padding: 0;
+                margin: 0;
+
+                border-bottom: map-get($map, headlinesBorder);
+
+                &:first-of-type {
+                    border-top: map-get($map, headlinesBorder);
+                }
+            }
+
+            a {
+                display: block;
+                width: 100%;
+
+                padding: map-get($map, headlinesLinkWrapperPadding);
+
+                > .row {
+                    position: relative;
+                }
+
+
+                .headlines-date, .headlines-category {
+                    display: inline-block;
+                }
+
+                .headlines-date {
+                    @include fontFamily(map-get($map, headlinesDateFontFamily), map-get($map, headlinesDateFontStyle), map-get($map, headlinesDateFontSize));
+                    color: map-get($map, headlinesDateFontColor);
+                    margin: map-get($map, headlinesDateMargin);
+                }
+
+                .headlines-category {
+                    @include fontFamily(map-get($map, headlinesCategoryFontFamily), map-get($map, headlinesCategoryFontStyle), map-get($map, headlinesCategoryFontSize));
+                    color: map-get($map, headlinesCategoryFontColor);
+                }
+
+                .headlines-content {
+                    @include fontFamily(map-get($map, headlinesContentFontFamily), map-get($map, headlinesContentFontStyle), map-get($map, headlinesContentFontSize));
+                    text-transform: map-get($map, headlinesContentTextTransform);
+                    color: map-get($map, headlinesContentFontColor);
+                    margin-left: map-get($map, headlinesContentMarginLeft);
+                }
+
+                .col-xs-2 {
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    right: 0;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-content: center;
+                    align-items: center;
+                }
+
+                .headlines-goto {
+                    font-size: map-get($map, headlinesArrowSize);
+                    color: map-get($map, headlinesArrowColor);
+
+                }
+
+                &.headlines-all {
+                    @include fontFamily(map-get($map, headlinesReadAllFontFamily), map-get($map, headlinesReadAllFontStyle), map-get($map, headlinesReadAllFontSize));
+                    text-align: map-get($map, headlinesReadAllTextAlign);
+                    color: map-get($map, headlinesReadAllFontColor);
+
+                    span {
+                        text-decoration: map-get($map, headlinesReadAllTextDec);
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (min-width: $screen-sm-min){
+
+        .headlines-full {
+
+            .row:nth-child(2) > .col-xs-12 {
+                padding: 0 15px;
+            }
+
+            ul {
+                a {
+                    .col-sm-3 {
+                        text-align: map-get($map, headlinesDateTextAlignDesktop);
+                        padding-top: map-get($map, headlinesDatePaddingTop);
+                    }
+
+                    .headlines-date {
+
+                        $headlinesDateFontSizeDesktop: map-get($map, headlinesDateFontSizeDesktop);
+                        @if $headlinesDateFontSizeDesktop != null {
+                            @include fontSize($headlinesDateFontSizeDesktop);
+                        }
+
+                        margin: map-get($map, headlinesDateMarginDesktop);
+                    }
+
+                    .headlines-content {
+                        margin-left: map-get($map, headlinesContentMarginDesktop);
+                    }
+
+
+                    &.headlines-all {
+                        text-align: map-get($map, headlinesReadAllTextAlignDesktop);
+
+                    }
+                }
+            }
+        }
+
+        .col-md-8, .col-xs-8, .col-sm-8, .with-sidebar {
+            .headlines-full {
+                ul {
+                    a {
+
+                        .col-sm-3 {
+                            text-align: map-get($map, headlinesDateTextAlignWSidebar);
+
+                        }
+
+                        .headlines-date {
+                            margin: map-get($map, headlinesDateMarginWSidebar);
+                        }
+
+                        .col-xs-2 {
+                            right: map-get($map, headlinesArrowRightPosWSidebar);
+
+                        }
+
+                    }
+                }
+            }
+
+        }
+    }
+}
+
+@mixin headlinesBuild($map:null) {
+    @if $map != null {
+        @include headlinesBuildDefault ($map);
+    }
+}

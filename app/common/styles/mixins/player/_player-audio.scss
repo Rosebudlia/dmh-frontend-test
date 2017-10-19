@@ -1,0 +1,68 @@
+//
+// Build audio player styles
+//
+@mixin _playerBuildAudio($options:null) {
+    @if $options != null {
+        &[data-type="audio"] {
+            video {
+                height: 0 !important;
+            }
+
+            .jwplayer {
+                .jw-icon-fullscreen {
+                    display: none;
+                }
+            }
+
+            &.no-image {
+                .jwplayer.jw-skin-dmh-skin.jw-flag-aspect-mode {
+                    max-height: 120px;
+                }
+            }
+
+            &.dmh-player-wrapper {
+                margin-bottom: 15px;
+
+                .jwplayer {
+                    &.jw-skin-dmh-skin {
+                        padding-bottom: 50px;
+
+                        .jw-preview {
+                            background-position-y: 0;
+                        }
+
+                        .jw-display-icon-container {
+                            display: none;
+                        }
+
+                        .jw-controlbar-center-group {
+                            background-color: map-get($options, centerBackground);
+                        }
+
+                        .jw-title {
+                            display: block !important;
+                            position: absolute;
+                            bottom: 90px;
+                            top: auto;
+                            height: 30px;
+                            color: map-get($options, color);
+                            font-style: italic;
+                            @include fontFamily(map-get($options, fontFamily), medium, map-get($options, fontSize));
+                            background: map-get($options, background);
+                        }
+
+                        .jw-controlbar {
+                            max-height: 60px;
+                            height: 60px;
+                        }
+                    }
+                }
+
+                .dmh-player-title {
+                    display: none;
+                }
+            }
+
+        }
+    }
+}

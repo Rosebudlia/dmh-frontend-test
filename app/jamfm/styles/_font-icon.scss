@@ -1,0 +1,116 @@
+@font-face {
+  font-family: 'ic-font';
+  src:  url('../fonts/ic-font.eot?wlc1e9');
+  src:  url('../fonts/ic-font.eot?wlc1e9#iefix') format('embedded-opentype'),
+    url('../fonts/ic-font.ttf?wlc1e9') format('truetype'),
+    url('../fonts/ic-font.woff?wlc1e9') format('woff'),
+    url('../fonts/ic-font.svg?wlc1e9#ic-font') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="ic-"], [class*=" ic-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'ic-font' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ic-ic_thumb_down:before {
+  content: "\e926";
+}
+.ic-ic_thumb_up:before {
+  content: "\e925";
+}
+.ic-ic_star:before {
+  content: "\e924";
+}
+.ic-ic_event_date:before {
+  content: "\e91a";
+}
+.ic-ic_playStream:before {
+  content: "\e919";
+}
+.ic-ic_arrow_down:before {
+  content: "\e900";
+}
+.ic-ic_arrow_left:before {
+  content: "\e901";
+}
+.ic-ic_arrow_right:before {
+  content: "\e902";
+}
+.ic-ic_arrow_up:before {
+  content: "\e903";
+}
+.ic-ic_audioFlag:before {
+  content: "\e904";
+}
+.ic-ic_close:before {
+  content: "\e905";
+}
+.ic-ic_closeOptionsOverlay:before {
+  content: "\e906";
+}
+.ic-ic_done:before {
+  content: "\e907";
+}
+.ic-ic_download:before {
+  content: "\e908";
+}
+.ic-ic_favorite_active:before {
+  content: "\e909";
+}
+.ic-ic_favorite_inactive:before {
+  content: "\e90a";
+}
+.ic-ic_fullscreen:before {
+  content: "\e90b";
+}
+.ic-ic_fullscreenExit:before {
+  content: "\e90c";
+}
+.ic-ic_galleryFlag:before {
+  content: "\e90d";
+}
+.ic-ic_play_sample:before {
+  content: "\e90e";
+}
+.ic-ic_playFlag:before {
+  content: "\e90f";
+}
+.ic-ic_playlist:before {
+  content: "\e910";
+}
+.ic-ic_search:before {
+  content: "\e911";
+}
+.ic-ic_share:before {
+  content: "\e912";
+}
+.ic-ic_shopping:before {
+  content: "\e913";
+}
+.ic-ic_showOptionsOverlay:before {
+  content: "\e914";
+}
+.ic-ic_slideLeft:before {
+  content: "\e915";
+}
+.ic-ic_slideRight:before {
+  content: "\e916";
+}
+.ic-ic_spinner:before {
+  content: "\e917";
+}
+.ic-ic_stop_sample:before {
+  content: "\e918";
+}

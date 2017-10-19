@@ -16,8 +16,7 @@ const GRUNT_TASKS = [
     'grunt-contrib-clean',
     'grunt-bower-install-simple',
     'grunt-string-replace',
-    'grunt-import-js',
-    'grunt-eslint'
+    'grunt-import-js'
 ];
 
 
@@ -37,7 +36,6 @@ const TASKLIST = {
     ],
 
     'build': [
-        'eslint',
         'clean:beforeBuild',
         'compass:dev',
         'copy:html',
@@ -51,7 +49,6 @@ const TASKLIST = {
     ],
 
     'build_production': [
-        'eslint',
         'clean:beforeBuild',
         'clean:production',
         'compass:dist',
@@ -376,15 +373,15 @@ module.exports = function(grunt) {
         //
         // ES2015 linting
         //
-        eslint: {
-            app: {
-                src: ['app/' + app + '/scripts/*.js']
-            },
-
-            common: {
-                src: ['app/common/scripts/*.js']
-            },
-        },
+        // eslint: {
+        //     app: {
+        //         src: ['app/' + app + '/scripts/*.js']
+        //     },
+        //
+        //     common: {
+        //         src: ['app/common/scripts/*.js']
+        //     },
+        // },
 
 
         //
@@ -414,7 +411,7 @@ module.exports = function(grunt) {
                     'app/' + app + '/scripts/**'
                 ],
                 options: { livereload: parseInt(reloadPort, 10) || 0 },
-                tasks: ['import_js', 'eslint', 'uglify:dev'],
+                tasks: ['import_js', 'uglify:dev'],
             },
 
             common_js: {

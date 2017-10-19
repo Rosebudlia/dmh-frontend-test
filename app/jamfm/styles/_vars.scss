@@ -1,0 +1,99 @@
+//
+// Font definitions
+//
+$font-sizes: (
+    13: 1.6rem,
+    16: 2.1rem,
+    21: 2.6rem,
+    34: 4.2rem,
+    42: 5.4rem,
+    68: 8.3rem
+);
+
+
+//
+// Color definitions
+//
+$color-black: #000;
+$color-white: #fff;
+$color-violet: #642a86;
+$color-yellow: #ffd900;
+$color-red: #c52f2c;
+
+$color-font-black: #293333;
+$color-font-gray: #a8a8a8;
+
+$color-background-body: #f3f3f3;
+$color-footer-links: #e7e7ec;
+$color-pale-gray: #e7e7ec;
+$color-mid-gray: #a2a2b3;
+$color-dark-blue-text: #161642;
+$color-dark-gray-text: #515172;
+$color-mid-gray-text: #737373;
+
+$color-sponsored-grey: #cacaca;
+
+$color-player-black: #253030;
+
+
+$color-footer-black: #1c1c1c;
+$color-footer-border-gray: #ebebeb;
+
+$color-music: #FF9933;
+$color-stars: #FFDF03;
+$color-fun: #03BBFF;
+$color-lifestyle: #FF034A;
+
+
+//
+//Gradients
+//
+$gradient-yellow: linear-gradient(to right, #ffff00 0%, #ffcc00 100%);
+$gradient-violet: linear-gradient(to top, #9e54bc 0%, #642a86 100%);
+$gradient-violet-right: linear-gradient(135deg, #9e54bc 0%, #642a86 100%);
+
+//
+// Box-shadow(s)
+//
+$standard-boxshadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+
+//
+// Sizes
+//
+$screen-xs-max: 767px;
+$screen-sm-min: 768px;
+$screen-sm-max: 991px;
+$screen-md-min: 992px;
+$screen-md-max: 1199px;
+$screen-lg-min: 1200px;
+
+$size-min-width: 320px;
+$size-container-lg: 1044px;
+$size-container-md: 768px;
+$size-container-inner-md: 750px;
+$size-container-xs: 320px;
+
+$size-container-max-width: 1044px;
+
+// Forms
+$input-select-arrow-content: '\e900';
+$input-border-radius-default: 10px;
+$input-select-calendar-content: '\e91a';
+$input-text-check-icon: '\e91e';
+
+$input-color-background: #e7e7ec;
+
+
+
+//
+// Navigation
+//
+$navigation-icon-search: '\e917';
+
+//
+// Article
+//
+$article-inner-width-md: 676px;
+$article-desktop-margins: 0 100px;
+$article-desktop-padding: 8px;
